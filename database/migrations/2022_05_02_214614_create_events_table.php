@@ -33,22 +33,22 @@ return new class extends Migration {
             $table
                 ->foreign("ID_JENIS_ACARA")
                 ->references("ID_JENIS_ACARA")
-                ->on("JENIS_ACARA");
+                ->on("jenis_acara");
             $table->unsignedBigInteger("ID_KOTA");
             $table
                 ->foreign("ID_KOTA")
                 ->references("ID_KOTA")
-                ->on("KOTA");
+                ->on("kota");
             $table->unsignedBigInteger("ID_EO");
             $table
                 ->foreign("ID_EO")
                 ->references("ID_EO")
-                ->on("EO");
+                ->on("eo");
             $table->unsignedBigInteger("ID_SERTIFIKAT");
             $table
                 ->foreign("ID_SERTIFIKAT")
                 ->references("ID_SERTIFIKAT")
-                ->on("SERTIFIKAT");
+                ->on("sertifikat");
             $table->timestamps();
             $table->softDeletes();
         });

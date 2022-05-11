@@ -23,7 +23,7 @@ return new class extends Migration {
             $table
                 ->foreign("ID_ADMIN")
                 ->references("ID_ADMIN")
-                ->on("ADMIN");
+                ->on("admin");
             $table->timestamps();
             $table->softDeletes();
         });

@@ -17,6 +17,11 @@ return new class extends Migration {
             $table->json("DATA_PERTANYAAN");
             $table->integer("NOMOR_TIKET");
             $table->string("STATUS_PENDAFTARAN");
+            $table->unsignedBigInteger("ID_FORM_PENDAFTARAN");
+            $table
+                ->foreign("ID_FORM_PENDAFTARAN")
+                ->references("ID_FORM_PENDAFTARAN")
+                ->on("form_pendaftaran");
             $table->timestamps();
             $table->softDeletes();
         });

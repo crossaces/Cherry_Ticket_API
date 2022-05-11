@@ -19,7 +19,7 @@ return new class extends Migration {
             $table
                 ->foreign("ID_EVENT")
                 ->references("ID_EVENT")
-                ->on("EVENT");
+                ->on("event");
             $table->timestamps();
             $table->softDeletes();
         });

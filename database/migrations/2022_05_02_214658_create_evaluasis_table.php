@@ -15,6 +15,12 @@ return new class extends Migration {
         Schema::create("evaluasi", function (Blueprint $table) {
             $table->id("ID_EVALUASI");
             $table->json("DATA_JAWABAN");
+            $table->unsignedBigInteger("ID_FORM_EVALUASI");
+            $table
+                ->foreign("ID_FORM_EVALUASI")
+                ->references("ID_FORM_EVALUASI")
+                ->on("form_EVALUASI");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

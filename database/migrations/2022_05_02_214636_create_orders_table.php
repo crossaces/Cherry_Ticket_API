@@ -20,12 +20,12 @@ return new class extends Migration {
             $table
                 ->foreign("ID_TRANSAKSI")
                 ->references("ID_TRANSAKSI")
-                ->on("TRANSAKSI");
+                ->on("transaksi");
             $table->unsignedBigInteger("ID_EVENT");
             $table
                 ->foreign("ID_EVENT")
                 ->references("ID_EVENT")
-                ->on("EVENT");
+                ->on("event");
             $table->timestamps();
             $table->softDeletes();
         });
