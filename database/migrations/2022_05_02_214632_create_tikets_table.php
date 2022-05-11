@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::create("tiket", function (Blueprint $table) {
             $table->id("ID_TIKET");
-            $table->id("NAMA_TIKET");
+            $table->string("NAMA_TIKET", 255);
             $table->string("FASILITAS", 255);
             $table->integer("HARGA");
             $table->date("TGL_MULAI_PENJUALAN");
