@@ -19,7 +19,7 @@ return new class extends Migration {
             $table
                 ->foreign("ID_FORM_EVALUASI")
                 ->references("ID_FORM_EVALUASI")
-                ->on("form_EVALUASI");
+                ->on("form_evaluasi");
             $table->softDeletes();
             $table->timestamps();
         });
