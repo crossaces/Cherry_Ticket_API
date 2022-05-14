@@ -11,7 +11,7 @@ use App\Models\Event;
 class CustomController extends Controller
 {
     //
-    public function store(Request $request)
+    public function getData(Request $request)
     {
         $data->eo= EO::count();
         $data->peserta= Peserta::count();

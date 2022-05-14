@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\ResetPasswordController;
 use App\Http\Controllers\Api\JenisAcaraController;
 use App\Http\Controllers\Api\GenreController;
+use App\Http\Controllers\Api\CustomController;
 use App\Http\Controllers\VerificationApiController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -23,21 +24,15 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
+//Ambil Data Table
+Route::post("datahome", [CustomController::class,"getData",]); //custom
 //Password Reset
-Route::post("password/email", [
-    ForgotPasswordController::class,
-    "sendResetLinkEmail",
-]); //sendforgotpassword
+Route::post("password/email", [ForgotPasswordController::class,"sendResetLinkEmail",]); //sendforgotpassword
 Route::post("password/reset", [ResetPasswordController::class, "reset"]); //resetpassword
 
 //Email
-Route::get("email/verify/{id}", [
-    VerificationApiController::class,
-    "verify", //Email Verification
-])->name("verificationapi.verify");
-Route::post("email/resend", [VerificationApiController::class, "resend"])->name(
-    "verificationapi.resend" //Resend Email Verification
-);
+Route::get("email/verify/{id}", [VerificationApiController::class,"verify", ])->name("verificationapi.verify");//Email Verification
+Route::post("email/resend", [VerificationApiController::class, "resend"])->name("verificationapi.resend");//Resend Email Verification
 
 //Register
 Route::controller(AuthController::class)->group(function () {
