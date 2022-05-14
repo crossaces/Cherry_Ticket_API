@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->id("ID_JENIS_ACARA");
             $table->string("NAMA_JENIS", 50);
             $table->string("STATUS", 50)->nullable();
+            $table->string("GAMBAR", 50)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

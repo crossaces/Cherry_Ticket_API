@@ -99,17 +99,17 @@ class TiketController extends Controller
         );
     }
 
-    public function update(Request $request, $id)
-    {
-        $Ticket = Tiket::find($id);
-        if (is_null($Ticket)) {
-            return response(
-                [
-                    "message" => "Ticket Event Not Found",
-                    "data" => null,
-                ],
-                404
-            );
+        public function update(Request $request, $id)
+        {
+            $Ticket = Tiket::find($id);
+            if (is_null($Ticket)) {
+                return response(
+                    [
+                        "message" => "Ticket Event Not Found",
+                        "data" => null,
+                    ],
+                    404
+                );
         }
 
         $updateData = $request->all();
