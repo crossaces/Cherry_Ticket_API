@@ -14,15 +14,16 @@ class CustomController extends Controller
     //
     public function getData(Request $request)
     {
-        $data->eo= EO::count();
-        $data->peserta= Peserta::count();
-        $data->kota= Kota::count();
-        $data->event= Event::count();
-        if (!is_null($Event)) {
+        $data['eo']= EO::count();
+        $data['peserta']= Peserta::count();
+        $data['kota']= Kota::count();
+        $data['event']= Event::count();
+        // $data['event']= Event::count();
+        if (!is_null($data)) {
             return response( 
                 [
                     "message" => "Retrieve All Success",
-                    "data" => $Event,
+                    "data" => $data,
                 ],
                 200 
             );

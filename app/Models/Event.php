@@ -9,4 +9,7 @@ use Carbon\Carbon;
 class Event extends Model
 {
     use HasFactory;
+    protected $primaryKey = "ID_EVENT";
+    protected $table = "event";
+    
 }
