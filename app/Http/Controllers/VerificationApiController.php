@@ -83,8 +83,8 @@ class VerificationApiController extends Controller
         }
 
         $user->sendApiEmailVerificationNotification();
-
-        return response()->json("The notification has been resubmitted");
+       
+        return response()->json(["message" => "The notification has been resubmitted"], 200);
 
         // return back()->with(‘resent’, true);
     }
