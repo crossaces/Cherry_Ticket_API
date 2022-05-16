@@ -11,7 +11,7 @@ class Admin extends Model
     use HasFactory;
     protected $primaryKey = "ID_ADMIN";
     protected $table = "admin";
-    protected $fillable = ["NAMA_BELAKANG", "NAMA_DEPAN", "ID_USER"];
+    protected $fillable = ["NAMA_BELAKANG", "NAMA_DEPAN", "GENDER", "ID_USER"];
 
     public function getCreatedAtAttribute()
     {

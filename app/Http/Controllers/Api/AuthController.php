@@ -201,6 +201,7 @@ class AuthController extends Controller
                 "nama_depan" => "required",
                 "email" => "required|email|unique:users",
                 "password" => "required|min:8",
+                "gender" => "required",
                 "cpassword" => "required",
                 "no_hp" =>
                     "required|digits_between:10,13|numeric|starts_with:08",
@@ -225,6 +226,7 @@ class AuthController extends Controller
                     "ID_USER" => $User["id"],
                     "NAMA_DEPAN" => $register["nama_depan"],
                     "NAMA_BELAKANG" => $register["nama_belakang"],
+                    "GENDER" => $register["gender"],
                 ]);
 
                 return response(
@@ -297,11 +299,13 @@ class AuthController extends Controller
                 "email" => "required|email|unique:users,email" . $id,
                 "no_hp" =>
                     "required|digits_between:10,13|numeric|starts_with:08",
+                'gender'=> "required",
             ]);
         } else {
             $validate = Validator::make($updateData, [
                 "nama_depan" => "required",
                 "email" => "required|email|unique:users,email," . $id,
+                'gender'=> "required",
                 "password" => "required|min:8",
                 "cpassword" => "required",
                 "no_hp" =>
@@ -332,6 +336,7 @@ class AuthController extends Controller
             ->update([
                 "NAMA_DEPAN" => $updateData["nama_depan"],
                 "NAMA_BELAKANG" => $updateData["nama_belakang"],
+                "GENDER" => $updateData["gender"],
             ]);
 
         $User->no_hp = $updateData["no_hp"];
@@ -420,7 +425,7 @@ class AuthController extends Controller
                 ],
                 200
             );
-        }
+        } 
         return response(
             [
                 "data" => null,
