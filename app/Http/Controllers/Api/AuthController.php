@@ -188,7 +188,7 @@ class AuthController extends Controller
                 "token" => $token,
             ]);
         } else {
-            return response()->json(["message" => "Please Verify Email"], 401);
+            return response()->json(["message" => "Please Verify Email", "user" => $user,], 401);
         }
     }
 
