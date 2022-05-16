@@ -78,7 +78,7 @@ class VerificationApiController extends Controller
         $user = User::findOrFail($userID);
 
         if ($user->hasVerifiedEmail()) {
-            return response()->json("User already have verified email!", 422);
+            return response()->json(["message" => "User already have verified email"], 200);
             // return redirect($this->redirectPath());
         }
 
