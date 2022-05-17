@@ -95,6 +95,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::post("jenisacara", "store"); //
         Route::get("jenisacara", "getAll"); //
         Route::get("jenisacara/{id}", "get"); //
+        Route::get("jenisacaraimage/{id}", "getImage"); //
         Route::post("jenisacara/{id}", "update"); //
         Route::delete("jenisacara/{id}", "destroy"); //
     });

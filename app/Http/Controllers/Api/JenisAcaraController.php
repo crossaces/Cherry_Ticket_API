@@ -80,14 +80,24 @@ class JenisAcaraController extends Controller
         );
     }
 
+    public function getImage($id){
+        $JenisAcara = JenisAcara::find($id);
+        $path = public_path().'/GambarJenis/'.$JenisAcara->GAMBAR;
+        return Response::download($path);   
+    }
+
     public function get($id)
     {
         $JenisAcara = JenisAcara::find($id);
-          $path = public_path().'/GambarJenis/'.$JenisAcara->GAMBAR;
-       
 
         if (!is_null($JenisAcara)) {
-            return Response::download($path);  
+            return response(
+                [
+                    "message" => "Retrieve All Category Event Success",
+                    "data" => $JenisAcara,
+                ],
+                200
+            );
         }
 
         return response(
