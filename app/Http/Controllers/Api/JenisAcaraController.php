@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Models\JenisAcara;
 use Carbon\Carbon;
 use Validator;
-use Illuminate\Validation\Rule;
 
 class JenisAcaraController extends Controller
 {
@@ -121,7 +120,7 @@ class JenisAcaraController extends Controller
 
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
-            "nama_jenis" => ['required', Rule::unique('jenis_acara')->ignore($JenisAcara->ID_JENIS_ACARA)],
+            "nama_jenis" => 'required|unique:jenis_acara,NAMA_JENIS,' . $table->id,
             "status" => "required",
             "gambar" => "required"
         ]);

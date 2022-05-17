@@ -112,7 +112,7 @@ class KotaController extends Controller
 
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
-            "nama_kota" => ['required', Rule::unique('kota')->ignore($Kota->ID_KOTA)],
+            "nama_kota" => 'required|unique:kota,NAMA_KOTA,' . $table->id,
             "gambar_kota" => "required|image|mimes:jpeg,png,jpg|max:1048",
         ]);
 
