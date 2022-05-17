@@ -120,7 +120,7 @@ class JenisAcaraController extends Controller
 
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
-            "nama_jenis" => "required|unique:jenis_acara,". $JenisAcara->NAMA_JENIS,
+            "nama_jenis" => "required|unique:jenis_acara,NAMA_JENIS,". $JenisAcara->NAMA_JENIS,
             "status" => "required",
             "gambar" => "required"
         ]);
