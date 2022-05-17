@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Models\JenisAcara;
 use Carbon\Carbon;
-use Validator;
+use Validator,Redirect, Response, File;;
 
 class JenisAcaraController extends Controller
 {
