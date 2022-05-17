@@ -296,7 +296,7 @@ class AuthController extends Controller
         if ($updateData["withpassword"] == 0) {
             $validate = Validator::make($updateData, [
                 "nama_depan" => "required",
-                "email" => "required|email|unique:users,email" . $id,
+                "email" => "required|email|unique:users,email," . $id,
                 "no_hp" =>
                     "required|digits_between:10,13|numeric|starts_with:08",
                 'gender'=> "required",
