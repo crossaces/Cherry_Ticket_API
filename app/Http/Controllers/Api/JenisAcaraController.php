@@ -18,7 +18,7 @@ class JenisAcaraController extends Controller
         // jenis_acara
         $storeData = $request->all();
         $validate = Validator::make($storeData, [
-            "nama_jenis" => "required",
+            "nama_jenis" => "required|unique:jenis_acara,NAMA_JENIS," . $id,
             "status" => "required",
             "gambar" => "required",
         ]);
@@ -107,6 +107,7 @@ class JenisAcaraController extends Controller
     public function update(Request $request, $id)
     {
         $JenisAcara = JenisAcara::find($id);
+        $gambar = $JenisAcara->GAMBAR;
         if (is_null($JenisAcara)) {
             return response(
                 [
@@ -119,7 +120,7 @@ class JenisAcaraController extends Controller
 
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
-            "nama_jenis" => "required",
+           "nama_jenis" => "required|unique:jenis_acara,NAMA_JENIS," . $id,
             "status" => "required",
             "gambar" => "required"
         ]);
@@ -143,6 +144,9 @@ class JenisAcaraController extends Controller
 
 
         if ($JenisAcara->save()) {
+             if ($gambar != null) {
+                File::delete(public_path() . "/GambarJenis/" . $gambar);
+            }
             return response(
                 [
                     "message" => "Update Category Event Success",
