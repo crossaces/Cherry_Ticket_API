@@ -393,7 +393,7 @@ class AuthController extends Controller
         if ($Admin->save()) {
             return response(
                 [
-                    "message" => "Update Admin Successfully",
+                    "message" => $request->status + " Admin Successfully",
                     "data" => $Admin,
                 ],
                 200
@@ -402,7 +402,7 @@ class AuthController extends Controller
 
         return response(
             [
-                "message" => "Update Admin Failed",
+                "message" =>$request->status + " Admin Failed",
                 "data" => null,
             ],
             400
@@ -635,7 +635,7 @@ class AuthController extends Controller
         if ($EO->save()) {
             return response(
                 [
-                    "message" => "Update Event Organizer Successfully",
+                    "message" => $request->status + " Event Organizer Successfully",
                     "data" => $EO,
                 ],
                 200
@@ -644,7 +644,7 @@ class AuthController extends Controller
 
         return response(
             [
-                "message" => "Update Event Organizer Failed",
+                "message" => $request->status + " Event Organizer Failed",
                 "data" => null,
             ],
             400
