@@ -14,6 +14,8 @@ class JenisAcaraController extends Controller
     //
     public function store(Request $request)
     {
+
+        // jenis_acara
         $storeData = $request->all();
         $validate = Validator::make($storeData, [
             "nama_jenis" => "required",

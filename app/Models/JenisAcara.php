@@ -13,7 +13,7 @@ class JenisAcara extends Model
 
     protected $primaryKey = "ID_JENIS_ACARA";
     protected $table = "jenis_acara";
-    protected $fillable = ["NAMA_JENIS", "STATUS"];
+    protected $fillable = ["NAMA_JENIS", "STATUS" ,"GAMBAR"];
 
     public function getCreatedAtAttribute()
     {
