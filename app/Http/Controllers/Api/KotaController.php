@@ -53,7 +53,7 @@ class KotaController extends Controller
 
      public function getImage($id){
         $Kota = Kota::find($id);
-        $path = public_path().'/GambarKota/'.$Peserta->GAMBAR_KOTA;
+        $path = public_path().'/GambarKota/'.$Kota->GAMBAR_KOTA;
         return Response::download($path);   
     }
 
