@@ -50,6 +50,13 @@ class KotaController extends Controller
         );
     }
 
+
+     public function getImage($id){
+        $Kota = Kota::find($id);
+        $path = public_path().'/GambarKota/'.$Peserta->GAMBAR_KOTA;
+        return Response::download($path);   
+    }
+
     public function getAll()
     {
         $Kota = Kota::all();

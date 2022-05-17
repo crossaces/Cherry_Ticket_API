@@ -77,6 +77,19 @@ class AuthController extends Controller
         }
     }
 
+    public function getImageEO($id){
+        $EO = EO::find($id);
+        $path = public_path().'/GambarEO/'.$EO->GAMBAR;
+        return Response::download($path);   
+    }
+
+
+    public function getImagePeserta($id){
+        $Peserta = Peserta::find($id);
+        $path = public_path().'/GambarPeserta/'.$Peserta->GAMBAR;
+        return Response::download($path);   
+    }
+
     public function RegistrationPeserta(Request $request)
     {
         $register = $request->all();

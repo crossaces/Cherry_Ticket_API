@@ -62,6 +62,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::post("eogambar/{id}", "updateGambarEO"); //edit event organizer id use ID_EO
         Route::get("eorganizer/{id}", "getEO"); //getEO use ID_EO
         Route::get("eorganizer", "getAllEO"); //getAllEO
+        Route::get("eorganizerimage/{id}", "getImageEO");//ID_EO
         Route::put("eorganizer/status/{id}", "updateStatusEO"); //getAdmin use ID_EO
     });
 
@@ -70,6 +71,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::put("peserta/{id}", "updatePeserta"); //editadmin use ID_USER
         Route::post("pgambar/{id}", "updateGambarPeserta"); //edit peserta id use ID_Peserta
         Route::get("peserta/{id}", "getPeserta"); //getEO use ID_Peserta
+        Route::get("pesertaimage/{id}", "getImagePeserta");//ID_PESERTA
     });
 
     //Berita Function
@@ -105,6 +107,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::post("kota", "store"); //
         Route::get("kota", "getAll"); //
         Route::get("kota/{id}", "get"); //
+        Route::get("kotaimage/{id}", "getImage"); //
         Route::post("kota/{id}", "update"); //
         Route::delete("kota/{id}", "destroy"); //
     });
