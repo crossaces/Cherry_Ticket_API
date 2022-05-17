@@ -83,12 +83,15 @@ class JenisAcaraController extends Controller
     public function get($id)
     {
         $JenisAcara = JenisAcara::find($id);
+          $path = public_path().'/GambarJenis/'.$JenisAcara->GAMBAR;
+        $JenisAcara->GAMBAR =  Response::download($path);   
 
         if (!is_null($JenisAcara)) {
             return response(
                 [
                     "message" => "Retrieve All Category Event Success",
                     "data" => $JenisAcara,
+                    
                 ],
                 200
             );
