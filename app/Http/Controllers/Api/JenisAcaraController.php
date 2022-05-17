@@ -18,15 +18,26 @@ class JenisAcaraController extends Controller
         $validate = Validator::make($storeData, [
             "nama_jenis" => "required",
             "status" => "required",
+            "gambar" => "required",
         ]);
 
         if ($validate->fails()) {
             return response(["message" => $validate->errors()], 400);
         }
 
+        if ($files = $request->file("gambar")) {
+            $imageName =
+                time() . "Jenis" . "." . $request->gambar->extension();
+            $request->gambar->move(
+                public_path("GambarJenis"),
+                $imageName
+            );
+        }
+
         $JenisAcara = JenisAcara::create([
             "NAMA_JENIS" => $storeData["nama_jenis"],
             "STATUS" => $storeData["status"],
+            "GAMBAR" => $imageName,
         ]);
 
         return response(
@@ -108,14 +119,26 @@ class JenisAcaraController extends Controller
         $validate = Validator::make($updateData, [
             "nama_jenis" => "required",
             "status" => "required",
+            "gambar" => "required"
         ]);
 
         if ($validate->fails()) {
             return response(["message" => $validate->errors()], 400);
         }
 
+        if ($files = $request->file("gambar")) {
+            $imageName =
+                time() . "Jenis" . "." . $request->gambar->extension();
+            $request->gambar->move(
+                public_path("GambarJenis"),
+                $imageName
+            );
+        }
+            
         $JenisAcara->NAMA_JENIS = $updateData["nama_jenis"];
-        $JenisAcara->STATUS = $updateData["nama_jenis"];
+        $JenisAcara->STATUS = $updateData["status"];
+        $JenisAcara->GAMBAR =  $imageName;
+
 
         if ($JenisAcara->save()) {
             return response(
