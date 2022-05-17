@@ -18,7 +18,7 @@ class JenisAcaraController extends Controller
         // jenis_acara
         $storeData = $request->all();
         $validate = Validator::make($storeData, [
-            "nama_jenis" => "required|unique:jenis_acara" . $id,
+            "nama_jenis" => "required|unique:jenis_acara",
             "status" => "required",
             "gambar" => "required",
         ]);
