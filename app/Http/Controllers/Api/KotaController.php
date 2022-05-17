@@ -15,7 +15,7 @@ class KotaController extends Controller
     {
         $storeData = $request->all();
         $validate = Validator::make($storeData, [
-            "nama_kota" => "required",
+            "nama_kota" => "required|unique:kota",
             "gambar_kota" => "required|image|mimes:jpeg,png,jpg|max:1048",
         ]);
 
