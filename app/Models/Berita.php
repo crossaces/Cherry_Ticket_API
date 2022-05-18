@@ -39,4 +39,9 @@ class Berita extends Model
             );
         }
     }
+
+    public function admin()
+    {
+        return $this->hasOne(Admin::class,'ID_ADMIN');
+    }
 }

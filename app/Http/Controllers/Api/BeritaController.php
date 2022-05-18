@@ -63,6 +63,29 @@ class BeritaController extends Controller
         );
     }
 
+    public function getAllAdmin()
+    {
+        $Berita = Berita::with('admin')->get();
+
+        if (!is_null($Berita)) {
+            return response(
+                [
+                    "message" => "Retrieve All News Success",
+                    "data" => $Berita,
+                ],
+                200
+            );
+        }
+
+        return response(
+            [
+                "message" => "News Not Found",
+                "data" => null,
+            ],
+            404
+        );
+    }
+
     public function getAll()
     {
         $Berita = Berita::all()
@@ -126,14 +149,26 @@ class BeritaController extends Controller
         }
 
         $updateData = $request->all();
-        $validate = Validator::make($updateData, [
-            "tgl_mulai" => "required|date_format:Y-m-d",
-            "tgl_selesai" => "required|date_format:Y-m-d",
-            "judul" => "required",
-            "gambar_berita" => "required",
-            "deskripsi" => "required",
-            "id_admin" => "required",
-        ]);
+         if ($files = $request->file("gambar_berita")) {
+            $validate = Validator::make($updateData, [
+                "tgl_mulai" => "required|date_format:Y-m-d",
+                "tgl_selesai" => "required|date_format:Y-m-d",
+                "judul" => "required",
+                "gambar_berita" => "required|image|mimes:jpeg,png,jpg|max:1048",
+                "deskripsi" => "required",
+                "id_admin" => "required",
+            ]);
+        }
+        else{
+              $validate = Validator::make($updateData, [
+                "tgl_mulai" => "required|date_format:Y-m-d",
+                "tgl_selesai" => "required|date_format:Y-m-d",
+                "judul" => "required",               
+                "deskripsi" => "required",
+                "id_admin" => "required",
+            ]);
+        }
+     
 
         if ($validate->fails()) {
             return response(["message" => $validate->errors()], 400);
@@ -147,6 +182,9 @@ class BeritaController extends Controller
                 $imageName
             );
         }
+        else{
+            $imageName = $gambar;
+        }
 
         $Berita->TGL_MULAI = $updateData["tgl_mulai"];
         $Berita->TGL_SELESAI = $updateData["tgl_selesai"];
@@ -156,7 +194,7 @@ class BeritaController extends Controller
         $Berita->ID_ADMIN = $updateData["id_admin"];
 
         if ($Berita->save()) {
-            if ($gambar != null) {
+            if ($gambar != null && $files = $request->file("gambar_berita")) {
                 File::delete(public_path() . "/GambarBerita/" . $gambar);
             }
             return response(

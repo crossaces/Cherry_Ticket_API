@@ -228,6 +228,59 @@ class AuthController extends Controller
         }
     }
 
+    public function getwithUser($id)
+    {
+        $user = User::find($id);
+
+        if (is_null($user)) {
+            return response(
+                [
+                    "message" => "NOT FOUND",
+                    "data" => $usera,
+                ],
+                200
+            );
+        }      
+
+        if ($user->role == "EO") {
+            $user = DB::table("users")
+                ->join("eo", "users.id", "=", "eo.ID_USER")
+                ->select("users.email", "users.no_hp", "users.role", "eo.*")
+                ->first();
+        } elseif ($user->role == "Peserta") {
+            $user = DB::table("users")
+                ->join("peserta", "users.id", "=", "peserta.ID_USER")
+                ->select(
+                    "users.email",
+                    "users.no_hp",
+                    "users.role",
+                    "peserta.*"
+                )
+                ->first();
+        } else {
+            $user = DB::table("users")
+                ->join("admin", "users.id", "=", "admin.ID_USER")
+                ->select(
+                    "users.email",
+                    "users.no_hp",
+                    "users.role",
+                    "admin.*"
+                )
+                ->first();
+        }
+
+        
+        
+        return response(
+            [
+                "message" => "User Found",
+                "data" => $user,
+            ],
+            401
+        );
+        
+           
+    }
     //Admin
     public function CreateAdmin(Request $request)
     {

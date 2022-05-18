@@ -44,7 +44,7 @@ class VerificationApiController extends Controller
     public function verify(Request $request)
     {
         $userID = $request["id"];
-
+        $path = env('APP_URL');
         $user = User::findOrFail($userID);
 
         if ($user->email_verified_at == null) {
@@ -53,9 +53,9 @@ class VerificationApiController extends Controller
             $user->email_verified_at = $date; // to enable the “email_verified_at field of that user be a current time stamp by mimicing the must verify email feature
 
             $user->save();
-            return redirect("http://localhost:8080/verified");
+            return redirect($path."verified");
         } else {
-            return redirect("http://localhost:8080/verified");
+            return redirect($path."verified");
         }
     }
 

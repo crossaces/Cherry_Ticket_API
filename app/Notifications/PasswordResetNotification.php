@@ -44,8 +44,9 @@ class PasswordResetNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        $path = env('APP_URL');
         $urlToResetForm =
-            "http://localhost:8080/resetpassword?token=" .
+            $path."resetpassword?token=" .
             $this->token .
             "&email=" .
             $notifiable->getEmailForPasswordReset();

@@ -49,6 +49,7 @@ Route::group(["middleware" => "auth:api"], function () {
 
     //Admin Function
     Route::controller(AuthController::class)->group(function () {
+        Route::get("getuser/{id}", "getwithUser"); //createAdmin
         Route::post("admin", "CreateAdmin"); //createAdmin
         Route::put("admin/{id}", "updateAdmin"); //editadmin use ID_USER
         Route::get("admin", "getAllAdmin"); //getAllAdmin
@@ -78,6 +79,7 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::controller(BeritaController::class)->group(function () {
         Route::post("berita", "store"); //
         Route::get("berita", "getAll"); //
+        Route::get("beritaadmin", "getAllAdmin"); //
         Route::get("berita/{id}", "get"); //
         Route::post("berita/{id}", "update"); //
         Route::delete("berita/{id}", "destroy"); //

@@ -15,7 +15,7 @@ class KotaController extends Controller
     {
         $storeData = $request->all();
         $validate = Validator::make($storeData, [
-            "nama_kota" => "required|unique:kota",
+            "nama_kota" => "required|unique:kota,NAMA_KOTA,NULL,NULL,deleted_at,NULL",
             "gambar_kota" => "required|image|mimes:jpeg,png,jpg|max:1048",
         ]);
 
@@ -27,6 +27,13 @@ class KotaController extends Controller
             $imageName =
                 time() . "Kota" . "." . $request->gambar_kota->extension();
             $request->gambar_kota->move(public_path("GambarKota"), $imageName);
+        }else{
+             return response(
+            [
+                "message" => "Image must be field",              
+            ],
+            400
+        );
         }
 
         $Kota = Kota::create([
@@ -118,10 +125,18 @@ class KotaController extends Controller
         }
 
         $updateData = $request->all();
-        $validate = Validator::make($updateData, [
-            "nama_kota" => 'required|unique:kota,NAMA_KOTA,' . $id .',ID_KOTA',
-            "gambar_kota" => "required|image|mimes:jpeg,png,jpg|max:1048",
-        ]);
+        if ($files = $request->file("gambar_kota")) {
+            $validate = Validator::make($updateData, [
+                "nama_kota" => "required|unique:kota,NAMA_KOTA,". $id .",ID_KOTA,deleted_at,NULL",
+                "gambar_kota" => "required|image|mimes:jpeg,png,jpg|max:1048",
+            ]);
+        }
+        else{
+             $validate = Validator::make($updateData, [
+                "nama_kota" => "required|unique:kota,NAMA_KOTA,". $id .",ID_KOTA,deleted_at,NULL",               
+            ]);
+        }
+        
 
         if ($validate->fails()) {
             return response(["message" => $validate->errors()], 400);
@@ -131,13 +146,15 @@ class KotaController extends Controller
             $imageName =
                 time() . "Kota" . "." . $request->gambar_kota->extension();
             $request->gambar_kota->move(public_path("GambarKota"), $imageName);
+        }else{
+            $imageName = $gambar;
         }
 
         $Kota->NAMA_KOTA = $updateData["nama_kota"];
         $Kota->GAMBAR_KOTA = $imageName;
 
         if ($Kota->save()) {
-            if ($gambar != null) {
+            if ($gambar != null && $files = $request->file("gambar_kota")) {
                 File::delete(public_path() . "/GambarKota/" . $gambar);
             }
             return response(

@@ -15,7 +15,7 @@ class GenreController extends Controller
     {
         $storeData = $request->all();
         $validate = Validator::make($storeData, [
-            "nama_genre" => "required",
+            "nama_genre" => "required|unique:genre,NAMA_GENRE,NULL,NULL,deleted_at,NULL",
         ]);
 
         if ($validate->fails()) {
@@ -104,7 +104,7 @@ class GenreController extends Controller
 
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
-            "nama_genre" => "required",
+            "nama_genre" => "required|unique:genre,NAMA_GENRE," . $id .",ID_GENRE,deleted_at,NULL",
         ]);
 
         if ($validate->fails()) {

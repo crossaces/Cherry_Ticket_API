@@ -17,9 +17,9 @@ class JenisAcaraController extends Controller
         // jenis_acara
         $storeData = $request->all();
         $validate = Validator::make($storeData, [
-            "nama_jenis" => "required|unique:jenis_acara",
+            "nama_jenis" => "required|unique:jenis_acara,NAMA_JENIS,NULL,NULL,deleted_at,NULL",
             "status" => "required",
-            "gambar" => "required",
+            "gambar" => "required|image|mimes:jpeg,png,jpg|max:1048",
         ]);
 
         if ($validate->fails()) {
@@ -33,6 +33,13 @@ class JenisAcaraController extends Controller
                 public_path("GambarJenis"),
                 $imageName
             );
+        }else{
+             return response(
+            [
+                "message" => "Image must be field",              
+            ],
+            400
+        );
         }
 
         $JenisAcara = JenisAcara::create([
@@ -124,11 +131,20 @@ class JenisAcaraController extends Controller
         }
 
         $updateData = $request->all();
-        $validate = Validator::make($updateData, [
-            "nama_jenis" => 'required|unique:jenis_acara,NAMA_JENIS,' . $id .',ID_JENIS_ACARA',
-            "status" => "required",
-            "gambar" => "required"
-        ]);
+        if ($files = $request->file("gambar_kota")) {
+            $validate = Validator::make($updateData, [
+                "nama_jenis" => "required|unique:jenis_acara,NAMA_JENIS," . $id .",ID_JENIS_ACARA,deleted_at,NULL",
+                "status" => "required",
+                "gambar" => "required|image|mimes:jpeg,png,jpg|max:1048",
+            ]);
+        }
+        else{
+              $validate = Validator::make($updateData, [
+                "nama_jenis" => "required|unique:jenis_acara,NAMA_JENIS," . $id .",ID_JENIS_ACARA,deleted_at,NULL",
+                "status" => "required",               
+            ]);
+        }
+       
 
         if ($validate->fails()) {
             return response(["message" => $validate->errors()], 400);
@@ -141,6 +157,8 @@ class JenisAcaraController extends Controller
                 public_path("GambarJenis"),
                 $imageName
             );
+        }else{
+            $imageName = $gambar;
         }
             
         $JenisAcara->NAMA_JENIS = $updateData["nama_jenis"];
@@ -149,7 +167,7 @@ class JenisAcaraController extends Controller
 
 
         if ($JenisAcara->save()) {
-             if ($gambar != null) {
+             if ($gambar != null && $files = $request->file("gambar")) {
                 File::delete(public_path() . "/GambarJenis/" . $gambar);
             }
             return response(
