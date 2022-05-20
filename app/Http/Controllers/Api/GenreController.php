@@ -90,8 +90,7 @@ class GenreController extends Controller
 
     public function update(Request $request, $id)
     {
-        $Genre = Genre::find($id);
-        $gambar = $Genre->GAMBAR_Genre;
+        $Genre = Genre::find($id);        
         if (is_null($Genre)) {
             return response(
                 [
@@ -104,7 +103,7 @@ class GenreController extends Controller
 
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
-            "nama_genre" => "required|unique:genre,NAMA_GENRE," . $id .",ID_GENRE,deleted_at,NULL",
+            "nama_genre" => "required|unique:genre,NAMA_GENRE," . $id .",ID_GENRE,deleted_at,NULL",            
         ]);
 
         if ($validate->fails()) {
