@@ -8,7 +8,11 @@ use App\Http\Controllers\Api\KotaController;
 use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\ResetPasswordController;
 use App\Http\Controllers\Api\JenisAcaraController;
+use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\GenreController;
+use App\Http\Controllers\Api\FormPendaftaranController;
+use App\Http\Controllers\Api\FormEvaluasiController;
+use App\Http\Controllers\Api\TiketController;
 use App\Http\Controllers\Api\CustomController;
 use App\Http\Controllers\VerificationApiController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -113,6 +117,45 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::post("kota/{id}", "update"); //
         Route::delete("kota/{id}", "destroy"); //
     });
+
+    Route::controller(TiketController::class)->group(function () {
+        Route::post("tiket", "store"); //
+        Route::get("tiket", "getAll"); //
+        Route::get("tiket/{id}", "get"); //
+        Route::get("tiketimage/{id}", "getImage"); //
+        Route::put("tiket/{id}", "update"); //
+        Route::delete("tiket/{id}", "destroy"); //
+    });
+
+
+    Route::controller(EventController::class)->group(function () {
+        Route::post("event", "store"); //
+        Route::get("event", "getAll"); //getALL
+        Route::get("eventEO/{id}", "getAllEventEO"); //
+        Route::get("event/{id}", "get"); //        
+        Route::put("eventstatus/{id}", "updateStatus"); //
+        Route::put("eventtoken/{id}", "updateToken"); //
+        Route::post("event/{id}", "update"); //
+        Route::put("eventtab/{id}", "updateTab"); //
+         Route::put("eventreject/{id}", "updateTabReject"); //
+        Route::put("eventtoken/{id}", "updateToken"); //
+        Route::delete("event/{id}", "destroy"); //
+    });
+
+
+    Route::controller(FormPendaftaranController::class)->group(function () {
+      
+        Route::put("fpendaftaran/{id}", "update");
+        Route::get("fpendaftaran/{id}", "get");
+    });
+
+
+    Route::controller(FormEvaluasiController::class)->group(function () {
+      
+        Route::put("fevaluasi/{id}", "update");
+        Route::get("fevaluasi/{id}", "get");
+    });
+
 });
 //
 Route::middleware("auth:sanctum")->get("/user", function (Request $request) {

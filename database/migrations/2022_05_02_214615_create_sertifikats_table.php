@@ -13,15 +13,13 @@ return new class extends Migration {
     public function up()
     {
         Schema::create("sertifikat", function (Blueprint $table) {
-            $table->id("ID_SERTIFIKAT");
-            $table->string("NAMA_SATU", 50)->nullable();
-            $table->string("NAMA_DUA", 50)->nullable();
-            $table->string("NAMA_TIGA", 50)->nullable();
-            $table->string("DESKRIPSI_SERTIFIKAT", 250)->nullable();
-            $table->string("TANDA_TANGAN_SATU", 50)->nullable();
-            $table->string("TANDA_TANGAN_DUA", 50)->nullable();
-            $table->string("TANDA_TANGAN_TIGA", 50)->nullable();
-            $table->string("BAHASA", 50);
+            $table->id("ID_SERTIFIKAT");    
+            $table->string("BACKGROUND", 50)->nullable();
+            $table->unsignedBigInteger("ID_EVENT")->nullable();
+            $table
+                ->foreign("ID_EVENT")
+                ->references("ID_EVENT")
+                ->on("event");
             $table->timestamps();
             $table->softDeletes();
         });

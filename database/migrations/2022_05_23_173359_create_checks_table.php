@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,19 +13,16 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create("transaksi", function (Blueprint $table) {
-            $table->id("ID_TRANSAKSI");
-            $table->date("TGL_TRANSAKSI");
-            $table->string("STATUS_TRANSAKSI", 50);
-            $table->string("METODE_PEMBAYARAN", 50);
-            $table->string("BUKTI_PEMBAYARAN", 50);
+        Schema::create('check', function (Blueprint $table) {
+            $table->id('ID_CHECK');
+            $table->date('TGL_CHECK');
+            $table->string('STATUS_CHECK');
             $table->unsignedBigInteger("ID_PESERTA");
             $table
                 ->foreign("ID_PESERTA")
                 ->references("ID_PESERTA")
                 ->on("peserta");
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -35,6 +33,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists("transaksi");
+        Schema::dropIfExists('check');
     }
 };

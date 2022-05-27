@@ -14,8 +14,8 @@ return new class extends Migration {
     {
         Schema::create("form_evaluasi", function (Blueprint $table) {
             $table->id("ID_FORM_EVALUASI");
-            $table->json("DATA_PERTANYAAN");
-            $table->unsignedBigInteger("ID_EVENT");
+            $table->json("DATA_PERTANYAAN")->nullable();
+            $table->unsignedBigInteger("ID_EVENT")->nullable();
             $table
                 ->foreign("ID_EVENT")
                 ->references("ID_EVENT")

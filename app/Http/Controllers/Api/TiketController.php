@@ -14,12 +14,13 @@ class TiketController extends Controller
     {
         $storeData = $request->all();
         $validate = Validator::make($storeData, [
-            "nama_tiket" => "required",
+            "nama_tiket" => "required|unique:tiket,NAMA_TIKET,NULL,NULL,deleted_at,NULL,ID_EVENT,". $storeData['id_event'] ,
             "fasilitas" => "required",
             "id_event" => "required",
             "tgl_mulai" => "required|date_format:Y-m-d",
             "tgl_selesai" => "required|date_format:Y-m-d",
             "harga" => "required",
+            "stok" => "required",
         ]);
 
         if ($validate->fails()) {
@@ -31,6 +32,7 @@ class TiketController extends Controller
             "FASILITAS" => $storeData["fasilitas"],
             "ID_EVENT" => $storeData["id_event"],
             "HARGA" => $storeData["harga"],
+            "STOK" => $storeData["stok"],
             "TGL_MULAI_PENJUALAN" => $storeData["tgl_mulai"],
             "TGL_SELESAI_PENJUALAN" => $storeData["tgl_selesai"],
         ]);
@@ -114,12 +116,13 @@ class TiketController extends Controller
 
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
-            "nama_tiket" => "required",
+            "nama_tiket" => "required|unique:tiket,NAMA_TIKET," . $id .",ID_TIKET,deleted_at,NULL,ID_EVENT,". $updateData['id_event'] ,  
             "fasilitas" => "required",
             "id_event" => "required",
             "tgl_mulai" => "required|date_format:Y-m-d",
             "tgl_selesai" => "required|date_format:Y-m-d",
             "harga" => "required",
+            "stok" => "required",
         ]);
 
         if ($validate->fails()) {
@@ -130,6 +133,7 @@ class TiketController extends Controller
         $Ticket->FASILITAS = $updateData["fasilitas"];
         $Ticket->ID_EVENT = $updateData["id_event"];
         $Ticket->HARGA = $updateData["harga"];
+        $Ticket->STOK = $updateData["stok"];
         $Ticket->TGL_MULAI_PENJUALAN = $updateData["tgl_mulai"];
         $Ticket->TGL_SELESAI_PENJUALAN = $updateData["tgl_selesai"];
 

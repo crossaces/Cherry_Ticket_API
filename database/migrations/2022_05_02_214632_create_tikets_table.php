@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string("NAMA_TIKET", 255);
             $table->string("FASILITAS", 255);
             $table->integer("HARGA");
+            $table->integer("STOK");
             $table->date("TGL_MULAI_PENJUALAN");
             $table->date("TGL_SELESAI_PENJUALAN");
             $table->unsignedBigInteger("ID_EVENT");

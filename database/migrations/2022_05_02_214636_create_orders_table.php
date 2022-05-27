@@ -21,11 +21,11 @@ return new class extends Migration {
                 ->foreign("ID_TRANSAKSI")
                 ->references("ID_TRANSAKSI")
                 ->on("transaksi");
-            $table->unsignedBigInteger("ID_EVENT");
+            $table->unsignedBigInteger("ID_TIKET");
             $table
-                ->foreign("ID_EVENT")
-                ->references("ID_EVENT")
-                ->on("event");
+                ->foreign("ID_TIKET")
+                ->references("ID_TIKET")
+                ->on("tiket");
             $table->timestamps();
             $table->softDeletes();
         });

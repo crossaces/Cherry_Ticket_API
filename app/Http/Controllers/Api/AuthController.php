@@ -38,13 +38,15 @@ class AuthController extends Controller
 
             if ($register["password"] == $register["cpassword"]) {
                 $register["password"] = Hash::make($request->password);
+                $date = date("Y-m-d H:i:s");
                 $User = User::create([
                     "email" => $register["email"],
                     "password" => $register["password"],
                     "no_hp" => $register["no_hp"],
                     "role" => $register["role"],
+                    "email_verified_at" => $date,  
                 ]);
-                $User->sendApiEmailVerificationNotification();
+                // $User->sendApiEmailVerificationNotification();
                 $EO = EO::create([
                     "ID_USER" => $User["id"],
                     "NAMA_EO" => $register["nama_eo"],
@@ -131,9 +133,10 @@ class AuthController extends Controller
 
             $register["password"] = Hash::make($request->password);
             $User = User::create([
+                
                 "email" => $register["email"],
                 "password" => $register["password"],
-                "no_hp" => $register["no_hp"],
+                "no_hp" => $register["no_hp"],             
                 "role" => $register["role"],
             ]);
             $User->sendApiEmailVerificationNotification();
