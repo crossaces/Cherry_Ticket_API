@@ -44,17 +44,17 @@ class EventController extends Controller
         ]);
 
         
-        if($storeData['with_evaluasi']==1){
-            $FormEvaluasi = FormEvaluasi::create([
-                "ID_EVENT" => $Event['ID_EVENT']        
-            ]);
-        }
+      
+        $FormEvaluasi = FormEvaluasi::create([
+            "ID_EVENT" => $Event['ID_EVENT']        
+        ]);
+        
 
-          if($storeData['with_sertifikat']==1){
-            $Seritfikat = Sertifikat::create([
-                "ID_EVENT" => $Event['ID_EVENT']        
-            ]);
-        }
+       
+        $Seritfikat = Sertifikat::create([
+            "ID_EVENT" => $Event['ID_EVENT']        
+        ]);
+        
       
 
         $FormPendaftaran = FormPendaftaran::create([
@@ -154,7 +154,7 @@ class EventController extends Controller
     public function update(Request $request, $id)
     {
         $Event = Event::find($id);
-        $gambar = $Event->GAMBAR_Event;
+        $gambar = $Event->GAMBAR_EVENT;
         if (is_null($Event)) {
             return response(
                 [
@@ -168,43 +168,46 @@ class EventController extends Controller
         $updateData = $request->all();
          if ($files = $request->file("gambar_event")) {
             $validate = Validator::make($updateData, [
-                "nama_event" => "required|date_format:Y-m-d",
+                "nama_event" => "required",
                 "tgl_mulai" => "required|date_format:Y-m-d",
-                "tgl_selesai" => "required|date_format:Y-m-d",
-                "tgl_acara_selesai" => "required|date_format:Y-m-d H:i",
-                "tgl_acara_mulai" => "required|date_format:Y-m-d H:i",    
+                "tgl_selesai" => "required|date_format:Y-m-d",              
+                "tgl_acara_mulai" => "required|date_format:Y-m-d",    
                 "waktu_selesai" => "required",
                 "waktu_mulai" => "required",             
                 "gambar_event" => "required|image|mimes:jpeg,png,jpg|max:1048",
                 "mode_event" => "required",
                 "visible_event" => "required",
-                "nama_lokasi" => "required",     
-                "deskripsi" => "required",     
-                "syarat" => "required",     
-                "batas_Event" => "required",                                     
+                "nama_lokasi" => "required",                   
+                "address" => "nullable",
+                "batas_tiket" => "required",        
+                "id_kota" => "required",                             
                 "id_jenis_acara" => "required",       
-                "id_genre" => "required",     
-                "id_Event" => "required",                                             
+                "id_genre" => "required",        
+                "with_evaluasi" => "required",     
+                "qna" => "required",     
+                "with_sertifikat" => "required",                                                      
             ]);
         }
         else{
               $validate = Validator::make($updateData, [
-                "nama_event" => "required|date_format:Y-m-d",
+                "nama_event" => "required",
                 "tgl_mulai" => "required|date_format:Y-m-d",
                 "tgl_selesai" => "required|date_format:Y-m-d",
                 "waktu_selesai" => "required",
-                "waktu_mulai" => "required",        
-                "tgl_acara_selesai" => "required|date_format:Y-m-d H:i",
-                "tgl_acara_mulai" => "required|date_format:Y-m-d H:i",                            
+                "waktu_mulai" => "required",                     
+                "tgl_acara_mulai" => "required|date_format:Y-m-d",                            
                 "mode_event" => "required",
                 "visible_event" => "required",
                 "nama_lokasi" => "required",     
-                "deskripsi" => "required",     
-                "syarat" => "required",                     
-                "batas_Event" => "required",                                     
+                "batas_transaksi" => "required",                              
+                "batas_tiket" => "required",                 
+                "address" => "nullable",                    
                 "id_jenis_acara" => "required",       
-                "id_genre" => "required",     
-                "id_Event" => "required",              
+                "id_kota" => "required",
+                "id_genre" => "required",         
+                "with_evaluasi" => "required",     
+                "qna" => "required",     
+                "with_sertifikat" => "required",                      
             ]);
         }
                 
@@ -222,13 +225,15 @@ class EventController extends Controller
             );
         }
         else{
-            $imageName = $gambar;
+            $imageName = $gambar; 
         }
 
             $Event->NAMA_EVENT = $updateData["nama_event"];
             $Event->TGL_MULAI = $updateData["tgl_mulai"];
             $Event->TGL_SELESAI = $updateData["tgl_selesai"];        
-            $Event->TGL_ACARA_SELESAI = $updateData["tgl_acara_selesai"];
+            if($updateData["tgl_acara_selesai"]!="kosong"){
+                $Event->TGL_ACARA_SELESAI = $updateData["tgl_acara_selesai"];
+            }            
             $Event->TGL_ACARA_MULAI = $updateData["tgl_acara_mulai"];   
             $Event->WAKTU_MULAI = $updateData["waktu_mulai"];
             $Event->WAKTU_SELESAI = $updateData["waktu_selesai"];            
@@ -236,15 +241,31 @@ class EventController extends Controller
             $Event->VISIBLE_EVENT = $updateData["visible_event"];
             $Event->GAMBAR_EVENT = $imageName;
             $Event->NAMA_LOKASI = $updateData["nama_lokasi"];   
-            $Event->DESKRIPSI = $updateData["deskripsi"];
-            $Event->SYARAT = $updateData["syarat"];     
-            $Event->BATAS_Event = $updateData["batas_Event"];  
+            $Event->BATAS_TRANSAKSI = $updateData["batas_transaksi"];   
+            $Event->ADDRESS = $updateData["address"];   
+            
+            if($updateData["deskripsi"]!="kosong"){
+               $Event->DESKRIPSI = $updateData["deskripsi"];
+            }    
+
+            if($updateData["syarat"]!="kosong"){
+                $Event->SYARAT = $updateData["syarat"];     
+            } 
+    
+            $Event->BATAS_TIKET = $updateData["batas_tiket"];  
             $Event->ID_JENIS_ACARA = $updateData["id_jenis_acara"];  
-            $Event->ID_GENRE = $updateData["id_genre"];  
-            $Event->ID_Event = $updateData["id_Event"];  
+            $Event->ID_KOTA = $updateData["id_kota"];  
+            $Event->ID_GENRE = $updateData["id_genre"];         
+            $Event->SERTIFIKAT = $updateData["with_sertifikat"]; 
+            $Event->QNA = $updateData["qna"]; 
+            $Event->EVALUASI = $updateData["with_evaluasi"]; 
             $Event->URL = $updateData["url"];  
-            $Event->LAT = $updateData["lat"];  
-            $Event->LNG = $updateData["lng"];  
+            if ($updateData["mode_event"] == "Offline" ||$updateData["mode_event"] == "Hybrid"
+            ){
+                $Event->LAT = $updateData["lat"];  
+                $Event->LNG = $updateData["lng"];  
+            }
+           
 
         if ($Event->save()) {
             if ($gambar != null && $files = $request->file("gambar_event")) {
@@ -293,7 +314,10 @@ class EventController extends Controller
             return response(["message" => $validate->errors()], 400);
         }       
 
-            $Event->STATUS_EVENT = $updateData["status_event"];          
+            $Event->STATUS_EVENT = $updateData["status_event"];        
+            if($updateData["status_event"]=="Finish")  {
+                $Event->EVENT_TAB = "Over";       
+            }
 
         if ($Event->save()) {           
             return response(
@@ -338,7 +362,10 @@ class EventController extends Controller
             return response(["message" => $validate->errors()], 400);
         }       
 
-            $Event->EVENT_TAB = $updateData["event_tab"];          
+            $Event->EVENT_TAB = $updateData["event_tab"];        
+            if($updateData['event_tab']=='Publish')  {
+              $Event->KOMENTAR = null;
+            }
 
         if ($Event->save()) {           
             return response(

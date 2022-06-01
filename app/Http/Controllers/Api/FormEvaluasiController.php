@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\FormEvaluasi;
+use App\Models\Event;
 use Illuminate\Support\Facades\DB;
 use Validator;
 
@@ -58,14 +59,15 @@ class FormEvaluasiController extends Controller
 
     public function get($id)
     {
-        $FormEvaluasi = FormEvaluasi::find($id);
+        $temp=FormEvaluasi::where("ID_EVENT", "=", $id)->first();
+        $FormEvaluasi = FormEvaluasi::find($temp['ID_FORM_EVALUASI']);
 
         if (!is_null($FormEvaluasi)) {
             return response(
                 [
                     "message" => "Retrieve Form Evaluation Success",
                     // "data" => $FormEvaluasi,
-                    "TEST" => json_decode($FormEvaluasi->DATA_PERTANYAAN),
+                    "data" => $FormEvaluasi
                 ],
                 200
             );

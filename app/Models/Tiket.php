@@ -17,6 +17,7 @@ class Tiket extends Model
         "NAMA_TIKET",
         "FASILITAS",
         "HARGA",
+        "STOK",
         "TGL_MULAI_PENJUALAN",
         "TGL_SELESAI_PENJUALAN",
         "ID_EVENT",

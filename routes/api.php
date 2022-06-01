@@ -119,12 +119,12 @@ Route::group(["middleware" => "auth:api"], function () {
     });
 
     Route::controller(TiketController::class)->group(function () {
-        Route::post("tiket", "store"); //
-        Route::get("tiket", "getAll"); //
-        Route::get("tiket/{id}", "get"); //
-        Route::get("tiketimage/{id}", "getImage"); //
-        Route::put("tiket/{id}", "update"); //
-        Route::delete("tiket/{id}", "destroy"); //
+        Route::post("ticket", "store"); //
+        Route::get("ticket", "getAll"); //
+        Route::get("ticket/{id}", "get"); //
+        Route::get("ticketimage/{id}", "getImage"); //
+        Route::put("ticket/{id}", "update"); //
+        Route::delete("ticket/{id}", "destroy"); //
     });
 
 
@@ -137,7 +137,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::put("eventtoken/{id}", "updateToken"); //
         Route::post("event/{id}", "update"); //
         Route::put("eventtab/{id}", "updateTab"); //
-         Route::put("eventreject/{id}", "updateTabReject"); //
+        Route::put("eventreject/{id}", "updateTabReject"); //
         Route::put("eventtoken/{id}", "updateToken"); //
         Route::delete("event/{id}", "destroy"); //
     });
@@ -153,7 +153,7 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::controller(FormEvaluasiController::class)->group(function () {
       
         Route::put("fevaluasi/{id}", "update");
-        Route::get("fevaluasi/{id}", "get");
+        Route::get("fevaluasi/{id}", "get");//id_event
     });
 
 });

@@ -29,6 +29,8 @@ return new class extends Migration {
             $table->string("NAMA_LOKASI", 50)->nullable();
             $table->string("DESKRIPSI", 1000)->nullable();
             $table->string("SYARAT", 1000)->nullable();
+            $table->string("ADDRESS", 500)->nullable();
+            $table->boolean("BATAS_TRANSAKSI")->nullable();
             $table->double("LNG")->nullable();
             $table->double("LAT")->nullable();
             $table->string("URL", 150)->nullable();
@@ -36,8 +38,8 @@ return new class extends Migration {
             $table->integer("TOTAL_TIKET_BEREDAR")->nullable();
             $table->string("TOKEN", 50);
             $table->boolean("QNA", 50);
-            $table->boolean("EVALUASI", 50);
-            $table->boolean("SERTIFIKAT", 50);
+            $table->boolean("EVALUASI");
+            $table->boolean("SERTIFIKAT");
             $table->integer("BATAS_TIKET")->nullable();
             $table->string("KOMENTAR", 256)->nullable()->nullable();
             $table->unsignedBigInteger("ID_JENIS_ACARA")->nullable();           

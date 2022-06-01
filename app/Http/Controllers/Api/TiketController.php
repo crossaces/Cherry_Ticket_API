@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tiket;
+use App\Models\Event;
 use Validator;
 
 class TiketController extends Controller
@@ -37,6 +38,10 @@ class TiketController extends Controller
             "TGL_SELESAI_PENJUALAN" => $storeData["tgl_selesai"],
         ]);
 
+
+        $Event = Event::find($storeData["id_event"]);
+        $Event->TOTAL_TIKET_BEREDAR += $storeData["stok"];
+        $Event->save();
         return response(
             [
                 "message" => "Add Ticket Event Success",
@@ -116,9 +121,9 @@ class TiketController extends Controller
 
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
-            "nama_tiket" => "required|unique:tiket,NAMA_TIKET," . $id .",ID_TIKET,deleted_at,NULL,ID_EVENT,". $updateData['id_event'] ,  
-            "fasilitas" => "required",
             "id_event" => "required",
+            "nama_tiket" => "required|unique:tiket,NAMA_TIKET," . $id .",ID_TIKET,deleted_at,NULL,ID_EVENT,". $updateData['id_event'] ,  
+            "fasilitas" => "required",          
             "tgl_mulai" => "required|date_format:Y-m-d",
             "tgl_selesai" => "required|date_format:Y-m-d",
             "harga" => "required",
@@ -129,9 +134,22 @@ class TiketController extends Controller
             return response(["message" => $validate->errors()], 400);
         }
 
-        $Ticket->NAMA_TIKET = $updateData["nama_peserta"];
-        $Ticket->FASILITAS = $updateData["fasilitas"];
-        $Ticket->ID_EVENT = $updateData["id_event"];
+        $Event = Event::find($updateData["id_event"]);
+        
+        if($Ticket['STOK']>$updateData["stok"])
+        {
+            $temp =$Ticket['STOK'] - $updateData['stok'];
+            $Event->TOTAL_TIKET_BEREDAR -= $temp;
+        }
+        else{
+            $temp = $updateData['stok'] - $Ticket['STOK'];
+            $Event->TOTAL_TIKET_BEREDAR += $temp;   
+        }
+         
+        $Event->save();
+
+        $Ticket->NAMA_TIKET = $updateData["nama_tiket"];
+        $Ticket->FASILITAS = $updateData["fasilitas"];       
         $Ticket->HARGA = $updateData["harga"];
         $Ticket->STOK = $updateData["stok"];
         $Ticket->TGL_MULAI_PENJUALAN = $updateData["tgl_mulai"];
@@ -167,6 +185,11 @@ class TiketController extends Controller
                 404
             );
         }
+
+
+        $Event = Event::find($Ticket["ID_EVENT"]);
+        $Event->TOTAL_TIKET_BEREDAR -= $Ticket["STOK"];
+        $Event->save();
 
         if ($Ticket->delete()) {
             return response(

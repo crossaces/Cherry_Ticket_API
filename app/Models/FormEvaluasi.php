@@ -11,7 +11,7 @@ class FormEvaluasi extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $primaryKey = "ID_FORM EVALUASI";
+    protected $primaryKey = "ID_FORM_EVALUASI";
     protected $table = "form_evaluasi";
     protected $fillable = [
         "ID_EVENT",
@@ -35,10 +35,4 @@ class FormEvaluasi extends Model
             );
         }
     }
-
-    public function admin()
-    {
-        return $this->hasOne(Admin::class,'ID_ADMIN');
-    }
-
 }

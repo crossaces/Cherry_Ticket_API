@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\FormPendaftaran;
+use App\Models\Event;
 use Illuminate\Support\Facades\DB;
 use Validator;
 
@@ -59,14 +60,14 @@ class FormPendaftaranController extends Controller
 
     public function get($id)
     {
-        $FormPendaftaran = FormPendaftaran::find($id);
-
+        $temp=FormPendaftaran::where("ID_EVENT", "=", $id)->first();
+        $FormPendaftaran = FormPendaftaran::find($temp['ID_FORM_PENDAFTARAN']);
+        $FormPendaftaran->DATA_PERTANYAAN=json_decode($FormPendaftaran->DATA_PERTANYAAN);
         if (!is_null($FormPendaftaran)) {
             return response(
                 [
-                    "message" => "Retrieve Form Register Success",
-                    // "data" => $FormPendaftaran,
-                    "TEST" => json_decode($FormPendaftaran->DATA_PERTANYAAN),
+                    "message" => "Retrieve Form Register Success",                    
+                    "data" => $FormPendaftaran,
                 ],
                 200
             );
@@ -75,7 +76,7 @@ class FormPendaftaranController extends Controller
         return response(
             [
                 "message" => "Form Register Not Found",
-                "data" => null,
+                "data" => $temp['ID_FORM_PENDAFTARAN'],
             ],
             404
         );
