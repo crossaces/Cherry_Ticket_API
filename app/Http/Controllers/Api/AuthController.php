@@ -542,11 +542,8 @@ class AuthController extends Controller
         $updateData = $request->all();
 
         $validate = Validator::make($updateData, [
-            "nama_eo" => "required",
-            "email" => "required|email|unique:users,email," . $id,
-            "no_hp" => "required|digits_between:10,13|numeric|starts_with:08",
-            "alamat" => "required",
-            "link_web" => "required",
+            "nama_eo" => "required",          
+            "no_hp" => "required|digits_between:10,13|numeric|starts_with:08",          
         ]);
 
         if ($validate->fails()) {
@@ -561,8 +558,7 @@ class AuthController extends Controller
                 "LINK_WEB" => $updateData["link_web"],
             ]);
 
-        $User->no_hp = $updateData["no_hp"];
-        $User->email = $updateData["email"];
+        $User->no_hp = $updateData["no_hp"];      
 
         if ($User->save()) {
             $User = DB::table("users")

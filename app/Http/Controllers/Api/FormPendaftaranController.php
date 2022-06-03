@@ -29,7 +29,7 @@ class FormPendaftaranController extends Controller
 
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
-            "data_pertanyaan" => "required"
+            "data_pertanyaan" => "nullable"
         ]);
 
         if ($validate->fails()) {

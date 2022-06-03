@@ -63,7 +63,7 @@ Route::group(["middleware" => "auth:api"], function () {
 
     //Event Organizer Function
     Route::controller(AuthController::class)->group(function () {
-        Route::post("eorganizer/{id}", "updateEventOrganizer"); //edit event organizer id use ID_USER
+        Route::put("eorganizer/{id}", "updateEventOrganizer"); //edit event organizer id use ID_USER
         Route::post("eogambar/{id}", "updateGambarEO"); //edit event organizer id use ID_EO
         Route::get("eorganizer/{id}", "getEO"); //getEO use ID_EO
         Route::get("eorganizer", "getAllEO"); //getAllEO
@@ -146,7 +146,7 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::controller(FormPendaftaranController::class)->group(function () {
       
         Route::put("fpendaftaran/{id}", "update");
-        Route::get("fpendaftaran/{id}", "get");
+        Route::get("fpendaftaran/{id}", "get");//id_event
     });
 
 

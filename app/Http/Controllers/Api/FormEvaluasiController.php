@@ -28,7 +28,7 @@ class FormEvaluasiController extends Controller
 
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
-            "data_pertanyaan" => "required"
+            "data_pertanyaan" => "nullable"
         ]);
 
         if ($validate->fails()) {
@@ -61,6 +61,7 @@ class FormEvaluasiController extends Controller
     {
         $temp=FormEvaluasi::where("ID_EVENT", "=", $id)->first();
         $FormEvaluasi = FormEvaluasi::find($temp['ID_FORM_EVALUASI']);
+        $FormEvaluasi->DATA_PERTANYAAN=json_decode($FormEvaluasi->DATA_PERTANYAAN);
 
         if (!is_null($FormEvaluasi)) {
             return response(
