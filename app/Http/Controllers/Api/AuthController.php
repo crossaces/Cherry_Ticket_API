@@ -221,7 +221,7 @@ class AuthController extends Controller
                 }
             }
             return response([
-                "message" => "Login Successfull",
+                "message" => "Login Successfully",
                 "user" => $user,
                 "token_type" => "Bearer",
                 "token" => $token,
