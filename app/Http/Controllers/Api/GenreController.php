@@ -16,14 +16,32 @@ class GenreController extends Controller
         $storeData = $request->all();
         $validate = Validator::make($storeData, [
             "nama_genre" => "required|unique:genre,NAMA_GENRE,NULL,NULL,deleted_at,NULL",
+            "gambar" => "required|image|mimes:jpeg,png,jpg|max:1048",
         ]);
 
         if ($validate->fails()) {
             return response(["message" => $validate->errors()], 400);
         }
 
+         if ($files = $request->file("gambar")) {
+            $imageName =
+                time() . "Genre" . "." . $request->gambar->extension();
+            $request->gambar->move(
+                public_path("GambarGenre"),
+                $imageName
+            );
+        }else{
+             return response(
+            [
+                "message" => "Image must be field",              
+            ],
+            400
+        );
+        }
+
         $Genre = Genre::create([
             "NAMA_GENRE" => $storeData["nama_genre"],
+            "GAMBAR_GENRE" => $imageName,
         ]);
 
         return response(
@@ -90,7 +108,8 @@ class GenreController extends Controller
 
     public function update(Request $request, $id)
     {
-        $Genre = Genre::find($id);        
+        $Genre = Genre::find($id);     
+        $gambar = $Genre->GAMBAR_GENRE;   
         if (is_null($Genre)) {
             return response(
                 [
@@ -102,15 +121,36 @@ class GenreController extends Controller
         }
 
         $updateData = $request->all();
-        $validate = Validator::make($updateData, [
-            "nama_genre" => "required|unique:genre,NAMA_GENRE," . $id .",ID_GENRE,deleted_at,NULL",            
-        ]);
+         if ($files = $request->file("gambar")) {
+            $validate = Validator::make($updateData, [
+                "nama_genre" => "required|unique:genre,NAMA_GENRE," . $id .",ID_GENRE,deleted_at,NULL",  
+                "gambar" => "required|image|mimes:jpeg,png,jpg|max:1048",
+            ]);
+        }
+        else{
+              $validate = Validator::make($updateData, [
+                 "nama_genre" => "required|unique:genre,NAMA_GENRE," . $id .",ID_GENRE,deleted_at,NULL",                          
+            ]);
+        }       
 
         if ($validate->fails()) {
             return response(["message" => $validate->errors()], 400);
         }
 
+         if ($files = $request->file("gambar")) {
+            $imageName =
+                time() . "Genre" . "." . $request->gambar->extension();
+            $request->gambar->move(
+                public_path("GambarGenre"),
+                $imageName
+            );
+        }else{
+            $imageName = $gambar;
+        }
+
         $Genre->NAMA_GENRE = $updateData["nama_genre"];
+        $Genre->GAMBAR_GENRE = $imageName; 
+
 
         if ($Genre->save()) {
             return response(

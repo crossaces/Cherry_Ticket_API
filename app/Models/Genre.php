@@ -13,7 +13,7 @@ class Genre extends Model
 
     protected $primaryKey = "ID_GENRE";
     protected $table = "genre";
-    protected $fillable = ["NAMA_GENRE"];
+    protected $fillable = ["NAMA_GENRE","GAMBAR_GENRE"];
 
     public function getCreatedAtAttribute()
     {

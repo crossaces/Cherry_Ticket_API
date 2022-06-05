@@ -131,7 +131,7 @@ class JenisAcaraController extends Controller
         }
 
         $updateData = $request->all();
-        if ($files = $request->file("gambar_kota")) {
+        if ($files = $request->file("gambar")) {
             $validate = Validator::make($updateData, [
                 "nama_jenis" => "required|unique:jenis_acara,NAMA_JENIS," . $id .",ID_JENIS_ACARA,deleted_at,NULL",
                 "status" => "required",
