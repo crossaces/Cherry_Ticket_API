@@ -94,7 +94,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::post("genre", "store"); //
         Route::get("genre", "getAll"); //
         Route::get("genre/{id}", "get"); //
-        Route::put("genre/{id}", "update"); //
+        Route::post("genre/{id}", "update"); //
         Route::delete("genre/{id}", "destroy"); //
     });
 
