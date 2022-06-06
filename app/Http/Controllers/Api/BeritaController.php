@@ -65,7 +65,7 @@ class BeritaController extends Controller
 
     public function getAllAdmin()
     {
-        $Berita = Berita::with('admin');
+        $Berita = Berita::with('admin')->get();
 
         if (!is_null($Berita)) {
             return response(
