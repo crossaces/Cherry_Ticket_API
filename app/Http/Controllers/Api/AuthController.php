@@ -187,12 +187,12 @@ class AuthController extends Controller
         if ($user->email_verified_at !== null) {
             if ($user->role == "EO") {
                 $user = DB::table("users")
-                    ->join("eo", "users.id", "=", "eo.ID_USER")
+                    ->join("eo", $user->id, "=", "eo.ID_USER")
                     ->select("users.email", "users.no_hp", "users.role", "eo.*")
                     ->first();
             } elseif ($user->role == "Peserta") {
                 $user = DB::table("users")
-                    ->join("peserta", "users.id", "=", "peserta.ID_USER")
+                    ->join("peserta", $user->id, "=", "peserta.ID_USER")
                     ->select(
                         "users.email",
                         "users.no_hp",
@@ -202,7 +202,7 @@ class AuthController extends Controller
                     ->first();
             } else {
                 $user = DB::table("users")
-                    ->join("admin", "users.id", "=", "admin.ID_USER")
+                    ->join("admin", $user->id, "=", "admin.ID_USER")
                     ->select(
                         "users.email",
                         "users.no_hp",
