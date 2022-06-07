@@ -233,7 +233,7 @@ class AuthController extends Controller
             return response()->json(["message" => "Please Verify Email", "user" => $user,], 401);
         }
     }
-
+    //get
     public function getwithUser($id)
     {
         $user = User::find($id);
