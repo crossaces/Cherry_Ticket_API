@@ -75,6 +75,7 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::controller(AuthController::class)->group(function () {
         Route::put("peserta/{id}", "updatePeserta"); //editadmin use ID_USER
         Route::post("pgambar/{id}", "updateGambarPeserta"); //edit peserta id use ID_Peserta
+        Route::post("ptoken/{id}", "updateTokenPeserta"); //edit peserta id use ID_Peserta
         Route::get("peserta/{id}", "getPeserta"); //getEO use ID_Peserta
         Route::get("pesertaimage/{id}", "getImagePeserta");//ID_PESERTA
     });
