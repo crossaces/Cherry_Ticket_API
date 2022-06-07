@@ -739,6 +739,50 @@ class AuthController extends Controller
         );
     }
 
+
+     public function updateTokenPeserta(Request $request, $id)
+    {
+        $Peserta = Peserta::find($id);
+        if (is_null($Peserta)) {
+            return response(
+                [
+                    "message" => "Customer Not Found",
+                    "data" => null,
+                ],
+                404
+            );
+        }
+
+        $updateData = $request->all();
+        $validate = Validator::make($updateData, [
+            "token" => "required",
+        ]);
+
+        if ($validate->fails()) {
+            return response(["message" => $validate->errors()], 400);
+        }
+
+        $Peserta->TOKEN = $updateData["status"];
+
+        if ($Peserta->save()) {
+            return response(
+                [
+                    "message" => $request['status']  . " Customer Successfully",
+                    "data" => $Peserta,
+                ],
+                200
+            );
+        }
+
+        return response(
+            [
+                "message" => $request['status'] . " Event Organizer Failed",
+                "data" => null,
+            ],
+            400
+        );
+    }
+
     public function updateGambarEO(Request $request, $id)
     {
         $EO = EO::find($id);
