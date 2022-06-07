@@ -192,7 +192,7 @@ class AuthController extends Controller
                     ->first();
             } elseif ($user->role == "Peserta") {
                 $user = DB::table("users")
-                    ->join("peserta", $user->id, "=", "peserta.ID_USER")
+                    ->join("peserta", $user['id'], "=", "peserta.ID_USER")
                     ->select(
                         "users.email",
                         "users.no_hp",
