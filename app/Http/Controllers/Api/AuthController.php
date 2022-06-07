@@ -187,28 +187,31 @@ class AuthController extends Controller
         if ($user->email_verified_at !== null) {
             if ($user->role == "EO") {
                 $user = DB::table("users")
-                    ->join("eo", $user->id, "=", "eo.ID_USER")
+                    ->join("eo", "users.id", "=", "eo.ID_USER")
                     ->select("users.email", "users.no_hp", "users.role", "eo.*")
+                    ->where("eo.ID_USER", $user->id)
                     ->first();
             } elseif ($user->role == "Peserta") {
                 $user = DB::table("users")
-                    ->join("peserta", "peserta.ID_USER", $user->id)
+                    ->join("peserta", "users.id", "=", "peserta.ID_USER")
                     ->select(
                         "users.email",
                         "users.no_hp",
                         "users.role",
                         "peserta.*"
                     )
+                    ->where("peserta.ID_USER", $user->id)
                     ->first();
             } else {
                 $user = DB::table("users")
-                    ->join("admin", $user->id, "=", "admin.ID_USER")
+                    ->join("admin", "users.id", "=", "admin.ID_USER")
                     ->select(
                         "users.email",
                         "users.no_hp",
                         "users.role",
                         "admin.*"
                     )
+                    ->where("admin.ID_USER", $user->id)
                     ->first();
 
                 if ($user->STATUS != "Active") {
