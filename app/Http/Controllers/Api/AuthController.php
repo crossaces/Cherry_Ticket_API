@@ -762,12 +762,12 @@ class AuthController extends Controller
             return response(["message" => $validate->errors()], 400);
         }
 
-        $Peserta->TOKEN = $updateData["status"];
+        $Peserta->TOKEN = $updateData["token"];
 
         if ($Peserta->save()) {
             return response(
                 [
-                    "message" => $request['status']  . " Customer Successfully",
+                    "message" =>"Update Customer Successfully",
                     "data" => $Peserta,
                 ],
                 200
