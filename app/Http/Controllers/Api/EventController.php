@@ -16,6 +16,9 @@ use Illuminate\Support\Str;
 class EventController extends Controller
 {
     //
+
+
+
     public function store(Request $request)
     {
         $storeData = $request->all();     
@@ -82,6 +85,34 @@ class EventController extends Controller
         $Event['Draft'] = Event::with('tiket','jenisacara','kota','genre')->where("EVENT_TAB","=","Publish")->get();
         $Event['Active'] = Event::with('tiket','jenisacara','kota','genre')->where("EVENT_TAB", "=", "Active")->where("VISIBLE_EVENT", "=", "Public")->get();
         $Event['Over'] = Event::with('tiket','jenisacara','kota','genre')->where("EVENT_TAB", "=", "Over")->get();
+        if (!is_null($Event)) {
+            return response(
+                [
+                    "message" => "Retrieve All Event Success",
+                    "data" => $Event,
+                ],
+                200
+            );
+        }
+
+        return response(
+            [
+                "message" => "Event Not Found",
+                "data" => null,
+            ],
+            404
+        );
+    }
+
+
+     public function getFCMToken()
+    {
+        $Event =DB::table("users")               
+                ->select(
+                    "email",                   
+                )->pluck('email');
+        
+        
         if (!is_null($Event)) {
             return response(
                 [

@@ -853,8 +853,7 @@ class AuthController extends Controller
 
         $updateData = $request->all();
 
-        $validate = Validator::make($updateData, [
-            "email" => "required|email|unique:users,email," . $id,
+        $validate = Validator::make($updateData, [           
             "no_hp" => "required|digits_between:10,13|numeric|starts_with:08",
         ]);
 
@@ -870,8 +869,7 @@ class AuthController extends Controller
                 "NAMA_BELAKANG" => $updateData["nama_belakang"],
             ]);
 
-        $User->no_hp = $updateData["no_hp"];
-        $User->email = $updateData["email"];
+        $User->no_hp = $updateData["no_hp"];        
 
         if ($User->save()) {
             $User = DB::table("users")

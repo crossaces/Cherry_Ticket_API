@@ -66,7 +66,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::put("eorganizer/{id}", "updateEventOrganizer"); //edit event organizer id use ID_USER
         Route::post("eogambar/{id}", "updateGambarEO"); //edit event organizer id use ID_EO
         Route::get("eorganizer/{id}", "getEO"); //getEO use ID_EO
-        Route::get("eorganizer", "getAllEO"); //getAllEO
+        Route::get("eorganizer", "getAllEO"); //getAllEO        
         Route::get("eorganizerimage/{id}", "getImageEO");//ID_EO
         Route::put("eorganizer/status/{id}", "updateStatusEO"); //getAdmin use ID_EO
     });
@@ -135,6 +135,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::get("eventEO/{id}", "getAllEventEO"); //
         Route::get("event/{id}", "get"); //        
         Route::put("eventstatus/{id}", "updateStatus"); //
+        Route::get("fcm", "getFCMToken"); //getFCMTOKEN
         Route::put("eventtoken/{id}", "updateToken"); //
         Route::post("event/{id}", "update"); //
         Route::put("eventtab/{id}", "updateTab"); //
