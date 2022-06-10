@@ -927,6 +927,8 @@ class AuthController extends Controller
             $imageName =
                 time() . "Peserta" . "." . $request->gambar->extension();
             $request->gambar->move(public_path("GambarPeserta"), $imageName);
+        }else{
+             $imageName = $gambar;
         }
 
         $Peserta->GAMBAR = $imageName;
