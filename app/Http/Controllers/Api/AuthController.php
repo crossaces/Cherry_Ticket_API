@@ -916,7 +916,7 @@ class AuthController extends Controller
 
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
-            "gambar" => "required|image|mimes:jpeg,png,jpg|max:1048",
+            "gambar" => "required|image|mimes:jpeg,png,jpg",
         ]);
 
         if ($validate->fails()) {
