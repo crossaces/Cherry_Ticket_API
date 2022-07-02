@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\FormEvaluasiController;
 use App\Http\Controllers\Api\TiketController;
 use App\Http\Controllers\Api\CustomController;
 use App\Http\Controllers\VerificationApiController;
+use App\Http\Controllers\Api\TransaksiController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -60,6 +61,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::get("admin/{id}", "getAdmin"); //getAdmin use ID_ADMIN
         Route::put("admin/status/{id}", "updateStatusAdmin"); //getAdmin use ID_ADMIN
     });
+    
 
     //Event Organizer Function
     Route::controller(AuthController::class)->group(function () {
@@ -156,6 +158,14 @@ Route::group(["middleware" => "auth:api"], function () {
       
         Route::put("fevaluasi/{id}", "update");
         Route::get("fevaluasi/{id}", "get");//id_event
+    });
+
+
+     Route::controller(TransaksiController::class)->group(function () {    
+        Route::post("transaksi", "store"); //createTransaksi
+        Route::post("uploadt/{id}", "uploadTransaksi"); //createTransaksi
+        Route::get("pesertat/{id}", "getDataTransaksiPeserta");
+        
     });
 
 });
