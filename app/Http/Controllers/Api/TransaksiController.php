@@ -177,7 +177,7 @@ class TransaksiController extends Controller
         if (!is_null($Transaksi)) {
             return response(
                 [
-                    "message" => "Retrieve All Transaksi Success",
+                    "message" => "Retrieve All Transaction Success",
                     "data" => $Transaksi,
                 ],
                 200
@@ -186,7 +186,30 @@ class TransaksiController extends Controller
 
         return response(
             [
-                "message" => "Transaksi Not Found",
+                "message" => "Transaction Not Found",
+                "data" => null,
+            ],
+            404
+        );
+    }
+
+
+    public function getDataTransaksiEvent($id)
+    {
+        $Transaksi = Transaksi::with('order.tiket','event.jenisacara','event.genre','event.kota','event.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_TRANSAKSI', 'DESC')->get();    
+        if (!is_null($Transaksi)) {
+            return response(
+                [
+                    "message" => "Retrieve All Transaction Success",
+                    "data" => $Transaksi,
+                ],
+                200
+            );
+        }
+
+        return response(
+            [
+                "message" => "Transaction Not Found",
                 "data" => null,
             ],
             404
