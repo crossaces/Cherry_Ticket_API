@@ -165,7 +165,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::post("transaksi", "store"); //createTransaksi
         Route::post("uploadt/{id}", "uploadTransaksi"); //createTransaksi
         Route::get("pesertat/{id}", "getDataTransaksiPeserta");
-        Route::post("transaksievent/{id}", "getDataTransaksiEvent"); //createTransaksi
+        Route::get("transaksievent/{id}", "getDataTransaksiEvent"); //createTransaksi
         
     });
 
