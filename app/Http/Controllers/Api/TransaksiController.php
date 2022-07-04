@@ -216,4 +216,58 @@ class TransaksiController extends Controller
         );
     }
 
+
+    public function changeStatusTransaksi(Request $request,$id)
+    {
+        $Transaksi = Transaksi::find($id);
+        if (is_null($Transaksi)) {
+            return response(
+            [
+                "message" => "Transaction Not Found",
+                "data" => null,
+            ],
+            404
+        );
+        }
+
+        $updateData = $request->all();
+        $validate = Validator::make($updateData, [
+            "status" => "required",
+        ]);
+
+        if ($validate->fails()) {
+            return response(["message" => $validate->errors()], 400);
+        }
+
+        $Transaksi->STATUS_TRANSAKSI = $updateData["status"];                      
+
+        if ($Transaksi->save()) {
+            $Temp=Transaksi::with('order')->where("ID_TRANSAKSI", "=", $id)->first();
+             foreach ($Temp->order as $odata){                       
+                if($updateData["status"]=="Verified"){
+                   $Pendaftaran = PendaftaranPeserta::where('ID_ORDER', $odata->ID_ORDER)->update(['STATUS_PENDAFTARAN'=>$updateData["status"]]);         
+                }
+                else{
+                   $Pendaftaran =  PendaftaranPeserta::where('ID_ORDER', $odata->ID_ORDER)->update(['STATUS_PENDAFTARAN'=>$updateData["status"]]);         
+                }                   
+            }
+            return response(
+                [
+                    "message" => "Update Transaction Successfully",
+                    "data" => $Temp,
+                ],
+                200
+            );
+        }
+        
+        return response(
+            [
+                "message" => "Update Transaction Failed",
+                "data" => null,
+            ],
+            400
+        );
+     
+    }
+
 }

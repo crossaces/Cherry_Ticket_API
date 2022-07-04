@@ -46,6 +46,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post("login", "login"); //register event organizer
 });
 
+
 Route::group(["middleware" => "auth:api"], function () {
     //All User Function
     Route::controller(AuthController::class)->group(function () {
@@ -163,10 +164,10 @@ Route::group(["middleware" => "auth:api"], function () {
 
      Route::controller(TransaksiController::class)->group(function () {    
         Route::post("transaksi", "store"); //createTransaksi
-        Route::post("uploadt/{id}", "uploadTransaksi"); //createTransaksi
-        Route::get("pesertat/{id}", "getDataTransaksiPeserta");
-        Route::get("transaksievent/{id}", "getDataTransaksiEvent"); //createTransaksi
-        
+        Route::post("uploadt/{id}", "uploadTransaksi"); //upload gambar untuk transaksi
+        Route::get("pesertat/{id}", "getDataTransaksiPeserta");//getDataTransaksiPeserta
+        Route::get("transaksievent/{id}", "getDataTransaksiEvent"); //getDataTransaksiEvent
+        Route::put("changest/{id}", "changeStatusTransaksi"); //createTransaksi                   
     });
 
 });
