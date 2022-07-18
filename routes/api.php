@@ -163,8 +163,8 @@ Route::group(["middleware" => "auth:api"], function () {
     });
 
 
-      Route::controller(PendaftaranPesertaController::class)->group(function () {           
-        Route::get("pendaftaranp/{id}", "getDataPendafraranPeserta");//getDataPendaftaranPeserta
+    Route::controller(PendaftaranPesertaController::class)->group(function () {           
+        Route::get("pendaftaranp/{id}", "getDataPendaftaranPeserta");//getDataPendaftaranPeserta
         Route::get("pendafatarane/{id}", "getDataPendaftaranEvent"); //getDataPendaftaranEvent                          
     });
 
