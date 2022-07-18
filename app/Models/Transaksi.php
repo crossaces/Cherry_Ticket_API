@@ -46,6 +46,11 @@ class Transaksi extends Model
         return $this->belongsTo(Event::class,'ID_EVENT');
     }
 
+    public function peserta()
+    {
+        return $this->belongsTo(Event::class,'ID_EVENT');
+    }
+
      public function order()
     {
         return $this->hasMany(Order::class,"ID_TRANSAKSI");

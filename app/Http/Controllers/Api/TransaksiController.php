@@ -196,7 +196,7 @@ class TransaksiController extends Controller
 
     public function getDataTransaksiEvent($id)
     {
-        $Transaksi = Transaksi::with('order.tiket','event.jenisacara','event.genre','event.kota','event.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_TRANSAKSI', 'DESC')->get();    
+        $Transaksi = Transaksi::with('order.tiket','event.jenisacara','event.genre','event.kota','event.tiket','event.peserta')->where("ID_EVENT", "=", $id)->orderBy('ID_TRANSAKSI', 'DESC')->get();    
         if (!is_null($Transaksi)) {
             return response(
                 [
