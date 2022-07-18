@@ -11,7 +11,7 @@ use Validator;
 class PendaftaranPesertaController extends Controller
 {
     //
-    public function getDataPendafataranPeserta($id)
+    public function getDataPendaftaranPeserta($id)
     {
         $Transaksi = PendaftaranPeserta::with('event.jenisacara','event.genre','event.kota','event.tiket')->where("ID_PESERTA", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
         if (!is_null($Transaksi)) {
