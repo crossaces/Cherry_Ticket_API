@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\GenreController;
 use App\Http\Controllers\Api\FormPendaftaranController;
 use App\Http\Controllers\Api\FormEvaluasiController;
+use App\Http\Controllers\Api\PendaftaranPesertaController;
 use App\Http\Controllers\Api\TiketController;
 use App\Http\Controllers\Api\CustomController;
 use App\Http\Controllers\VerificationApiController;
@@ -162,7 +163,12 @@ Route::group(["middleware" => "auth:api"], function () {
     });
 
 
-     Route::controller(TransaksiController::class)->group(function () {    
+      Route::controller(PendaftaranPesertaController::class)->group(function () {           
+        Route::get("pendaftaranp/{id}", "getDataPendafraranPeserta");//getDataPendaftaranPeserta
+        Route::get("pendafatarane/{id}", "getDataPendaftaranEvent"); //getDataPendaftaranEvent                          
+    });
+
+    Route::controller(TransaksiController::class)->group(function () {    
         Route::post("transaksi", "store"); //createTransaksi
         Route::post("uploadt/{id}", "uploadTransaksi"); //upload gambar untuk transaksi
         Route::get("pesertat/{id}", "getDataTransaksiPeserta");//getDataTransaksiPeserta

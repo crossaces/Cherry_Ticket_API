@@ -39,4 +39,15 @@ class PendaftaranPeserta extends Model
             );
         }
     }
+
+
+    public function peserta()
+    {
+        return $this->belongsTo(Peserta::class,'ID_PESERTA');
+    }
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class,'ID_EVENT');
+    }
 }
