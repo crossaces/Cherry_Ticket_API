@@ -48,7 +48,7 @@ class PendaftaranPeserta extends Model
 
     public function order()
     {
-        return $this->belongsTo(Peserta::class,'ID_ORDER');
+        return $this->belongsTo(Order::class,'ID_ORDER');
     }
 
     public function event()
