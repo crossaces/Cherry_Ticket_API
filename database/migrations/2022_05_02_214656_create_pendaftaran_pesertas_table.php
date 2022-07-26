@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::create("pendaftaran_peserta", function (Blueprint $table) {
             $table->id("ID_PENDAFTARAN");
             $table->json("DATA_PERTANYAAN");            
-            $table->string("STATUS_PENDAFTARAN");
+            $table->string("STATUS_PENDAFTARAN");         
             $table->unsignedBigInteger("ID_ORDER");
             $table
                 ->foreign("ID_ORDER")

@@ -101,7 +101,7 @@ class TransaksiController extends Controller
                         "ID_PESERTA" =>  $datajawaban['IDPESERTA'],
                         "ID_EVENT" =>  $IDEVENT,
                         "ID_TIKET" => $datajawaban['IDTIKET'],
-                        "STATUS_PENDAFTARAN" => "Pending",
+                        "STATUS_PENDAFTARAN" => "Pending",                       
                         "ID_FORM_PENDAFTARAN" => $Form->ID_FORM_PENDAFTARAN,
                     ]);
                 }                                      

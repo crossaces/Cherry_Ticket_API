@@ -33,6 +33,48 @@ class PendaftaranPesertaController extends Controller
         );
     }
 
+    public function update(Request $request, $id)
+    {
+        $PendaftaranPeserta = PendaftaranPeserta::find($id);        
+        if (is_null($PendaftaranPeserta)) {
+            return response(
+                [
+                    "message" => "Form Register Not Found",
+                    "data" => null,
+                ],
+                404
+            );
+        }
+
+        $updateData = $request->all();
+        $validate = Validator::make($updateData, [
+            "data_pertanyaan" => "nullable"
+        ]);
+
+        if ($validate->fails()) {
+            return response(["message" => $validate->errors()], 400);
+        }
+
+        $PendaftaranPeserta->DATA_PERTANYAAN = $updateData["data_pertanyaan"];
+
+        if ($PendaftaranPeserta->save()) {
+            return response(
+                [
+                    "message" => "Update Form Register Success",
+                    "data" => $PendaftaranPeserta,
+                ],
+                200
+            );
+        }
+        return response(
+            [
+                "message" => "Update Form Register Failed",
+                "data" => null,
+            ],
+            400
+        );
+    }
+
 
     public function getDataPendaftaranEvent($id)
     {

@@ -18,7 +18,7 @@ class PendaftaranPeserta extends Model
         "STATUS_PENDAFTARAN",
         "ID_FORM_PENDAFTARAN",
         "ID_EVENT",
-        "ID_PESERTA",
+        "ID_PESERTA",    
         "ID_ORDER",         
     ];
 
