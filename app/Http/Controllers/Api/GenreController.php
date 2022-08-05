@@ -62,7 +62,7 @@ class GenreController extends Controller
 
     public function getAll()
     {
-        $Genre = Genre::all();
+        $Genre =  Genre::has('event')->get();
 
         if (!is_null($Genre)) {
             return response(
