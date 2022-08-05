@@ -94,7 +94,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::delete("berita/{id}", "destroy"); //
     });
 
-    //Genre Fuction
+      //Genre Fuction
     Route::controller(GenreController::class)->group(function () {
         Route::post("genre", "store"); //
         Route::get("genre", "getAll"); //
@@ -179,6 +179,9 @@ Route::group(["middleware" => "auth:api"], function () {
     });
 
 });
+
+
+ 
 //
 Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();

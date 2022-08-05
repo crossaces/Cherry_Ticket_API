@@ -35,6 +35,6 @@ class Genre extends Model
 
     public function event()
     {
-        return $this->belongsTo(Event::class,'ID_GENRE');
+        return $this->belongsTo(Event::class,'ID_GENRE','ID_GENRE');
     }
 }

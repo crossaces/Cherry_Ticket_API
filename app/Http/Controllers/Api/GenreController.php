@@ -62,7 +62,7 @@ class GenreController extends Controller
 
     public function getAllMobile()
     {
-        $Genre =  Genre::has('event')->where("EVENT_TAB", "=", "Active")->get();
+        $Genre =  Genre::has('event')->get();
 
         if (!is_null($Genre)) {
             return response(
