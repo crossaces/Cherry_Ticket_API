@@ -81,4 +81,28 @@ class FormPendaftaranController extends Controller
             404
         );
     }
+
+    public function getDataEvent($id)
+    {
+        $temp=FormPendaftaran::where("ID_PESERTA", "=", $id)->first();
+        $FormPendaftaran = FormPendaftaran::find($temp['ID_FORM_PENDAFTARAN']);
+        $FormPendaftaran->DATA_PERTANYAAN=json_decode($FormPendaftaran->DATA_PERTANYAAN);
+        if (!is_null($FormPendaftaran)) {
+            return response(
+                [
+                    "message" => "Retrieve Form Register Success",                    
+                    "data" => $FormPendaftaran,
+                ],
+                200
+            );
+        }
+
+        return response(
+            [
+                "message" => "Form Register Not Found",
+                "data" => $temp['ID_FORM_PENDAFTARAN'],
+            ],
+            404
+        );
+    }
 }
