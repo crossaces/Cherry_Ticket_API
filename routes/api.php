@@ -98,7 +98,7 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::controller(GenreController::class)->group(function () {
         Route::post("genre", "store"); //
         Route::get("genre", "getAll"); //
-        Route::get("genremobile", "getAll"); //
+        Route::get("genremobile", "getAllMobile"); //
         Route::get("genre/{id}", "get"); //
         Route::post("genre/{id}", "update"); //
         Route::delete("genre/{id}", "destroy"); //
