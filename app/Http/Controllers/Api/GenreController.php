@@ -60,6 +60,30 @@ class GenreController extends Controller
         );
     }
 
+    public function getAllMobile()
+    {
+        $Genre =  Genre::has('event')->get();
+
+        if (!is_null($Genre)) {
+            return response(
+                [
+                    "message" => "Retrieve All Genre Success",
+                    "data" => $Genre,
+                ],
+                200
+            );
+        }
+
+        return response(
+            [
+                "message" => "Genre Not Found",
+                "data" => null,
+            ],
+            404
+        );
+    }
+
+
     public function getAll()
     {
         $Genre =  Genre::has('event')->get();
