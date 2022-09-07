@@ -13,12 +13,12 @@ class PendaftaranPesertaController extends Controller
     //
     public function getDataPendaftaranPeserta($id)
     {
-        $Transaksi = PendaftaranPeserta::with('event.jenisacara','event.genre','event.kota','event.tiket')->where("ID_PESERTA", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
-        if (!is_null($Transaksi)) {
+        $PendaftaranPeserta = PendaftaranPeserta::with('event.jenisacara','event.genre','event.kota','event.tiket','order.tiket')->where("ID_PESERTA", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
+        if (!is_null($PendaftaranPeserta)) {
             return response(
                 [
                     "message" => "Retrieve All Transaction Success",
-                    "data" => $Transaksi,
+                    "data" => $PendaftaranPeserta,
                 ],
                 200
             );
@@ -78,12 +78,12 @@ class PendaftaranPesertaController extends Controller
 
     public function getDataPendaftaranEvent($id)
     { 
-        $Transaksi = PendaftaranPeserta::with('event.jenisacara','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
-        if (!is_null($Transaksi)) {
+        $PendaftaranPeserta = PendaftaranPeserta::with('event.jenisacara','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
+        if (!is_null($PendaftaranPeserta)) {
             return response(
                 [
                     "message" => "Retrieve All Transaction Success",
-                    "data" => $Transaksi,
+                    "data" => $PendaftaranPeserta,
                 ],
                 200
             );
