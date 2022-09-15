@@ -54,7 +54,7 @@ class CustomController extends Controller
        
         $check = Check::where('TGL_CHECK','=',date("Y-m-d"))->where('STATUS_CHECK','=','Check-In')->get();
 
-        if (count($check)<=0) {
+        if (count($check)<0) {
             return response( 
                 [
                     "message" => "Participant Already Check-In",
