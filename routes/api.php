@@ -53,6 +53,13 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::controller(AuthController::class)->group(function () {
         Route::put("changepass/{id}", "changePassword"); //change password id use ID_USER
     });
+    
+    //CheckIn and Out
+     Route::controller(CustomController::class)->group(function () {
+        Route::post("checkin", "checkin"); //
+        Route::post("checkout", "checkout"); //
+    });
+     
 
     //Admin Function
     Route::controller(AuthController::class)->group(function () {
@@ -142,7 +149,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::put("eventstatus/{id}", "updateStatus"); //
         Route::get("fcm", "getFCMToken"); //getFCMTOKEN
         Route::put("eventtoken/{id}", "updateToken"); //
-        Route::post("event/{id}", "update"); //
+        Route::post("event/{id}", "update"); //    
         Route::put("eventtab/{id}", "updateTab"); //
         Route::put("eventreject/{id}", "updateTabReject"); //
         Route::put("eventtoken/{id}", "updateToken"); //

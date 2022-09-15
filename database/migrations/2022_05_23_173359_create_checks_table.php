@@ -22,6 +22,11 @@ return new class extends Migration
                 ->foreign("ID_PESERTA")
                 ->references("ID_PESERTA")
                 ->on("peserta");
+            $table->unsignedBigInteger("ID_PENDAFTARAN");
+            $table
+                ->foreign("ID_PENDAFTARAN")
+                ->references("ID_PENDAFTARAN")
+                ->on("pendaftaran_peserta");
             $table->timestamps();
         });
     }

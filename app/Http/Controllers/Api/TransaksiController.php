@@ -47,15 +47,15 @@ class TransaksiController extends Controller
                 );
                
             }        
-            // if (!is_null($Pendaftaran)) {
-            //     return response(
-            //         [
-            //             "message" => "Participant Id ". $data['IDPESERTA'] . " Already Buy Ticket " ,                                         
-            //         ],
-            //         406
-            //     );
+            if (!is_null($Pendaftaran)) {
+                return response(
+                    [
+                        "message" => "Participant Id ". $data['IDPESERTA'] . " Already Buy Ticket " ,                                         
+                    ],
+                    406
+                );
             
-            // }            
+            }            
         }
         $date = date("Y-m-d H:i:s");
         $total=0;
