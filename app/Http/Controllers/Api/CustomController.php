@@ -13,7 +13,7 @@ use Validator, Redirect, Response, File;
 
 class CustomController extends Controller
 {
-    //
+    //te
     public function getData(Request $request)
     {
         $data['eo']= EO::count();
