@@ -58,7 +58,7 @@ class CustomController extends Controller
             return response( 
                 [
                     "message" => "Participant Already Check-In",
-                    "data" => null,
+                    "data" => $check,
                 ],
                 400 
             );
