@@ -9,6 +9,7 @@ use App\Models\Peserta;
 use App\Models\Kota;
 use App\Models\Event;
 use App\Models\Check;
+use Validator, Redirect, Response, File;
 
 class CustomController extends Controller
 {
