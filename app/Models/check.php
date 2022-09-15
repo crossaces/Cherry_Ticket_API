@@ -10,8 +10,7 @@ class check extends Model
     use HasFactory;
     protected $primaryKey = "ID_CHECK";
     protected $table = "check";
-    protected $fillable = [
-        "ID_CHECK",
+    protected $fillable = [       
         "TGL_CHECK",
         "STATUS_CHECK",
         "ID_PESERTA",

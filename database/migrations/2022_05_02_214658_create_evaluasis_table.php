@@ -20,6 +20,11 @@ return new class extends Migration {
                 ->foreign("ID_FORM_EVALUASI")
                 ->references("ID_FORM_EVALUASI")
                 ->on("form_evaluasi");
+            $table->unsignedBigInteger("ID_PENDAFTARAN");
+            $table
+                ->foreign("ID_PENDAFTARAN")
+                ->references("ID_PENDAFTARAN")
+                ->on("pendaftaran_peserta");
             $table->softDeletes();
             $table->timestamps();
         });

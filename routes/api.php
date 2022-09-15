@@ -56,8 +56,8 @@ Route::group(["middleware" => "auth:api"], function () {
     
     //CheckIn and Out
      Route::controller(CustomController::class)->group(function () {
-        Route::post("checkin", "checkin"); //
-        Route::post("checkout", "checkout"); //
+        Route::post("event/checkin", "checkin"); //
+        Route::post("event/checkout", "checkout"); //
     });
      
 

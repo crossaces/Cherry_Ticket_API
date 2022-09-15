@@ -59,7 +59,7 @@ class CustomController extends Controller
                     "message" => "Participant Already Check-In",
                     "data" => null,
                 ],
-                200 
+                400 
             );
         }else{
             $Checkin = Check::create([
@@ -111,7 +111,7 @@ class CustomController extends Controller
                     "message" => "Participant Already Check-Out",
                     "data" => null,
                 ],
-                200 
+                400 
             );
         }else{
             $Checkout = Check::create([
