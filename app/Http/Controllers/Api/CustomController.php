@@ -67,7 +67,7 @@ class CustomController extends Controller
                 "ID_PENDAFTARAN" => $storeData["id_pendaftaran"],
                 "ID_PESERTA" => $storeData["id_peserta"],      
                 "TGL_CHECK" => date("Y-m-d"),          
-                "STATUS_PENDAFTARAN" => "Check-In"
+                "STATUS_CHECK" => "Check-In"
             ]);
             return response(
                 [
@@ -119,7 +119,7 @@ class CustomController extends Controller
                 "ID_PENDAFTARAN" => $storeData["id_pendaftaran"],
                 "ID_PESERTA" => $storeData["id_peserta"],      
                 "TGL_CHECK" => date("Y-m-d"),          
-                "STATUS_PENDAFTARAN" => "Check-Out"
+                "STATUS_CHECK" => "Check-Out"
             ]);
             return response(
                 [
