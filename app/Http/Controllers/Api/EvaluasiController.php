@@ -10,6 +10,42 @@ use Validator, Redirect, Response, File;
 class EvaluasiController extends Controller
 {
     //
+
+     public function store(Request $request)
+    {
+        $storeData = $request->all();
+        $validate = Validator::make($storeData, [
+            "data_jawaban" => "required",
+            "id_form_evaluasi" => "required",
+            "id_pendaftaran" => "required",
+        ]);
+
+        if ($validate->fails()) {
+            return response(["message" => $validate->errors()], 400);
+        }
+
+        $Evaluasi = Evaluasi::create([
+            "DATA_JAWABAN" => json_encode($storeData['data_jawaban']),
+            "ID_FORM_EVALUASI" => $storeData["id_form_evaluasi"],
+            "ID_PENDAFTARAN" => $storeData["id_pendaftaran"],
+        ]);
+
+        return response(
+            [
+                "message" => "Add Evaluasi Event Success",
+                "data" => $Evaluasi,
+            ],
+            200
+        );
+
+        return response(
+            [
+                "message" => "Add Evaluasi Event Failed",
+            ],
+            406
+        );
+    }
+
     public function getDataEvaluasiPeserta($id)
     {
         $Evaluasi = Evaluasi::with('pendaftaran')->where("ID_PENDAFTARAN", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->first();    

@@ -104,13 +104,13 @@ class CustomController extends Controller
             return response(["message" => $validate->errors()], 400);
         }
        
-        $check = Check::where('TGL_CHECK','=',date("Y-m-d"))->where('STATUS_CHECK','=','Check-Out')->get();
+        $check = Check::where('TGL_CHECK','=',date("Y-m-d"))->where('STATUS_CHECK','=','Check-Out')->where('ID_PENDAFTARAN','=',$storeData["id_pendaftaran"])->get();
 
-        if (!is_null($check)) {
+        if (count($check)>0) {
             return response( 
                 [
                     "message" => "Participant Already Check-Out",
-                    "data" => null,
+                    "data" => $check,
                 ],
                 400 
             );
