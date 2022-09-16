@@ -117,6 +117,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::post("qna", "store"); //
         Route::get("qna", "getAll"); //
         Route::get("qna/{id}", "get"); //
+        Route::get("qnaevent/{id}", "getAllEvent"); //
         Route::put("qna/{id}", "update"); //
         Route::put("qnastatus/{id}", "updateStatus"); //
         Route::delete("jenisacara/{id}", "destroy"); //

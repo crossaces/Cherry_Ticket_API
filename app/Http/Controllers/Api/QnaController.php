@@ -45,9 +45,32 @@ class QnaController extends Controller
         );
     }
 
-    public function getAll()
+    public function getAll($id)
     {
         $Qna = Qna::all();
+
+        if (!is_null($Qna)) {
+            return response(
+                [
+                    "message" => "Retrieve All Qna Event Success",
+                    "data" => $Qna,
+                ],
+                200
+            );
+        }
+
+        return response(
+            [
+                "message" => "Qna Event Not Found",
+                "data" => null,
+            ],
+            404
+        );
+    }
+
+     public function getAllEvent($id)
+    {
+        $Qna = Qna::all()->where("ID_EVENT",$id);
 
         if (!is_null($Qna)) {
             return response(
