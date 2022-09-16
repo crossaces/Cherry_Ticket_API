@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\GenreController;
 use App\Http\Controllers\Api\FormPendaftaranController;
 use App\Http\Controllers\Api\FormEvaluasiController;
+use App\Http\Controllers\Api\QnaController;
 use App\Http\Controllers\Api\PendaftaranPesertaController;
 use App\Http\Controllers\Api\TiketController;
 use App\Http\Controllers\Api\CustomController;
@@ -112,6 +113,15 @@ Route::group(["middleware" => "auth:api"], function () {
     });
 
     //Jenis Acara Function
+    Route::controller(QnaController::class)->group(function () {
+        Route::post("qna", "store"); //
+        Route::get("qna", "getAll"); //
+        Route::get("qna/{id}", "get"); //
+        Route::put("qna/{id}", "update"); //
+        Route::put("qnastatus/{id}", "updateStatus"); //
+        Route::delete("jenisacara/{id}", "destroy"); //
+    });
+
     Route::controller(JenisAcaraController::class)->group(function () {
         Route::post("jenisacara", "store"); //
         Route::get("jenisacara", "getAll"); //

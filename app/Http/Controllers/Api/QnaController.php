@@ -137,6 +137,50 @@ class QnaController extends Controller
         );
     }
 
+
+    public function updateStatus(Request $request, $id)
+    {
+        $Qna = Qna::find($id);
+        if (is_null($Qna)) {
+            return response(
+                [
+                    "message" => "Qna Event Not Found",
+                    "data" => null,
+                ],
+                404
+            );
+        }
+
+        $updateData = $request->all();
+        $validate = Validator::make($updateData, [
+            "status_qna" => "required",
+           
+        ]);
+
+        if ($validate->fails()) {
+            return response(["message" => $validate->errors()], 400);
+        }
+
+        $Qna->STATUS_QNA = $updateData["status_qna"];       
+
+        if ($Qna->save()) {
+            return response(
+                [
+                    "message" => "Update Qna Event Success",
+                    "data" => $Qna,
+                ],
+                200
+            );
+        }
+        return response(
+            [
+                "message" => "Update Qna Event Failed",
+                "data" => null,
+            ],
+            400
+        );
+    }
+
     public function destroy($id)
     {
         $Qna = Qna::find($id);
