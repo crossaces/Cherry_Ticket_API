@@ -83,7 +83,7 @@ class EventController extends Controller
     public function getAll()
     {
         $Event['Draft'] = Event::with('tiket','jenisacara','kota','genre')->where("EVENT_TAB","=","Publish")->get();
-        $Event['Active'] = Event::with('tiket','jenisacara','kota','genre','eo')->where("EVENT_TAB", "=", "Active")->get();
+        $Event['Active'] = Event::with('tiket','jenisacara','kota','genre','eo.user')->where("EVENT_TAB", "=", "Active")->get();
         $Event['Over'] = Event::with('tiket','jenisacara','kota','genre')->where("EVENT_TAB", "=", "Over")->get();
         if (!is_null($Event)) {
             return response(
