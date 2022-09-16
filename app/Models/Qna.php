@@ -13,7 +13,7 @@ class Qna extends Model
 
     protected $primaryKey = "ID_QNA";
     protected $table = "qna";
-    protected $fillable = ["NAMA_PESERTA", "PERTANYAAN", "ID_EVENT"];
+    protected $fillable = ["NAMA_PESERTA", "PERTANYAAN", "ID_EVENT",'STATUS_QNA'];
 
     public function getCreatedAtAttribute()
     {
