@@ -39,6 +39,6 @@ class EO extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class,'id','ID_USER');
+        return $this->belongsTo(User::class,'id');
     }
 }
