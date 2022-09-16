@@ -69,7 +69,7 @@ class Event extends Model
 
     public function eo()
     {
-        return $this->hasMany(EO::class,"ID_EO");
+        return $this->belongsTo(EO::class,"ID_EO");
     }
 
     public function jenisacara()
