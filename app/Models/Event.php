@@ -67,6 +67,11 @@ class Event extends Model
         return $this->hasMany(Tiket::class,"ID_EVENT");
     }
 
+    public function eo()
+    {
+        return $this->hasMany(EO::class,"ID_EO");
+    }
+
     public function jenisacara()
     {
         return $this->belongsTo(JenisAcara::class,'ID_JENIS_ACARA');
