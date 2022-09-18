@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\ResetPasswordController;
 use App\Http\Controllers\Api\JenisAcaraController;
 use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\EvaluasiController;
 use App\Http\Controllers\Api\GenreController;
 use App\Http\Controllers\Api\FormPendaftaranController;
 use App\Http\Controllers\Api\FormEvaluasiController;
@@ -186,6 +187,13 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::put("pendaftaranupdate/{id}", "update");     
         Route::get("pendaftaranp/{id}", "getDataPendaftaranPeserta");//getDataPendaftaranPeserta
         Route::get("pendaftarane/{id}", "getDataPendaftaranEvent"); //getDataPendaftaranEvent                          
+    });
+
+
+    Route::controller(EvaluasiController::class)->group(function () {      
+        Route::post("evaluasi", "store");     
+        Route::get("evaluasip/{id}", "getDataEvaluasiPeserta");//getDataEvaluasiPeserta
+        Route::get("evaluasie/{id}", "getDataEvaluasiEvent"); //getDataEvaluasiEvent                          
     });
 
     Route::controller(TransaksiController::class)->group(function () {    

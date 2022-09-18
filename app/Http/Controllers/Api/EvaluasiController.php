@@ -48,7 +48,7 @@ class EvaluasiController extends Controller
 
     public function getDataEvaluasiPeserta($id)
     {
-        $Evaluasi = Evaluasi::with('pendaftaran')->where("ID_PENDAFTARAN", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->first();    
+        $Evaluasi = Evaluasi::with('pendaftaran')->where("ID_EVALUASI", "=", $id)->orderBy('ID_EVALUASI', 'DESC')->first();    
         if (!is_null($Evaluasi)) {
             return response(
                 [
@@ -111,7 +111,7 @@ class EvaluasiController extends Controller
     }
 
 
-    public function getDataPendaftaranEvent($id)
+    public function getDataEvaluasiEvent($id)
     { 
         $Evaluasi = Evaluasi::with('event.jenisacara','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
         if (!is_null($Evaluasi)) {
