@@ -50,13 +50,6 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 
-
-Route::controller(PendaftaranPesertaController::class)->group(function () {      
-    Route::put("pendaftaranupdate/{id}", "update");     
-    Route::get("pendaftaranp/{id}", "getDataPendaftaranPeserta");//getDataPendaftaranPeserta
-    Route::get("pendaftarane/{id}", "getDataPendaftaranEvent"); //getDataPendaftaranEvent                          
-});
-
 Route::group(["middleware" => "auth:api"], function () {
     //All User Function
     Route::controller(AuthController::class)->group(function () {
@@ -192,7 +185,11 @@ Route::group(["middleware" => "auth:api"], function () {
     });
 
 
-
+    Route::controller(PendaftaranPesertaController::class)->group(function () {      
+        Route::put("pendaftaranupdate/{id}", "update");     
+        Route::get("pendaftaranp/{id}", "getDataPendaftaranPeserta");//getDataPendaftaranPeserta
+        Route::get("pendaftarane/{id}", "getDataPendaftaranEvent"); //getDataPendaftaranEvent                          
+    });
 
 
     Route::controller(EvaluasiController::class)->group(function () {      
