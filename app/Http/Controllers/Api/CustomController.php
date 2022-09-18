@@ -46,7 +46,17 @@ class CustomController extends Controller
         $data['total_transaksi']=count(DB::table('transaksi')
                                 ->join('event', 'transaksi.ID_EVENT', '=', 'event.ID_EVENT')
                                 ->join('eo', 'eo.ID_EO', '=', 'event.ID_EO')
+                                ->where("eo.ID_EO", "=", $id)
                                 ->get());
+
+         $data['tiket_terjual'] = DB::table('order')
+                                ->select()
+                                ->join('tiket', 'tiket.ID_TIKET', '=', 'order.ID_TIKET')
+                                ->join('event', 'tiket.ID_EVENT', '=', 'event.ID_EVENT')                                
+                                ->join('eo', 'eo.ID_EO', '=', 'event.ID_EO')
+                                ->where("eo.ID_EO", "=", $id)
+                                >sum('order.JUMLAH');
+        
       
         if (!is_null($data)) {
             return response( 
