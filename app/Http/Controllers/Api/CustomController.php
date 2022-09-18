@@ -49,8 +49,7 @@ class CustomController extends Controller
                                 ->where("eo.ID_EO", "=", $id)
                                 ->get());
 
-         $data['tiket_terjual'] = DB::table('order')
-                                ->select()
+         $data['tiket_terjual'] = DB::table('order')                              
                                 ->join('tiket', 'tiket.ID_TIKET', '=', 'order.ID_TIKET')
                                 ->join('event', 'tiket.ID_EVENT', '=', 'event.ID_EVENT')                                
                                 ->join('eo', 'eo.ID_EO', '=', 'event.ID_EO')
@@ -67,7 +66,49 @@ class CustomController extends Controller
                                 ->join('event', 'pendaftaran_peserta.ID_EVENT', '=', 'event.ID_EVENT')
                                 ->join('eo', 'eo.ID_EO', '=', 'event.ID_EO')
                                 ->where("eo.ID_EO", "=", $id)
-                                ->get());                                
+                                ->get());         
+                                
+                                
+        if (!is_null($data)) {
+            return response( 
+                [
+                    "message" => "Retrieve All Success",
+                    "data" => $data,
+                ],
+                200 
+            );
+        }
+        return response(
+            [
+                "data" => null,
+            ],
+            404
+        );
+    }
+
+
+    public function getProfile(Request $request, $id)
+    {   
+        $data['total_income']= DB::table('transaksi')
+                                ->join('event', 'transaksi.ID_EVENT', '=', 'event.ID_EVENT')                                
+                                ->where("event.ID_EVENT", "=", $id)
+                                ->sum('transaksi.TOTAL_HARGA');    
+                                
+        $data['tiket_tersisa'] = DB::table('tiket')                                                                
+                                ->join('event', 'tiket.ID_EVENT', '=', 'event.ID_EVENT')                                                                
+                                ->where("event.ID_EVENT", "=", $id)
+                                ->sum('order.STOK');
+          
+        $data['total_transaksi']=count(DB::table('transaksi')                                                            
+                                ->where("ID_EVENT", "=", $id)
+                                ->get());         
+                                
+        $data['total_visitor']=count(DB::table('pendaftaran_peserta')
+                                ->join('event', 'pendaftaran_peserta.ID_EVENT', '=', 'event.ID_EVENT')                               
+                                ->where("eo.ID_EVENT", "=", $id)
+                                ->get());         
+                                
+                                
         if (!is_null($data)) {
             return response( 
                 [

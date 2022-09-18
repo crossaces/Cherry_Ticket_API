@@ -61,6 +61,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::post("event/in", "checkin"); //
         Route::post("event/out", "checkout"); //
         Route::get("dashboard/{id}", "getDashboard"); //
+        Route::get("profilevent/{id}", "getProfile");
     });
      
 
