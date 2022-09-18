@@ -98,7 +98,7 @@ class CustomController extends Controller
                                 ->join('event', 'tiket.ID_EVENT', '=', 'event.ID_EVENT')                                                                
                                 ->where("event.ID_EVENT", "=", $id)
                                 ->sum('tiket.STOK');
-          
+           //
         $data['total_transaksi']=count(DB::table('transaksi')                                                            
                                 ->where("ID_EVENT", "=", $id)
                                 ->get());         
