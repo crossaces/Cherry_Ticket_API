@@ -24,19 +24,35 @@ class EvaluasiController extends Controller
             return response(["message" => $validate->errors()], 400);
         }
 
-        $Evaluasi = Evaluasi::create([
-            "DATA_JAWABAN" => json_encode($storeData['data_jawaban']),
-            "ID_FORM_EVALUASI" => $storeData["id_form_evaluasi"],
-            "ID_PENDAFTARAN" => $storeData["id_pendaftaran"],
-        ]);
+        $check = Evaluasi::where('ID_FORM_EVALUASI','=',$storeData["id_form_evaluasi"])->where('ID_PENDAFTARAN','=',$storeData["id_pendaftaran"])->get();
 
-        return response(
-            [
-                "message" => "Send Your Feedback Successfully",
-                "data" => $Evaluasi,
-            ],
-            200
-        );
+        if (count($check)>0) {
+            return response( 
+                [
+                    "message" => "Participant Already Check-In",
+                    "data" => $check,
+                ],
+                400 
+            );
+        }else{
+            $Evaluasi = Evaluasi::create([
+                "DATA_JAWABAN" => json_encode($storeData['data_jawaban']),
+                "ID_FORM_EVALUASI" => $storeData["id_form_evaluasi"],
+                "ID_PENDAFTARAN" => $storeData["id_pendaftaran"],
+            ]);
+
+            if ($Evaluasi->save()) {
+                return response(
+                    [
+                        "message" => "Send Your Feedback Successfully",
+                        "data" => $Evaluasi,
+                    ],
+                    200
+                );
+            }
+        }
+
+      
 
         return response(
             [
