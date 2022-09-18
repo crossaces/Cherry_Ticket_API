@@ -40,8 +40,8 @@ class CustomController extends Controller
 
     public function getDashboard(Request $request, $id)
     {
-        $data['event_active']= Event::count()->where("EVENT_TAB", "=", "Active")->where("ID_EO", "=", $id)->get();       
-        $data['event_draft']= Event::count()->where("EVENT_TAB", "=", "Draft")->where("ID_EO", "=", $id)->get();
+        $data['event_active']= count(Event::all()->where("EVENT_TAB", "=", "Active")->where("ID_EO", "=", $id)->get());       
+        $data['event_draft']= count(Event::all()->where("EVENT_TAB", "=", "Draft")->where("ID_EO", "=", $id)->get());
         $temptransaksi = DB::table('transaksi')
                                 ->join('event', 'transaksi.ID_EVENT', '=', 'event.ID_EVENT')
                                 ->join('eo', 'eo.ID_EO', '=', 'event.ID_EO')
