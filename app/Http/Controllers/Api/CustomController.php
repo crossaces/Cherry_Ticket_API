@@ -49,7 +49,7 @@ class CustomController extends Controller
                                 ->join('eo', 'eo.ID_EO', '=', 'event.ID_EO')
                                 ->get();
         $data['total_transaksi']=count($temptransaksi);
-        $data['event']= Event::count();      
+      
         if (!is_null($data)) {
             return response( 
                 [
