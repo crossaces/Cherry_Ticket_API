@@ -187,8 +187,8 @@ Route::group(["middleware" => "auth:api"], function () {
 
     Route::controller(PendaftaranPesertaController::class)->group(function () {      
         Route::put("pendaftaranupdate/{id}", "update");     
-        Route::get("pendaftaranpp/{id}", "getDataPendaftaranPeserta");//getDataPendaftaranPeserta
-        Route::get("pendaftaranee/{id}", "getDataPendaftaranEvent"); //getDataPendaftaranEvent                          
+        Route::get("pendaftaranp/{id}", "getDataPendaftaranPeserta");//getDataPendaftaranPeserta
+        Route::get("pendaftarane/{id}", "getDataPendaftaranEvent"); //getDataPendaftaranEvent                          
     });
 
 
