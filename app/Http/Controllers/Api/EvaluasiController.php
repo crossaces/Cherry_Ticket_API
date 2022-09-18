@@ -22,8 +22,7 @@ class EvaluasiController extends Controller
 
         if ($validate->fails()) {
             return response(["message" => $validate->errors()], 400);
-        }
-        //test
+        }    
         $check = Evaluasi::where('ID_FORM_EVALUASI','=',$storeData["id_form_evaluasi"])->where('ID_PENDAFTARAN','=',$storeData["id_pendaftaran"])->get();
 
         if (count($check)>0) {
