@@ -55,7 +55,7 @@ class CustomController extends Controller
                                 ->join('event', 'tiket.ID_EVENT', '=', 'event.ID_EVENT')                                
                                 ->join('eo', 'eo.ID_EO', '=', 'event.ID_EO')
                                 ->where("eo.ID_EO", "=", $id)
-                                >sum('order.JUMLAH');
+                                ->sum('order.JUMLAH');
         
       
         if (!is_null($data)) {
