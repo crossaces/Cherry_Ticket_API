@@ -17,7 +17,7 @@ class PendaftaranPesertaController extends Controller
         if (!is_null($PendaftaranPeserta)) {
             return response(
                 [
-                    "message" => "Retrieve All Transaction Success",
+                    "message" => "Retrieve All Participant Success",
                     "data" => $PendaftaranPeserta,
                 ],
                 200
@@ -26,7 +26,7 @@ class PendaftaranPesertaController extends Controller
 
         return response(
             [
-                "message" => "Transaction Not Found",
+                "message" => "Participant Not Found",
                 "data" => null,
             ],
             404
@@ -83,7 +83,7 @@ class PendaftaranPesertaController extends Controller
         if (!is_null($PendaftaranPeserta)) {
             return response(
                 [
-                    "message" => "Retrieve All Transaction Success",
+                    "message" => "Retrieve All Participant Success",
                     "data" => $PendaftaranPeserta,
                 ],
                 200
@@ -92,7 +92,7 @@ class PendaftaranPesertaController extends Controller
 
         return response(
             [
-                "message" => "Transaction Not Found",
+                "message" => "Participant Not Found",
                 "data" => null,
             ],
             404
