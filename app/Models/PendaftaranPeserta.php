@@ -46,9 +46,14 @@ class PendaftaranPeserta extends Model
         return $this->belongsTo(Peserta::class,'ID_PESERTA');
     }
 
+    public function check()
+    {
+        return $this->hasMany(Peserta::class,'ID_PENDAFTARAN');
+    }
+
     public function order()
     {
-        return $this->belongsTo(Order::class,'ID_ORDER');
+        return $this->hasMany(Order::class,'ID_ORDER');
     }
 
     public function event()
