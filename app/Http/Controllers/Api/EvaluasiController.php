@@ -32,7 +32,7 @@ class EvaluasiController extends Controller
 
         return response(
             [
-                "message" => "Add Evaluasi Event Success",
+                "message" => "Send Your Feedback Successfully",
                 "data" => $Evaluasi,
             ],
             200
@@ -40,7 +40,7 @@ class EvaluasiController extends Controller
 
         return response(
             [
-                "message" => "Add Evaluasi Event Failed",
+                "message" => "Send Your Feedback Failed",
             ],
             406
         );
