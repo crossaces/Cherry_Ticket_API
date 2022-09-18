@@ -105,7 +105,7 @@ class CustomController extends Controller
                                 
         $data['total_visitor']=count(DB::table('pendaftaran_peserta')
                                 ->join('event', 'pendaftaran_peserta.ID_EVENT', '=', 'event.ID_EVENT')                               
-                                ->where("eo.ID_EVENT", "=", $id)
+                                ->where("event.ID_EVENT", "=", $id)
                                 ->get());         
                                 
                                 
