@@ -111,7 +111,7 @@ class EventController extends Controller
                 ->join('peserta', 'peserta.ID_PESERTA', '=', 'pendaftaran_peserta.ID_PESERTA')                        
                 ->select(
                     "TOKEN",                   
-                )->where('pendaftaran_peserta.ID_EVENT',$id)->pluck('TOKEN');
+                )->where('pendaftaran_peserta.ID_EVENT',$id)->where('peserta.TOKEN', '<>' , NULL)->pluck('TOKEN');
         
         
         if (!is_null($Token)) {
