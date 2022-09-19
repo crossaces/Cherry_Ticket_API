@@ -161,7 +161,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::get("eventEO/{id}", "getAllEventEO"); //
         Route::get("event/{id}", "get"); //        
         Route::put("eventstatus/{id}", "updateStatus"); //
-        Route::get("fcm", "getFCMToken"); //getFCMTOKEN
+        Route::get("fcm/{id}", "getFCMToken"); //getFCMTOKEN
         Route::put("eventtoken/{id}", "updateToken"); //
         Route::post("event/{id}", "update"); //    
         Route::put("eventtab/{id}", "updateTab"); //

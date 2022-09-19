@@ -105,13 +105,13 @@ class EventController extends Controller
     }
 
 
-     public function getFCMToken($id)
+    public function getFCMToken($id)
     {
         $Token =DB::table("pendaftaran_peserta")
                 ->join('peserta', 'peserta.ID_PESERTA', '=', 'pendaftaran_peserta.ID_PESERTA')                        
                 ->select(
                     "TOKEN",                   
-                )->where()->pluck('TOKEN');
+                )->where('pendaftaran_peserta.ID_EVENT',$id)->pluck('TOKEN');
         
         
         if (!is_null($Event)) {
