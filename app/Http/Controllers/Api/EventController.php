@@ -114,11 +114,11 @@ class EventController extends Controller
                 )->where('pendaftaran_peserta.ID_EVENT',$id)->pluck('TOKEN');
         
         
-        if (!is_null($Event)) {
+        if (!is_null($Token)) {
             return response(
                 [
                     "message" => "Retrieve All Token Success",
-                    "data" => $Event,
+                    "data" => $Token,
                 ],
                 200
             );
