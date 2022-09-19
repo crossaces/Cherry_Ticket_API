@@ -105,18 +105,19 @@ class EventController extends Controller
     }
 
 
-     public function getFCMToken()
+     public function getFCMToken($id)
     {
-        $Event =DB::table("users")               
+        $Token =DB::table("pendaftaran_peserta")
+                ->join('peserta', 'peserta.ID_PESERTA', '=', 'pendaftaran_peserta.ID_PESERTA')                        
                 ->select(
-                    "email",                   
-                )->pluck('email');
+                    "TOKEN",                   
+                )->where()->pluck('TOKEN');
         
         
         if (!is_null($Event)) {
             return response(
                 [
-                    "message" => "Retrieve All Event Success",
+                    "message" => "Retrieve All Token Success",
                     "data" => $Event,
                 ],
                 200
@@ -125,7 +126,7 @@ class EventController extends Controller
 
         return response(
             [
-                "message" => "Event Not Found",
+                "message" => "Token Not Found",
                 "data" => null,
             ],
             404
