@@ -134,7 +134,7 @@ class EvaluasiController extends Controller
                                 ->where("event.ID_EVENT", "=", $id)
                                 ->first();
 
-        $Evaluasi = Evaluasi::all()->where("ID_FORM_EVALUASI", "=", $FormEvaluasi->ID_FORM_EVALUASI)->get();    
+        $Evaluasi = Evaluasi::all()->where("ID_FORM_EVALUASI", "=", $FormEvaluasi->ID_FORM_EVALUASI);    
       
         $FormEvaluasi->DATA_PERTANYAAN=json_decode($FormEvaluasi->DATA_PERTANYAAN);
         
