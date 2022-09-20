@@ -137,14 +137,14 @@ class EvaluasiController extends Controller
 
         $Evaluasi = Evaluasi::all()->where("ID_FORM_EVALUASI", "=", $Form->ID_FORM_EVALUASI);    
       
-        $Form->DATA_PERTANYAAN=json_decode($Form->DATA_PERTANYAAN);        
+        $Form->DATA_PERTANYAAN = json_decode($Form->DATA_PERTANYAAN);        
         $i=0;
         foreach($Form->DATA_PERTANYAAN as $f ){
             $i++;            
             foreach($Evaluasi as $e ){
                 $j=0;
-                // $e->DATA_JAWABAN=json_decode($e->DATA_JAWABAN);
-                $f->DATA_JAWABAN = $e->DATA_JAWABAN;
+                // $e->DATA_JAWABAN = json_decode($e->DATA_JAWABAN);
+                $f->DATA_JAWABAN = $e->created_at;
                 // foreach($e->DATA_JAWABAN as $a ){
                 //      $j++;
                 //      if($j==$i){                    
