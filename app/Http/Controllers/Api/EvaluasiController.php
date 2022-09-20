@@ -150,7 +150,13 @@ class EvaluasiController extends Controller
                         if($a->TYPE == "Text")   {
                             $JAWABAN['TEXT']=$a->DATA_JAWABAN;
                             $f->DATA_JAWABAN[]=$JAWABAN;           
-                        }                                  
+                        } 
+                        else{
+                             $f->DATA_JAWABAN[]=$a->OPTIONS;
+                             foreach($a->OPTIONS as $o ){
+
+                             }
+                        }                                 
                         continue;
                     }
                 }                              
