@@ -140,11 +140,10 @@ class EvaluasiController extends Controller
         $Form->DATA_PERTANYAAN = json_decode($Form->DATA_PERTANYAAN);        
         $i=0;
         foreach($Form->DATA_PERTANYAAN as $f ){
-            $f->DATA_JAWABAN=[];
             $i++;            
             foreach($Evaluasi as $e ){
                 $j=0;
-                $e->DATA_JAWABAN = json_decode($e->DATA_JAWABAN);
+                $e->DATA_JAWABAN = json_decode('[{"PERTANYAAN":"Nama","NOMOR":null,"DATA_JAWABAN":"----","TYPE":"Text","OPTIONS":[{"OPTION":null},{"OPTION":null}]},{"PERTANYAAN":"Ukuran Baju","NOMOR":null,"DATA_JAWABAN":"M","TYPE":"Dropdown","OPTIONS":[{"OPTION":"S"},{"OPTION":"M"},{"OPTION":"L"},{"OPTION":"XL"}]},{"PERTANYAAN":"Apa tujuan anda mengikuti acaran","NOMOR":null,"DATA_JAWABAN":"ga ada gabut aja","TYPE":"Text","OPTIONS":[{"OPTION":null},{"OPTION":null}]}]');
                 $f->DATA_JAWABAN = $e->DATA_JAWABAN;
                 // foreach($e->DATA_JAWABAN as $a ){
                 //      $j++;
