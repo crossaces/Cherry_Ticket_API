@@ -128,10 +128,10 @@ class EvaluasiController extends Controller
 
     public function getDataEvaluasiEvent($id)
     { 
-        $Evaluasi = Evaluasi::with('peserta')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
+        $Evaluasi = Evaluasi::with('peserta')->where("ID_EVENT", "=", $id)->orderBy('ID_EVALUASI', 'DESC')->get();    
 
         $FormEvaluasi = DB::table('form_evaluasi')
-                                ->join('event', 'formevaluasi.ID_EVENT', '=', 'event.ID_EVENT')                               
+                                ->join('event', 'form_evaluasi.ID_EVENT', '=', 'event.ID_EVENT')                               
                                 ->where("event.ID_EVENT", "=", $id)
                                 ->first();
         $FormEvaluasi->DATA_PERTANYAAN=json_decode($FormEvaluasi->DATA_PERTANYAAN);
