@@ -147,7 +147,6 @@ class EvaluasiController extends Controller
                 foreach($temp as $a ){
                      if($j==0 && $a->TYPE != "Text")
                         $f->DATA_JAWABAN[]=$a->OPTIONS;
-
                      $j++;
                      if($j==$i){              
                         if($a->TYPE == "Text")   {
