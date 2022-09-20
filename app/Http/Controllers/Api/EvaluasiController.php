@@ -168,8 +168,7 @@ class EvaluasiController extends Controller
         if (!is_null($Evaluasi)) {
             return response(
                 [
-                    "message" => "Retrieve All Evaluation Success",
-                    "data" => $Evaluasi,
+                    "message" => "Retrieve All Evaluation Success",                   
                     "dataf" => $Form,
                 ],
                 200
