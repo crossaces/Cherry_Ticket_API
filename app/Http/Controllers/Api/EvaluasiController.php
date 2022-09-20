@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Evaluasi;
 use Validator, Redirect, Response, File;
-
+use Illuminate\Support\Facades\DB;
 class EvaluasiController extends Controller
 {
     //
@@ -133,7 +133,7 @@ class EvaluasiController extends Controller
                                 ->join('event', 'form_evaluasi.ID_EVENT', '=', 'event.ID_EVENT')                               
                                 ->where("event.ID_EVENT", "=", $id)
                                 ->first();
-                                
+
         $Evaluasi = Evaluasi::all()->where("ID_FORM_EVALUASI", "=", $FormEvaluasi->ID_FORMEVALUASI)->orderBy('ID_EVALUASI', 'DESC')->get();    
       
         $FormEvaluasi->DATA_PERTANYAAN=json_decode($FormEvaluasi->DATA_PERTANYAAN);
