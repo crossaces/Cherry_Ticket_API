@@ -146,9 +146,11 @@ class EvaluasiController extends Controller
                 $temp=json_decode($e->DATA_JAWABAN);               
                 foreach($temp as $a ){
                      $j++;
-                     if($j==$i){                    
-                        $JAWABAN['TEXT']=$a->DATA_JAWABAN;
-                        $f->DATA_JAWABAN[]=$JAWABAN;                        
+                     if($j==$i){              
+                        if($temp->TYPE == "Text")   {
+                            $JAWABAN['TEXT']=$a->DATA_JAWABAN;
+                            $f->DATA_JAWABAN[]=$JAWABAN;           
+                        }                                  
                         continue;
                     }
                 }                              
