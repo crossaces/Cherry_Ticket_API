@@ -129,22 +129,39 @@ class EvaluasiController extends Controller
     public function getDataEvaluasiEvent($id)
     { 
 
-         $FormEvaluasi = DB::table('form_evaluasi')
+        $Form = DB::table('form_evaluasi')
                                 ->select('form_evaluasi.*')
                                 ->join('event', 'form_evaluasi.ID_EVENT', '=', 'event.ID_EVENT')                               
                                 ->where("event.ID_EVENT", "=", $id)
                                 ->first();
 
-        $Evaluasi = Evaluasi::all()->where("ID_FORM_EVALUASI", "=", $FormEvaluasi->ID_FORM_EVALUASI);    
+        $Evaluasi = Evaluasi::all()->where("ID_FORM_EVALUASI", "=", $Form->ID_FORM_EVALUASI);    
       
-        $FormEvaluasi->DATA_PERTANYAAN=json_decode($FormEvaluasi->DATA_PERTANYAAN);
-        
+        $Form->DATA_PERTANYAAN=json_decode($Form->DATA_PERTANYAAN);        
+        $i=0;
+        foreach($Form as $f ){
+            $i++;            
+            foreach($Evaluasi as $e ){
+                $j=0;
+                $e->DATA_JAWABAN=json_decode($e->DATA_JAWABAN);
+                $Form->DATA_JAWABAN = [];
+                foreach($e->DATA_JAWABAN as $a ){
+                     $j++;
+                     if($j==$i){                    
+                        $Form->DATA_JAWABAN = $a->DATA_JAWABAN;
+                        continue;
+                    }
+                }
+                              
+            }
+         }
+
         if (!is_null($Evaluasi)) {
             return response(
                 [
                     "message" => "Retrieve All Evaluation Success",
                     "data" => $Evaluasi,
-                    "dataf" => $FormEvaluasi,
+                    "dataf" => $Form,
                 ],
                 200
             );
