@@ -158,7 +158,7 @@ class EvaluasiController extends Controller
                         else{                                                                                   
                              foreach($f->DATA_JAWABAN as $o ){
                                 if($o->OPTION == $a->DATA_JAWABAN){
-                                    $o->JUMLAH= 1;
+                                    $o->JUMLAH+= 1;
                                 }                                
                              }
                         }                                 
