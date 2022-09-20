@@ -148,7 +148,7 @@ class EvaluasiController extends Controller
                      $j++;
                      if($j==$i){                    
                         $JAWABAN['TEXT']=$a->DATA_JAWABAN;
-                        array_push($f->DATA_JAWABAN,$JAWABAN);                        
+                        $f->DATA_JAWABAN[]=$JAWABAN;                        
                         continue;
                     }
                 }                              
