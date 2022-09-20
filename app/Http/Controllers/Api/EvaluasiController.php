@@ -139,12 +139,12 @@ class EvaluasiController extends Controller
       
         $Form->DATA_PERTANYAAN=json_decode($Form->DATA_PERTANYAAN);        
         $i=0;
-        foreach($Form as $f ){
+        foreach($Form->DATA_PERTANYAAN as $f ){
             $i++;            
             foreach($Evaluasi as $e ){
                 $j=0;
                 // $e->DATA_JAWABAN=json_decode($e->DATA_JAWABAN);
-                $Form->DATA_JAWABAN = [];
+                $f->DATA_JAWABAN = [];
                 // foreach($e->DATA_JAWABAN as $a ){
                 //      $j++;
                 //      if($j==$i){                    
