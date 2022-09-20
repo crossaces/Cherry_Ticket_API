@@ -152,7 +152,10 @@ class EvaluasiController extends Controller
                             $f->DATA_JAWABAN[]=$JAWABAN;           
                         } 
                         else{
-                             $f->DATA_JAWABAN[]=$a->OPTIONS;
+                            if($j==0)
+                                $f->DATA_JAWABAN[]=$a->OPTIONS;
+                            
+                            
                              foreach($a->OPTIONS as $o ){
 
                              }
