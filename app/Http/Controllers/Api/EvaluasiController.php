@@ -139,22 +139,22 @@ class EvaluasiController extends Controller
       
         $Form->DATA_PERTANYAAN=json_decode($Form->DATA_PERTANYAAN);        
         $i=0;
-        foreach($Form as $f ){
-            $i++;            
-            foreach($Evaluasi as $e ){
-                $j=0;
-                $e->DATA_JAWABAN=json_decode($e->DATA_JAWABAN);
-                $Form->DATA_JAWABAN = [];
-                foreach($e->DATA_JAWABAN as $a ){
-                     $j++;
-                     if($j==$i){                    
-                        $Form->DATA_JAWABAN = $a->DATA_JAWABAN;
-                        continue;
-                    }
-                }
+        // foreach($Form as $f ){
+        //     $i++;            
+        //     foreach($Evaluasi as $e ){
+        //         $j=0;
+        //         $e->DATA_JAWABAN=json_decode($e->DATA_JAWABAN);
+        //         $Form->DATA_JAWABAN = [];
+        //         foreach($e->DATA_JAWABAN as $a ){
+        //              $j++;
+        //              if($j==$i){                    
+        //                 $Form->DATA_JAWABAN = $a->DATA_JAWABAN;
+        //                 continue;
+        //             }
+        //         }
                               
-            }
-         }
+        //     }
+        //  }
 
         if (!is_null($Evaluasi)) {
             return response(
