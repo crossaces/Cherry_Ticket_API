@@ -130,7 +130,7 @@ class EvaluasiController extends Controller
     { 
 
          $FormEvaluasi = DB::table('form_evaluasi')
-                                ->select('form_eveluasi.*')
+                                ->select('form_evaluasi.*')
                                 ->join('event', 'form_evaluasi.ID_EVENT', '=', 'event.ID_EVENT')                               
                                 ->where("event.ID_EVENT", "=", $id)
                                 ->first();
