@@ -143,6 +143,9 @@ class EvaluasiController extends Controller
             $i++;      
             if($f->TYPE != "Text"){
                 $f->DATA_JAWABAN=$f->OPTIONS;
+                foreach($f->DATA_JAWABAN as $o ){                
+                        $o->JUMLAH= 0;                                               
+                }
             }           
             foreach($Evaluasi as $e ){
                 $j=0;
