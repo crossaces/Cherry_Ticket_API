@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sertifikat;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Validator, Redirect, Response, File;
 class SertifikatController extends Controller
 {
