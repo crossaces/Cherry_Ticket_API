@@ -110,7 +110,9 @@ class SertifikatController extends Controller
     public function update(Request $request, $id)
     {
         $Sertifikat = Sertifikat::find($id);
-        $gambar = $Sertifikat->BACKGROUND;
+        if($Sertifikat->BACKGROUND!=NULL)
+            $gambar = $Sertifikat->BACKGROUND;
+
         if (is_null($Sertifikat)) {
             return response(
                 [
@@ -126,7 +128,13 @@ class SertifikatController extends Controller
             $validate = Validator::make($updateData, [              
                 "background" => "required|image|mimes:jpeg,png,jpg|max:1048",
             ]);
-        }      
+        }else{
+             return response(
+            [
+                "message" => "Image must be field",              
+            ],
+            400
+        );
         
 
         if ($validate->fails()) {
@@ -163,6 +171,8 @@ class SertifikatController extends Controller
             ],
             400
         );
+
+        }
     }
 
     public function destroy($id)
