@@ -207,7 +207,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::put("changest/{id}", "changeStatusTransaksi"); //createTransaksi                   
     });
 
-
+    //Seritifkat
     Route::controller(SertifikatController::class)->group(function () {
         Route::post("sertifikat", "store"); //
         Route::get("sertifikat", "getAll"); //
