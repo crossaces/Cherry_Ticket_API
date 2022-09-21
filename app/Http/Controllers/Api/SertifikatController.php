@@ -10,7 +10,7 @@ use Validator, Redirect, Response, File;
 class SertifikatController extends Controller
 {
     //
-     public function store(Request $request)
+    public function store(Request $request)
     {
         $storeData = $request->all();
         $validate = Validator::make($storeData, [       
@@ -60,6 +60,28 @@ class SertifikatController extends Controller
         $path = public_path().'/GambarSertifikat/'.$Sertifikat->BACKGROUND;
         return Response::download($path);   
     }
+
+     public function generate($id){
+        $Sertifikat = Sertifikat::find($id);
+        $path = public_path().'/GambarSertifikat/'.$Sertifikat->BACKGROUND;
+
+            
+        $image = imagecreatefromjpeg($path);
+
+        $color = imagecolorallocate($image, 255, 255, 255);
+        $string = 'William Lourensius';
+        $fontSize = 14;
+        $x = 300;
+        $y = 400;
+
+        // write on the image
+        imagestring($image, $fontSize, $x, $y, $string, $color);
+
+        // save the image
+        imagejpeg($image,  $fileName = 'path/to/save/the/image', $quality = 100);
+        return Response::download($path);   
+    }
+
 
     public function getAll()
     {
