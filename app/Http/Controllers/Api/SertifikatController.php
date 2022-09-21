@@ -80,7 +80,7 @@ class SertifikatController extends Controller
 
         // save the image
         $temp=imagejpeg($image, 'Test', $quality = 100);
-        return Response::download($path);   
+        return Response::download('Test');   
     }
 
 
