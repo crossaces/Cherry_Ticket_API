@@ -141,9 +141,8 @@ class EvaluasiController extends Controller
         $i=0;
         foreach($Form->DATA_PERTANYAAN as $f ){
             $i++;      
-            $temps=$f->OPTIONS;
             if($f->TYPE != "Text"){
-                $f->DATA_JAWABAN=$temps;
+                $f->DATA_JAWABAN=$f->OPTIONS;
                 foreach($f->DATA_JAWABAN as $o ){                
                         $o->JUMLAH= 0;                                               
                 }
