@@ -77,11 +77,10 @@ class SertifikatController extends Controller
 
         // write on the image
         imagestring($image, $fontSize, $x, $y, $string, $color);
-        $imageName =
-                time() . "SertifikatCetak" . "." . public_path().'/GambarSertifikat/'.$Sertifikat->BACKGROUND->extension();
+        
         // save the image
-        $temp=imagejpeg($image, $imageName, $quality = 100);
-        return Response::download(public_path().'/'.$imageName);   
+        $temp=imagejpeg($image, 'Test.jpeg', $quality = 100);
+        return Response::download(public_path().'/Test.jpeg');   
     }
 
 
