@@ -69,9 +69,9 @@ class SertifikatController extends Controller
             
         $image = imagecreatefromjpeg($path);
 
-        $color = imagecolorallocate($image, 255, 255, 255);
+        $color = imagecolorallocate($image, 0, 0, 0);
         $string = 'William Lourensius';
-        $fontSize = 14;
+        $fontSize = 60;
         $x = 300;
         $y = 400;
 
@@ -79,7 +79,7 @@ class SertifikatController extends Controller
         imagestring($image, $fontSize, $x, $y, $string, $color);
         
         // save the image
-        $temp=imagejpeg($image, 'Test.jpeg', $quality = 100);
+        imagejpeg($image, 'Test.jpeg', $quality = 200);
         return Response::download(public_path().'/Test.jpeg');   
     }
 
