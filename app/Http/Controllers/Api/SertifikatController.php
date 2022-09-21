@@ -57,7 +57,7 @@ class SertifikatController extends Controller
     }
 
 
-     public function getImage($id){
+    public function getImage($id){
         $Sertifikat = Sertifikat::find($id);
         $path = public_path().'/GambarSertifikat/'.$Sertifikat->BACKGROUND;
         return Response::download($path);   
@@ -138,7 +138,7 @@ class SertifikatController extends Controller
         if ($files = $request->file("background")) {
             $imageName =
                 time() . "Sertifikat" . "." . $request->background->extension();
-            $request->background->move(public_path("GambarKota"), $imageName);
+            $request->background->move(public_path("GambarSertifikat"), $imageName);
         }else{
             $imageName = $gambar;
         }
