@@ -43,10 +43,9 @@ class AuthController extends Controller
                     "email" => $register["email"],
                     "password" => $register["password"],
                     "no_hp" => $register["no_hp"],
-                    "role" => $register["role"],
-                    "email_verified_at" => $date,  
+                    "role" => $register["role"],                   
                 ]);
-                // $User->sendApiEmailVerificationNotification();
+                $User->sendApiEmailVerificationNotification();
                 $EO = EO::create([
                     "ID_USER" => $User["id"],
                     "NAMA_EO" => $register["nama_eo"],

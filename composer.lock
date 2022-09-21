@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "123f239b0f8cc306c32a891d3b18da99",
+    "content-hash": "a7e29abf0654b628270d4e7698839f58",
     "packages": [
         {
             "name": "brick/math",
@@ -3892,6 +3892,33 @@
                 "source": "https://gitlab.com/stella-maris/clock/-/tree/0.1.4"
             },
             "time": "2022-04-17T14:12:26+00:00"
+        },
+        {
+            "name": "stil/gd-text",
+            "version": "dev-alexarno-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stil/gd-text.git",
+                "reference": "6cdf58369702a6309ea65754047b972aec01a44a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stil/gd-text/zipball/6cdf58369702a6309ea65754047b972aec01a44a",
+                "reference": "6cdf58369702a6309ea65754047b972aec01a44a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "GDText": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "support": {
+                "issues": "https://github.com/stil/gd-text/issues",
+                "source": "https://github.com/stil/gd-text/tree/alexarno-master"
+            },
+            "time": "2014-04-26T19:52:05+00:00"
         },
         {
             "name": "symfony/console",
@@ -8989,12 +9016,14 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "stil/gd-text": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.3.0"
 }

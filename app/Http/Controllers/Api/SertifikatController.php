@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sertifikat;
 use Carbon\Carbon;
+use GDText\Box;
+use GDText\Color;
 use Illuminate\Support\Facades\Storage;
 use Validator, Redirect, Response, File;
 class SertifikatController extends Controller
@@ -67,20 +69,40 @@ class SertifikatController extends Controller
         $path = public_path().'/GambarSertifikat/'.$Sertifikat->BACKGROUND;
 
             
-        $image = imagecreatefromjpeg($path);
+        $im = imagecreatefrompng($path);
+        // $font_family = public_path('/fonts/Roboto-Regular.ttf');
+        $box = new Box($im);
+        // $box->setFontFace($font_family);
+        $box->setFontColor(new Color(0,0,0,0));
+        $box->setFontSize(100);
+        $box->setBox(
+            0,
+            -10,
+            imagesx($im),
+            imagesy($im)
+        );
+        $box->setTextAlign('center','center');
+        $box->draw($name);
 
-        $color = imagecolorallocate($image, 0, 0, 0);
-        $string = 'William Lourensius';
-        $fontSize = 60;
-        $x = 300;
-        $y = 400;
-
-        // write on the image
-        imagestring($image, $fontSize, $x, $y, $string, $color);
+        header("content-type: image/jpeg");
+        imagejpeg($im);
         
-        // save the image
-        imagejpeg($image, 'Test.jpeg', $quality = 200);
-        return Response::download(public_path().'/Test.jpeg');   
+
+
+        // $image = imagecreatefromjpeg($path);
+
+        // $color = imagecolorallocate($image, 0, 0, 0);
+        // $string = 'William Lourensius';
+        // $fontSize = 2000;
+        // $x = 300;
+        // $y = 400;
+
+        // // write on the image
+        // imagestring($image, $fontSize, $x, $y, $string, $color);
+        
+        // // save the image
+        // imagejpeg($image, 'Test.jpeg', $quality = 200);
+        // return Response::download(public_path().'/Test.jpeg');   
     }
 
 
@@ -146,7 +168,7 @@ class SertifikatController extends Controller
 
         $updateData = $request->all();       
         $validate = Validator::make($updateData, [             
-            "background" => "required|image|mimes:jpeg,png,jpg|max:1048",
+            "background" => "required|image|mimes:jpeg|max:1048",
         ]);
        
         
