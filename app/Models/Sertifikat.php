@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sertifikat extends Model
 {
-    use HasFactory;
-
     use HasFactory, SoftDeletes;
 
     protected $primaryKey = "ID_SERTIFIKAT";
