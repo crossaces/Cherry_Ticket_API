@@ -69,7 +69,7 @@ class SertifikatController extends Controller
         $path = public_path().'/GambarSertifikat/'.$Sertifikat->BACKGROUND;
 
             
-        $im = imagecreatefrompng($path);
+        $im = imagecreatefromjpeg($path);
         // $font_family = public_path('/fonts/Roboto-Regular.ttf');
         $box = new Box($im);
         // $box->setFontFace($font_family);
