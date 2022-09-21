@@ -70,9 +70,9 @@ class SertifikatController extends Controller
 
             
         $im = imagecreatefromjpeg($path);
-        // $font_family = public_path('/fonts/Roboto-Regular.ttf');
+        $font_family = public_path('/fonts/Roboto-Regular.ttf');
         $box = new Box($im);
-        // $box->setFontFace($font_family);
+        $box->setFontFace($font_family);
         $box->setFontColor(new Color(0,0,0,0));
         $box->setFontSize(100);
         $box->setBox(
