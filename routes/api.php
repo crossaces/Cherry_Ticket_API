@@ -212,7 +212,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::post("sertifikat", "store"); //
         Route::get("sertifikat", "getAll"); //
         Route::get("sertifikat/{id}", "get"); //
-        Route::get("sertifikat/{id}", "getImage"); //
+        Route::get("sertifikatimage/{id}", "getImage"); //
         Route::post("sertifikat/{id}", "update"); //
         Route::delete("sertifikat/{id}", "destroy"); //
     });

@@ -13,8 +13,7 @@ class SertifikatController extends Controller
      public function store(Request $request)
     {
         $storeData = $request->all();
-        $validate = Validator::make($storeData, [
-            "nama_kota" => "required|unique:Sertifikat,NAMA_KOTA,NULL,NULL,deleted_at,NULL",
+        $validate = Validator::make($storeData, [       
             "background" => "required|image|mimes:jpeg,png,jpg|max:1048",
         ]);
 
@@ -25,7 +24,7 @@ class SertifikatController extends Controller
         if ($files = $request->file("background")) {
             $imageName =
                 time() . "Sertifikat" . "." . $request->background->extension();
-            $request->background->move(public_path("GambarKota"), $imageName);
+            $request->background->move(public_path("GambarSertifikat"), $imageName);
         }else{
              return response(
             [
