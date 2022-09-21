@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\QnaController;
 use App\Http\Controllers\Api\PendaftaranPesertaController;
 use App\Http\Controllers\Api\TiketController;
 use App\Http\Controllers\Api\CustomController;
+use App\Http\Controllers\Api\SertifikatController;
 use App\Http\Controllers\VerificationApiController;
 use App\Http\Controllers\Api\TransaksiController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
