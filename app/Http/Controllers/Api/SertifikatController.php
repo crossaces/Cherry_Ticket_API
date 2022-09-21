@@ -110,7 +110,7 @@ class SertifikatController extends Controller
     public function update(Request $request, $id)
     {
         $Sertifikat = Sertifikat::find($id);
-        $gambar = $Sertifikat->GAMBAR_KOTA;
+        $gambar = $Sertifikat->BACKGROUND;
         if (is_null($Sertifikat)) {
             return response(
                 [
