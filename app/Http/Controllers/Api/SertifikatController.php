@@ -79,8 +79,8 @@ class SertifikatController extends Controller
         imagestring($image, $fontSize, $x, $y, $string, $color);
 
         // save the image
-        imagejpeg($image,  $fileName = public_path().'/GambarSertifikat/', $quality = 100);
-        return Response::download($path);   
+        $temp=imagejpeg($image, 'Test', $quality = 100);
+        return Response::download($temp);   
     }
 
 
