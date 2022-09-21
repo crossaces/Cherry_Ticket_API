@@ -208,7 +208,11 @@ Route::group(["middleware" => "auth:api"], function () {
     });
 
     //Seritifkat
-    Route::controller(SertifikatController::class)->group(function () {
+   
+});
+
+
+  Route::controller(SertifikatController::class)->group(function () {
         Route::post("sertifikat", "store"); //
         Route::get("sertifikat", "getAll"); //
         Route::get("sertifikat/{id}", "get"); //
@@ -217,10 +221,6 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::post("sertifikat/{id}", "update"); //
         Route::delete("sertifikat/{id}", "destroy"); //
     });
-});
-
-
- 
 //
 Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();
