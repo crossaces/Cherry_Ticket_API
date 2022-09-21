@@ -34,9 +34,8 @@ class SertifikatController extends Controller
         );
         }
 
-        $Sertifikat = Sertifikat::create([
-            "NAMA_KOTA" => $storeData["nama_kota"],
-            "background" => $imageName,
+        $Sertifikat = Sertifikat::create([          
+            "BACKGROUND" => $imageName,
         ]);
 
         return response(
