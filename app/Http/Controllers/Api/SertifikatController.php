@@ -26,7 +26,7 @@ class SertifikatController extends Controller
                 time() . "Sertifikat" . "." . $request->background->extension();
             $request->background->move(public_path("GambarSertifikat"), $imageName);
         }else{
-             return response(
+            return response(
             [
                 "message" => "Image must be field",              
             ],
@@ -109,14 +109,12 @@ class SertifikatController extends Controller
 
     public function update(Request $request, $id)
     {
-        $Sertifikat = Sertifikat::find($id);
-        if($Sertifikat->BACKGROUND!=NULL)
-            $gambar = $Sertifikat->BACKGROUND;
-
+       $Sertifikat = Sertifikat::find($id);
+        $gambar = $Sertifikat->GAMBAR_KOTA;
         if (is_null($Sertifikat)) {
             return response(
                 [
-                    "message" => "Ceritificate Not Found",
+                    "message" => "Certificate Not Found",
                     "data" => null,
                 ],
                 404
@@ -125,16 +123,10 @@ class SertifikatController extends Controller
 
         $updateData = $request->all();
         if ($files = $request->file("background")) {
-            $validate = Validator::make($updateData, [              
+            $validate = Validator::make($updateData, [             
                 "background" => "required|image|mimes:jpeg,png,jpg|max:1048",
             ]);
-        }else{
-             return response(
-            [
-                "message" => "Image must be field",              
-            ],
-            400
-        );
+        }
         
 
         if ($validate->fails()) {
@@ -146,10 +138,16 @@ class SertifikatController extends Controller
                 time() . "Sertifikat" . "." . $request->background->extension();
             $request->background->move(public_path("GambarSertifikat"), $imageName);
         }else{
-            $imageName = $gambar;
+            return response(
+            [
+                "message" => "Image must be field",              
+            ],
+            400
+        );
         }
-     
-        $Sertifikat->background = $imageName;
+
+        
+        $Sertifikat->BACKGROUND = $imageName;
 
         if ($Sertifikat->save()) {
             if ($gambar != null && $files = $request->file("background")) {
@@ -157,7 +155,7 @@ class SertifikatController extends Controller
             }
             return response(
                 [
-                    "message" => "Update Ceritificate Success",
+                    "message" => "Update Certificate Success",
                     "data" => $Sertifikat,
                 ],
                 200
@@ -166,13 +164,11 @@ class SertifikatController extends Controller
 
         return response(
             [
-                "message" => "Update Ceritificate Failed",
+                "message" => "Update Certificate Failed",
                 "data" => null,
             ],
             400
         );
-
-        }
     }
 
     public function destroy($id)
