@@ -86,4 +86,9 @@ class Event extends Model
     {
         return $this->belongsTo(Genre::class,'ID_GENRE');
     }
+
+    public function sertifikat()
+    {
+        return $this->belongsTo(Sertifikat::class,'ID_EVENT');
+    }
 }

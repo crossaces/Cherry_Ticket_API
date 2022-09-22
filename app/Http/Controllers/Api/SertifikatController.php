@@ -64,11 +64,10 @@ class SertifikatController extends Controller
         return Response::download($path);   
     }
 
-     public function generate($id){
+     public function generate($id,$nama){
         $Sertifikat = Sertifikat::find($id);
         $path = public_path().'/GambarSertifikat/'.$Sertifikat->BACKGROUND;
 
-            
         $im = imagecreatefromjpeg($path);
         $font_family = public_path('/fonts/Roboto-Regular.ttf');
         $box = new Box($im);
@@ -82,7 +81,7 @@ class SertifikatController extends Controller
             imagesy($im)
         );
         $box->setTextAlign('center','center');
-        $box->draw("William Lourensius");
+        $box->draw($nama);
         header("content-type: image/jpeg");
         imagejpeg($im,$filename='Sertifikat.jpeg',$quality = 500);
         
