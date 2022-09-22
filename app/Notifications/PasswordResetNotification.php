@@ -46,7 +46,7 @@ class PasswordResetNotification extends Notification
     {
         $path = env('APP_URL');
         $urlToResetForm =
-            $path."resetpassword?token=" .
+            $path."#/resetpassword?token=" .
             $this->token .
             "&email=" .
             $notifiable->getEmailForPasswordReset();
