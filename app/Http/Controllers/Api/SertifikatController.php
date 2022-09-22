@@ -83,9 +83,8 @@ class SertifikatController extends Controller
         );
         $box->setTextAlign('center','center');
         $box->draw("William Lourensius");
-
         header("content-type: image/jpeg");
-        imagejpeg($im);
+        imagejpeg($im,'Sertifikat.jpeg');
         
 
 
@@ -102,7 +101,7 @@ class SertifikatController extends Controller
         
         // // save the image
         // imagejpeg($image, 'Test.jpeg', $quality = 200);
-        // return Response::download(public_path().'/Test.jpeg');   
+        return Response::download(public_path().'/Sertifikat.jpeg');   
     }
 
 
