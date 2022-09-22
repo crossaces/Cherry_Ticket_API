@@ -78,7 +78,7 @@ class PendaftaranPesertaController extends Controller
 
     public function getDataPendaftaranEvent($id)
     { 
-        $PendaftaranPeserta = PendaftaranPeserta::with('check','event.jenisacara','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
+        $PendaftaranPeserta = PendaftaranPeserta::with('check','event.jenisacara','event.sertifikat','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
         if (!is_null($PendaftaranPeserta)) {
             return response(
                 [
