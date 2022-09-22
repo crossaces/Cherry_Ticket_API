@@ -84,7 +84,7 @@ class SertifikatController extends Controller
         $box->setTextAlign('center','center');
         $box->draw("William Lourensius");
         header("content-type: image/jpeg");
-        imagejpeg($im,'Sertifikat.jpeg');
+        imagejpeg($im,$filename='Sertifikat.jpeg',$quality = 500);
         
 
 
