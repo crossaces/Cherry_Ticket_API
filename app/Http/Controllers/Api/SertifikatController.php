@@ -76,7 +76,7 @@ class SertifikatController extends Controller
         $box->setFontSize(100);
         $box->setBox(
             0,
-            -10,
+            0,
             imagesx($im),
             imagesy($im)
         );
