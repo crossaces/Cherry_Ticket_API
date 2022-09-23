@@ -100,7 +100,7 @@ class SertifikatController extends Controller
         
         // // save the image
         // imagejpeg($image, 'Test.jpeg', $quality = 200);
-        return Response::download(public_path().'/Sertifikat.jpeg');   
+        return Response::download(public_path().'/Sertifikat'.$id.'.jpeg');   
     }
 
 
