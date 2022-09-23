@@ -72,7 +72,7 @@ class SertifikatController extends Controller
         $font_family = public_path('/fonts/Roboto-Regular.ttf');
         $box = new Box($im);
         $box->setFontFace($font_family);
-        $box->setFontColor(new Color(0,0,0,0));
+        $box->setFontColor(new Color(255,255,255));
         $box->setFontSize(100);
         $box->setBox(
             0,
@@ -83,7 +83,7 @@ class SertifikatController extends Controller
         $box->setTextAlign('center','center');
         $box->draw($nama);
         header("content-type: image/jpeg");
-        imagejpeg($im,$filename='Sertifikat.jpeg',$quality = 500);
+        imagejpeg($im,$filename='Sertifikat'.$id.'.jpeg',$quality = 500);
         
 
 
