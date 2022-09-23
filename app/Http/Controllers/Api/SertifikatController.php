@@ -72,7 +72,7 @@ class SertifikatController extends Controller
         $font_family = public_path('/fonts/Roboto-Regular.ttf');
         $box = new Box($im);
         $box->setFontFace($font_family);
-        $box->setFontColor(new Color(255,255,255));
+        $box->setFontColor(new Color(255, 75, 140));
         $box->setFontSize(100);
         $box->setBox(
             0,
