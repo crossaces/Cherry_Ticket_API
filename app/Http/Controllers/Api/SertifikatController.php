@@ -112,6 +112,29 @@ class SertifikatController extends Controller
     }
 
 
+
+     public function generateEO($id,$nama){
+        $Sertifikat = Sertifikat::find($id);
+        $path = public_path().'/GambarSertifikat/'.$Sertifikat->BACKGROUND;
+
+        $im = imagecreatefromjpeg($path);
+        $font_family = public_path('/fonts/Roboto-Regular.ttf');
+        $box = new Box($im);
+        $box->setFontFace($font_family);
+        $box->setFontColor(new Color($Sertifikat->RED, $Sertifikat->BLUE, $Sertifikat->GREEN));
+        $box->setFontSize($Sertifikat->FONT_SIZE);
+        $box->setBox(
+            0,
+            0,
+            imagesx($im),
+            imagesy($im)
+        );
+        $box->setTextAlign('center','center');
+        $box->draw($nama);
+        header("content-type: image/jpeg");
+        imagejpeg($im,$filename='Sertifikat'.$id.'.jpeg',$quality = 500);      
+    }
+
     public function getAll()
     {
         $Sertifikat = Sertifikat::all();

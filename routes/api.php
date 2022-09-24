@@ -50,6 +50,11 @@ Route::controller(AuthController::class)->group(function () {
     Route::post("login", "login"); //register event organizer
 });
 
+ Route::controller(SertifikatController::class)->group(function () {
+        Route::get("generate/{id}/{nama}", "generate"); //       
+         Route::get("generateEO/{id}/{nama}", "generateEO"); // 
+ });
+
 
 Route::group(["middleware" => "auth:api"], function () {
     //All User Function
@@ -208,19 +213,18 @@ Route::group(["middleware" => "auth:api"], function () {
     });
 
     //Seritifkat
-   
-});
-
-
-  Route::controller(SertifikatController::class)->group(function () {
+    Route::controller(SertifikatController::class)->group(function () {
         Route::post("sertifikat", "store"); //
         Route::get("sertifikat", "getAll"); //
-        Route::get("sertifikat/{id}", "get"); //
-        Route::get("generate/{id}/{nama}", "generate"); //
+        Route::get("sertifikat/{id}", "get"); //    
         Route::get("sertifikatimage/{id}", "getImage"); //
         Route::post("sertifikat/{id}", "update"); //
         Route::delete("sertifikat/{id}", "destroy"); //
     });
+});
+
+
+
 //
 Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();
