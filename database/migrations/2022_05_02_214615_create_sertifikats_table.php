@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->integer("BLUE")->nullable();
             $table->integer("GREEN")->nullable();
             $table->integer("FONT_SIZE")->nullable();
+            $table->integer("X")->nullable();
+            $table->integer("Y")->nullable();
             $table->unsignedBigInteger("ID_EVENT")->nullable();
             $table
                 ->foreign("ID_EVENT")

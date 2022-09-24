@@ -19,6 +19,8 @@ class Sertifikat extends Model
         "RED",
         "BLUE",
         "GREEN",
+        "X",
+        "Y",
         "FONT_SIZE",
         "ID_EVENT",              
     ];

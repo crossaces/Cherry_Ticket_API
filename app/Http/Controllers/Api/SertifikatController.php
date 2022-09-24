@@ -203,6 +203,8 @@ class SertifikatController extends Controller
                 "blue" => "required",   
                 "green" => "required", 
                 "font_size" => "required",     
+                "x" => "required", 
+                "y" => "required",     
             ]);
         }
         else{
@@ -210,7 +212,9 @@ class SertifikatController extends Controller
                 "red" => "required",   
                 "blue" => "required",   
                 "green" => "required", 
-                "font_size" => "required",             
+                "font_size" => "required",    
+                "x" => "required", 
+                "y" => "required",              
             ]);
         }
        
@@ -234,6 +238,8 @@ class SertifikatController extends Controller
         $Sertifikat->BLUE = $updateData['blue'];
         $Sertifikat->GREEN = $updateData['green'];
         $Sertifikat->FONT_SIZE = $updateData['font_size'];
+        $Sertifikat->X = $updateData['x'];
+        $Sertifikat->Y = $updateData['y'];
 
         if ($Sertifikat->save()) {
             if ($gambar != null && $files = $request->file("background")) {
