@@ -18,12 +18,16 @@ class SertifikatController extends Controller
         $storeData = $request->all();
         $validate = Validator::make($storeData, [       
             "background" => "required|image|mimes:jpeg,png,jpg|max:1048",
+            "red" => "required",   
+            "blue" => "required",   
+            "green" => "required", 
+            "font_size" => "required",     
         ]);
 
         if ($validate->fails()) {
             return response(["message" => $validate->errors()], 400);
         }
-
+                     
         if ($files = $request->file("background")) {
             $imageName =
                 time() . "Sertifikat" . "." . $request->background->extension();
@@ -39,6 +43,10 @@ class SertifikatController extends Controller
 
         $Sertifikat = Sertifikat::create([          
             "BACKGROUND" => $imageName,
+            "RED" => $storeData["red"],
+            "BLUE" => $storeData["blue"],
+            "GREEN" => $storeData["green"],
+            "FONT_SIZE" => $storeData["font_size"],
         ]);
 
         return response(
@@ -72,8 +80,8 @@ class SertifikatController extends Controller
         $font_family = public_path('/fonts/Roboto-Regular.ttf');
         $box = new Box($im);
         $box->setFontFace($font_family);
-        $box->setFontColor(new Color(255, 75, 140));
-        $box->setFontSize(100);
+        $box->setFontColor(new Color($Sertifikat->RED, $Sertifikat->BLUE, $Sertifikat->GREEN));
+        $box->setFontSize($Sertifikat->FONT_SIZE);
         $box->setBox(
             0,
             0,
@@ -165,9 +173,23 @@ class SertifikatController extends Controller
         }
 
         $updateData = $request->all();       
-        $validate = Validator::make($updateData, [             
-            "background" => "required|image|mimes:jpeg|max:1048",
-        ]);
+        if ($files = $request->file("background")) {
+            $validate = Validator::make($updateData, [
+                "background" => "required|image|mimes:jpeg,png,jpg|max:1048",
+                "red" => "required",   
+                "blue" => "required",   
+                "green" => "required", 
+                "font_size" => "required",     
+            ]);
+        }
+        else{
+             $validate = Validator::make($updateData, [
+                "red" => "required",   
+                "blue" => "required",   
+                "green" => "required", 
+                "font_size" => "required",             
+            ]);
+        }
        
         
 
@@ -180,16 +202,15 @@ class SertifikatController extends Controller
                 time() . "Sertifikat" . "." . $request->background->extension();
             $request->background->move(public_path("GambarSertifikat"), $imageName);
         }else{
-            return response(
-            [
-                "message" => "Image must be field",              
-            ],
-            400
-        );
+            $imageName = $gambar;
         }
 
         
         $Sertifikat->BACKGROUND = $imageName;
+        $Sertifikat->RED = $updateData['red'];
+        $Sertifikat->BLUE = $updateData['blue'];
+        $Sertifikat->GREEN = $updateData['green'];
+        $Sertifikat->FONT_SIZE = $updateData['font_size'];
 
         if ($Sertifikat->save()) {
             if ($gambar != null && $files = $request->file("background")) {

@@ -15,7 +15,12 @@ class Sertifikat extends Model
     protected $table = "sertifikat";
     protected $fillable = [
         "BACKGROUND",
-        "ID_EVENT",             
+        "ID_EVENT",         
+        "RED",
+        "BLUE",
+        "GREEN",
+        "FONT_SIZE",
+        "ID_EVENT",              
     ];
 
     public function getCreatedAtAttribute()
