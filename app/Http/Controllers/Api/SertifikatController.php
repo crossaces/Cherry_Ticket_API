@@ -83,8 +83,8 @@ class SertifikatController extends Controller
         $box->setFontColor(new Color($Sertifikat->RED, $Sertifikat->BLUE, $Sertifikat->GREEN));
         $box->setFontSize($Sertifikat->FONT_SIZE);
         $box->setBox(
-            0,
-            0,
+            $Sertifikat->X,
+            $Sertifikat->Y,
             imagesx($im),
             imagesy($im)
         );
@@ -124,8 +124,8 @@ class SertifikatController extends Controller
         $box->setFontColor(new Color($Sertifikat->RED, $Sertifikat->BLUE, $Sertifikat->GREEN));
         $box->setFontSize($Sertifikat->FONT_SIZE);
         $box->setBox(
-            0,
-            0,
+            $Sertifikat->X,
+            $Sertifikat->Y,
             imagesx($im),
             imagesy($im)
         );
