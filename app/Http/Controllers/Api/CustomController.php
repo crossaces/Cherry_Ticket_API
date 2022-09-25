@@ -235,9 +235,9 @@ class CustomController extends Controller
     public function xlsx()
     {
  
-        $users = User::all();
+        $data = User::all();
  
         // Generate and return the spreadsheet
-        return Excel::download(new LaporanExport($users),'hahahaha.xlsx');
+        return Excel::download(new LaporanExport($data),'hahahaha.xlsx');
     }
 }
