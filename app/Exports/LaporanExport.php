@@ -4,7 +4,7 @@ namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromView;
 
-class Laporan implements FromView
+class LaporanExport implements FromView
 {
     
 
