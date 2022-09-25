@@ -1,12 +1,9 @@
  <table class="table table-striped">
-      <thead>
-         @foreach ($data[0]->DATA_PERTANYAAN as $d)
-          <tr>
-            <td>{{$d->PERTANYAAN}}</td>            
-          </tr>
-        @endforeach
+      <thead>       
         <tr>
-        <th>ID</th>    
+            @foreach ($data[0]->DATA_PERTANYAAN as $d)         
+              <th>ID</th>     
+            @endforeach     
         </tr>
       </thead>
       <tbody>
