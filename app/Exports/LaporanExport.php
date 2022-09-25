@@ -26,7 +26,7 @@ class LaporanExport implements FromView
     }
     public function view(): View
     {
-        return view('productsExport',[
+        return view('laporan',[
             'data'=>$this->data
         ]);
     }
