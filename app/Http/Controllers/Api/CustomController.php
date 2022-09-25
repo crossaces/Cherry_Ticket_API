@@ -232,12 +232,12 @@ class CustomController extends Controller
        
     }
 
-    public function xlsx()
+    public function xlsx($id)
     {
+         
  
-        $data = User::all();
- 
-        // Generate and return the spreadsheet
-        return Excel::download(new LaporanExport($data),'hahahaha.xlsx');
+        $PendaftaranPeserta = PendaftaranPeserta::with('check','event.jenisacara','event.sertifikat','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
+        $Event = Event::find($id);
+        return Excel::download(new LaporanExport($data),$Event->NAMA_EVENT.'.xlsx');
     }
 }
