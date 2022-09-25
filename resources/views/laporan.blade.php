@@ -2,14 +2,16 @@
       <thead>       
         <tr>
             @foreach ($data[0]->DATA_PERTANYAAN as $d)         
-              <th>ID</th>     
+              <th>{{$d->PERTANYAAN}}</th>     
             @endforeach     
         </tr>
       </thead>
       <tbody>
         @foreach ($data as $d)
           <tr>
-            <td>{{$d->id}}</td>            
+             @foreach ($data[0]->DATA_PERTANYAAN as $d)         
+              <td>{{$d->DATA_JAWABAN}}</td>       
+            @endforeach                        
           </tr>
         @endforeach
       </tbody>
