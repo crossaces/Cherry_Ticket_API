@@ -12,7 +12,7 @@ use App\Models\User;
 use App\Models\Check;
 use Illuminate\Support\Facades\DB;
 use Validator, Redirect, Response, File;
-use Maatwebsite\Excel\Excel;
+use Excel;
 class CustomController extends Controller
 {
     //te
