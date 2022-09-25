@@ -38,7 +38,7 @@ class CustomController extends Controller
             404
         );
     }
-
+    //
     public function getDashboard(Request $request, $id)
     {   
         
