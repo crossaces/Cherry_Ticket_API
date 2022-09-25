@@ -9,7 +9,7 @@ use App\Models\Peserta;
 use App\Models\Kota;
 use App\Models\Event;
 use App\Models\User;
-use App\Exports\LaporanExport;
+use App\Export\LaporanExport;
 use App\Models\Check;
 use Illuminate\Support\Facades\DB;
 use Validator, Redirect, Response, File;
