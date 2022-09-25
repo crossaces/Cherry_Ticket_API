@@ -238,7 +238,7 @@ class CustomController extends Controller
          
  
         $PendaftaranPeserta = PendaftaranPeserta::with('check','event.jenisacara','event.sertifikat','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
-        foreach($PendaftaranPeserta->DATA_PERTANYAAN as $f ){        
+        foreach($PendaftaranPeserta as $f ){        
                 $f->DATA_PERTANYAAN=json_decode($f->DATA_PERTANYAAN);         
         }
         $Event = Event::find($id);
