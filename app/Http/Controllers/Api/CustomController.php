@@ -229,4 +229,20 @@ class CustomController extends Controller
         );
        
     }
+
+    public function xlsx()
+    {
+ 
+        $users = User::all();
+ 
+        // Generate and return the spreadsheet
+        Excel::create('users', function ($excel) use ($users) {
+ 
+            // Build the spreadsheet, passing in the users array
+            $excel->sheet('sheet1', function ($sheet) use ($users) {
+                $sheet->fromArray($users);
+            });
+ 
+        })->download('xlsx');
+    }
 }
