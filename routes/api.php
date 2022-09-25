@@ -35,6 +35,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 //Ambil Data Table
 Route::get("datahome", [CustomController::class,"getData",]); //custom
+Route::get("laporan", [CustomController::class,"xlsx",]); //custom
+
 //Password Reset
 Route::post("password/email", [ForgotPasswordController::class,"sendResetLinkEmail",]); //sendforgotpassword
 Route::post("password/reset", [ResetPasswordController::class, "reset"]); //resetpassword
@@ -67,9 +69,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::post("event/in", "checkin"); //
         Route::post("event/out", "checkout"); //
         Route::get("dashboard/{id}", "getDashboard"); //
-        Route::get("profilevent/{id}", "getProfile");
-        Route::get("laporan", "xlsx"); //
-      
+        Route::get("profilevent/{id}", "getProfile");      
     });
      
 
