@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\PendaftaranPeserta;
 use App\Models\Evaluasi;
 use App\Exports\LaporanExport;
+use App\Exports\LaporanEvaluasi;
 use App\Models\Check;
 use Illuminate\Support\Facades\DB;
 use Validator, Redirect, Response, File;
@@ -261,6 +262,6 @@ class CustomController extends Controller
                 $f->DATA_JAWABAN=json_decode($f->DATA_JAWABAN);         
         }
         $Event = Event::find($id);
-        return Excel::download(new LaporanExport($Evaluasi),$Event->NAMA_EVENT.'.xlsx');
+        return Excel::download(new LaporanEvaluasi($Evaluasi),$Event->NAMA_EVENT.'.xlsx');
     }
 }
