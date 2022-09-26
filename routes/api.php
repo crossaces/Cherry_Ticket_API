@@ -35,7 +35,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 //Ambil Data Table
 Route::get("datahome", [CustomController::class,"getData",]); //custom
-Route::get("laporanpendaftaran/{id}", [CustomController::class,"xlsx",]); //custom
+Route::get("laporanpendaftaran/{id}", [CustomController::class,"laporanpendaftaran",]); //laporanpendaftaran
+Route::get("laporanevaluasi/{id}", [CustomController::class,"laporanevaluasi",]); //custom
 
 //Password Reset
 Route::post("password/email", [ForgotPasswordController::class,"sendResetLinkEmail",]); //sendforgotpassword

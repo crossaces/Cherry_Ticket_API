@@ -250,9 +250,15 @@ class CustomController extends Controller
     {
          
  
-        $Evaluasi = Evaluasi::with('check','event.jenisacara','event.sertifikat','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
+        $Form = DB::table('form_evaluasi')
+                                ->select('form_evaluasi.*')
+                                ->join('event', 'form_evaluasi.ID_EVENT', '=', 'event.ID_EVENT')                               
+                                ->where("event.ID_EVENT", "=", $id)
+                                ->first();
+
+        $Evaluasi = Evaluasi::all()->where("ID_FORM_EVALUASI", "=", $Form->ID_FORM_EVALUASI);    
         foreach($Evaluasi as $f ){        
-                $f->DATA_PERTANYAAN=json_decode($f->DATA_PERTANYAAN);         
+                $f->DATA_JAWABAN=json_decode($f->DATA_JAWABAN);         
         }
         $Event = Event::find($id);
         return Excel::download(new LaporanExport($Evaluasi),$Event->NAMA_EVENT.'.xlsx');
