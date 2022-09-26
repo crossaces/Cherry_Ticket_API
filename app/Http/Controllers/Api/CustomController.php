@@ -10,6 +10,7 @@ use App\Models\Kota;
 use App\Models\Event;
 use App\Models\User;
 use App\Models\PendaftaranPeserta;
+use App\Models\Evaluasi;
 use App\Exports\LaporanExport;
 use App\Models\Check;
 use Illuminate\Support\Facades\DB;
@@ -233,7 +234,7 @@ class CustomController extends Controller
        
     }
 
-    public function xlsx($id)
+    public function laporanpendaftaran($id)
     {
          
  
@@ -243,5 +244,17 @@ class CustomController extends Controller
         }
         $Event = Event::find($id);
         return Excel::download(new LaporanExport($PendaftaranPeserta),$Event->NAMA_EVENT.'.xlsx');
+    }
+
+    public function laporanevaluasi($id)
+    {
+         
+ 
+        $Evaluasi = Evaluasi::with('check','event.jenisacara','event.sertifikat','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
+        foreach($Evaluasi as $f ){        
+                $f->DATA_PERTANYAAN=json_decode($f->DATA_PERTANYAAN);         
+        }
+        $Event = Event::find($id);
+        return Excel::download(new LaporanExport($Evaluasi),$Event->NAMA_EVENT.'.xlsx');
     }
 }

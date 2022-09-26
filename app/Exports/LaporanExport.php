@@ -14,7 +14,7 @@ class LaporanExport implements FromView, ShouldAutoSize, WithStyles
     }
     public function view(): View
     {
-        return view('laporan',[
+        return view('laporanpendaftaran',[
             'data'=>$this->data
         ]);
     }
