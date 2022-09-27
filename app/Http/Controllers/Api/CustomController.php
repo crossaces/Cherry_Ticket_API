@@ -270,8 +270,36 @@ class CustomController extends Controller
     public function laporancheck($id)
     {          
         $Check = PendaftaranPeserta::with('check','event.jenisacara','event.sertifikat','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
+
+        $result = DB::table('YourTableName')
+        ->select('id', '//other columns')
+        ->distinct()
+        ->get();
    
         $Event = Event::find($id);
         return Excel::download(new LaporanCheck($Check),$Event->NAMA_EVENT.' Check '.'.xlsx');
+    }
+
+
+    public function test($id)
+    {          
+        $Check = PendaftaranPeserta::with('check','event.jenisacara','event.sertifikat','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
+
+        $result = DB::table('pendaftaran_peserta')
+        ->join('event', 'pendaftaran_peserta.ID_EVENT', '=', 'event.ID_EVENT')          
+        ->join('check', 'pendaftaran_peserta.ID_PENDAFTARAN', '=', 'check.ID_PENDAFTARAN')            
+        ->select('TGL_CHECK')
+        ->where("event.ID_EVENT", "=", $id)
+        ->distinct()
+        ->get();
+   
+        $Event = Event::find($id);
+        return response(
+            [
+                "message" => "test",
+                "data" => $result,
+            ],
+            200
+        );
     }
 }
