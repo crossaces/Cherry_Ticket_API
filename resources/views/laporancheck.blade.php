@@ -1,8 +1,8 @@
  <table class="table table-striped">
       <thead>       
         <tr>
-            @foreach ($data[0]->DATA_JAWABAN as $d)         
-              <th>{{$d->PERTANYAAN}}</th>     
+            @foreach ($data as $d)         
+              <th rowspan="2">{{$d->NAMA_DEPAN $d->NAMA_BELAKANG}}</th>     
             @endforeach     
         </tr>
       </thead>
