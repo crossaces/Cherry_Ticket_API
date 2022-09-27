@@ -321,7 +321,7 @@ class CustomController extends Controller
         ->distinct()
         ->get();
         foreach($Check as $f ){                                
-            foreach($temp as $r){
+            foreach($temp as &$r){
                 $r->CHECKIN = "-";
                 $r->CHECKOUT = "-";
                 foreach($f->check as $c){
@@ -334,9 +334,7 @@ class CustomController extends Controller
                         $r->CHECKOUT = Carbon::parse($c->created_at)->format('H:i');
                         $r->IDPENDAFTRARAN = $c->ID_PENDAFTARAN;
                     }
-                }
-                $Check['Check']=$r;
-                
+                }                                
                 $REPORT[]= $Check;                
             }
             $f->REPORT = $REPORT;
