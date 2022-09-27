@@ -322,8 +322,9 @@ class CustomController extends Controller
         ->distinct()
         ->get();
         $REPORT = new Collection();           
+        $i=0;
         foreach($Check as $f ){      
-                           
+                   
             foreach($temp as $r){
                 $r->CHECKIN = "-";
                 $r->CHECKOUT = "-";
@@ -339,9 +340,10 @@ class CustomController extends Controller
                     }
                 }
                
-                $REPORT[0]= $r;                
+                $REPORT[$i]= $r;                
             }
-            $f->REPORT = $REPORT[0];
+            $f->REPORT[$i] = $REPORT[$i];
+            $i++; 
             
         }
    
