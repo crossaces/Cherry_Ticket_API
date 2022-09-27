@@ -2,7 +2,7 @@
       <thead>       
         <tr>
             @foreach ($data as $d)         
-              <th rowspan="2">{{$d->NAMA_DEPAN}} {{$d->NAMA_BELAKANG}}</th>     
+              <th colspan="3">{{$d->peserta->NAMA_DEPAN}} {{$d->peserta->NAMA_BELAKANG}}</th>     
             @endforeach     
         </tr>
       </thead>

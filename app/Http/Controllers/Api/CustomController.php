@@ -272,6 +272,6 @@ class CustomController extends Controller
         $Check = PendaftaranPeserta::with('check','event.jenisacara','event.sertifikat','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
    
         $Event = Event::find($id);
-        return Excel::download(new LaporanCheck($Check),$Event->NAMA_EVENT.' Evaluation '.'.xlsx');
+        return Excel::download(new LaporanCheck($Check),$Event->NAMA_EVENT.' Check '.'.xlsx');
     }
 }
