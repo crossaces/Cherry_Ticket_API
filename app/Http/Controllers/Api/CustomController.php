@@ -322,7 +322,7 @@ class CustomController extends Controller
         ->get();
         foreach($Check as $f ){                                
             foreach($temp as $r){
-                $t['TGL_CHECK'] = $r->TGL_CHECK;
+                $t['TGL_CHECK'] = $r['TGL_CHECK'];
                 $t['CHECKIN'] = "-";
                 $t['CHECKOUT'] = "-";
                 foreach($f->check as $c){
