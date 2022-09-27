@@ -336,9 +336,7 @@ class CustomController extends Controller
                 }               
                 $REPORT[]= $r;                           
             }
-
-            $f->REPORT = $REPORT;
-            
+            $f->REPORT = $REPORT;            
         }
    
         $Event = Event::find($id);
