@@ -320,11 +320,11 @@ class CustomController extends Controller
         ->where("event.ID_EVENT", "=", $id)
         ->distinct()
         ->get();
-        foreach($Check as $f ){                                
+        foreach($Check as &$f ){                                
             foreach($temp as &$r){
                 $r->CHECKIN = "-";
                 $r->CHECKOUT = "-";
-                foreach($f->check as $c){
+                foreach($f->check as &$c){
                     if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-In"){
                         $r->CHECKIN = Carbon::parse($c->created_at)->format('H:i');
                         $r->IDPENDAFTRARAN = $c->ID_PENDAFTARAN;
