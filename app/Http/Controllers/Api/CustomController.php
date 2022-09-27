@@ -319,7 +319,7 @@ class CustomController extends Controller
         ->where("event.ID_EVENT", "=", $id)
         ->distinct()
         ->get();
-        $temp=$result;
+        $temp= new $result;
       
         foreach($Check as $f ){   
             $i=0;                                                  
