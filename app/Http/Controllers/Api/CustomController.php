@@ -322,7 +322,7 @@ class CustomController extends Controller
         $temp=$result;
         foreach($Check as $f ){        
             $temp=$result;         
-            $f->REPORT = $REPORT;    
+            $f->REPORT = [];    
             foreach($temp as $r){
                 $r->CHECKIN = "-";
                 $r->CHECKOUT = "-";
