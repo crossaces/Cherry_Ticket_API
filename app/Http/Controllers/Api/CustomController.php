@@ -312,14 +312,14 @@ class CustomController extends Controller
     {          
         $Check = PendaftaranPeserta::with('check','peserta','order.tiket')->where("ID_EVENT", "=", $id)->get();    
 
-        $result = DB::table('pendaftaran_peserta')
+       
+        $temp= DB::table('pendaftaran_peserta')
         ->join('event', 'pendaftaran_peserta.ID_EVENT', '=', 'event.ID_EVENT')          
         ->join('check', 'pendaftaran_peserta.ID_PENDAFTARAN', '=', 'check.ID_PENDAFTARAN')            
         ->select('TGL_CHECK')
         ->where("event.ID_EVENT", "=", $id)
         ->distinct()
         ->get();
-        $temp= new $result;   
         foreach($Check as $f ){          
            
              $f->REPORT = $REPORT;
