@@ -310,7 +310,7 @@ class CustomController extends Controller
 
     public function test($id)
     {          
-        $Check = PendaftaranPeserta::with('check','event.jenisacara','event.sertifikat','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->get();    
+        $Check = PendaftaranPeserta::with('check','peserta')->where("ID_EVENT", "=", $id)->get();    
 
         $result = DB::table('pendaftaran_peserta')
         ->join('event', 'pendaftaran_peserta.ID_EVENT', '=', 'event.ID_EVENT')          
