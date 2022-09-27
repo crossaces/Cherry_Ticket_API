@@ -335,7 +335,7 @@ class CustomController extends Controller
                         $r->IDPENDAFTRARAN = $c->ID_PENDAFTARAN;
                     }
                 }               
-                $f->REPORT= $r;                
+                $f->REPORT[]= $r;                
             }            
             
         }
