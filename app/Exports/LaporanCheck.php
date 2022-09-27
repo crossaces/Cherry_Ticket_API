@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-class LaporanCheck implements FromView, ShouldAutoSize, WithStyles
+class LaporanCheck implements FromView, ShouldAutoSize,
 {
     public function __construct($data)
     {
