@@ -300,10 +300,10 @@ class CustomController extends Controller
                 $r->CHECKOUT = "-";
                 foreach($f->check as $c){
                     if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK = "Check-In"){
-                        $r->CHECKIN = $f->check->created_at;
+                        $r->CHECKIN = $f->created_at;
                     }
                     else if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK = "Check-Out"){
-                        $r->CHECKOUT = $f->check->created_at;
+                        $r->CHECKOUT = $c->created_at;
                     }
                 }
                
