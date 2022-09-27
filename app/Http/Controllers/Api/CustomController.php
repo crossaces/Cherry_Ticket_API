@@ -259,7 +259,7 @@ class CustomController extends Controller
                                 ->where("event.ID_EVENT", "=", $id)
                                 ->first();
 
-        $Evaluasi = Evaluasi::all()->where("ID_FORM_EVALUASI", "=", $Form->ID_FORM_EVALUASI);    
+        $Evaluasi = Evaluasi::all()->where("ID_FORM_EVALUASI", "=", $Form->ID_FORM_EVALUASI)->toArray();    
         foreach($Evaluasi as $f ){        
                 $f->DATA_JAWABAN=json_decode($f->DATA_JAWABAN);         
         }
