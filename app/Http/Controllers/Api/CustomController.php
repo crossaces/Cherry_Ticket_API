@@ -320,10 +320,9 @@ class CustomController extends Controller
         ->distinct()
         ->get();
         $temp=$result;
-        $i=0;
-        foreach($Check as $f ){    
-            $REPORT=[];
-                                            
+      
+        foreach($Check as $f ){   
+            $i=0;                                                  
             foreach($temp as $r){
                 $r->CHECKIN = "-";
                 $r->CHECKOUT = "-";
