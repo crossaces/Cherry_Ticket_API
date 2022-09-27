@@ -321,7 +321,7 @@ class CustomController extends Controller
         ->distinct()
         ->get();
         foreach($Check as $f ){                                
-            foreach($temp as $r){
+            foreach($temp as &$r){
                 $r->CHECKIN = "-";
                 $r->CHECKOUT = "-";
                 foreach($f->check as $c){
