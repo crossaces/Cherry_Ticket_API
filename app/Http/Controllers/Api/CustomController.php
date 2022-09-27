@@ -17,7 +17,6 @@ use Carbon\Carbon;
 use App\Exports\LaporanEvaluasi;
 use App\Models\Check;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Collection;
 use Validator, Redirect, Response, File;
 use Maatwebsite\Excel\Facades\Excel;
 class CustomController extends Controller
@@ -321,10 +320,7 @@ class CustomController extends Controller
         ->where("event.ID_EVENT", "=", $id)
         ->distinct()
         ->get();
-        $REPORT = new Collection();           
-        $i=0;
-        foreach($Check as $f ){      
-                   
+        foreach($Check as $f ){                                
             foreach($temp as $r){
                 $r->CHECKIN = "-";
                 $r->CHECKOUT = "-";
@@ -340,10 +336,9 @@ class CustomController extends Controller
                     }
                 }
                
-                $REPORT[$i]= $r;                
+                $REPORT[]= $r;                
             }
-            $f->REPORT = $REPORT[$i];
-            $i++; 
+            $f->REPORT = $REPORT;
             
         }
    
