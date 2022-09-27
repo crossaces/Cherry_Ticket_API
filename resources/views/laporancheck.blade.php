@@ -6,7 +6,7 @@
             </tr>
         </thead>
         <tbody>          
-            @foreach ($d->check as $c)
+            @foreach ($d->REPORT as $c)
             <tr>
                 <td style="vertical-align : middle;text-align:center;" rowspan="2"> {{$c->TGL_CHECK}} </td>                
             </tr>

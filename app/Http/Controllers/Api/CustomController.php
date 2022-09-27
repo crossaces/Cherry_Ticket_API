@@ -13,6 +13,7 @@ use App\Models\PendaftaranPeserta;
 use App\Models\Evaluasi;
 use App\Exports\LaporanExport;
 use App\Exports\LaporanCheck;
+use Carbon\Carbon;
 use App\Exports\LaporanEvaluasi;
 use App\Models\Check;
 use Illuminate\Support\Facades\DB;
@@ -269,12 +270,37 @@ class CustomController extends Controller
 
     public function laporancheck($id)
     {          
-        $Check = PendaftaranPeserta::with('check','event.jenisacara','event.sertifikat','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
+       $Check = PendaftaranPeserta::with('check','event.jenisacara','event.sertifikat','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
 
-        $result = DB::table('YourTableName')
-        ->select('id', '//other columns')
+        $result = DB::table('pendaftaran_peserta')
+        ->join('event', 'pendaftaran_peserta.ID_EVENT', '=', 'event.ID_EVENT')          
+        ->join('check', 'pendaftaran_peserta.ID_PENDAFTARAN', '=', 'check.ID_PENDAFTARAN')            
+        ->select('TGL_CHECK')
+        ->where("event.ID_EVENT", "=", $id)
         ->distinct()
         ->get();
+        $temp=$result;
+        foreach($Check as $f ){        
+            $temp=$result;             
+            foreach($temp as $r){
+                $r->CHECKIN = "-";
+                $r->CHECKOUT = "-";
+                foreach($f->check as $c){
+                    if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-In"){
+                        $r->CHECKIN = $c->created_at;
+                    }
+                     
+                    if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-Out"){
+                        $r->CHECKOUT = $c->created_at;
+                    }
+                }
+               
+                $REPORT[]= $r;                
+            }
+
+            $f->REPORT = $REPORT;
+          
+        }
    
         $Event = Event::find($id);
         return Excel::download(new LaporanCheck($Check),$Event->NAMA_EVENT.' Check '.'.xlsx');
@@ -300,11 +326,11 @@ class CustomController extends Controller
                 $r->CHECKOUT = "-";
                 foreach($f->check as $c){
                     if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-In"){
-                        $r->CHECKIN = $c->created_at;
+                        $r->CHECKIN = Carbon::parse($c->created_at)->format('H:i:s');
                     }
                      
                     if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-Out"){
-                        $r->CHECKOUT = $c->created_at;
+                        $r->CHECKOUT = Carbon::parse($c->created_at)->format('H:i:s');
                     }
                 }
                
