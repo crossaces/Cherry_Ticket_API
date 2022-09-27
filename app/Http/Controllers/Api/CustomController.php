@@ -297,18 +297,18 @@ class CustomController extends Controller
             $temp=$result;
             
             foreach($temp as $r){
-                $temp->CHECKIN = "-";
-                $temp->CHECKOUT = "-";
+                $r->CHECKIN = "-";
+                $r->CHECKOUT = "-";
                 foreach($f->check as $c){
                     if($c->TGL_CHECK == $f->TGL_CHECK and $f->STATUS_CHECK = "Check-In"){
-                        $temp->CHECKIN = $f->check->created_at;
+                        $r->CHECKIN = $f->check->created_at;
                     }
                     else if($c->TGL_CHECK == $f->TGL_CHECK and $f->STATUS_CHECK = "Check-Out"){
-                        $temp->CHECKOUT = $f->check->created_at;
+                        $r->CHECKOUT = $f->check->created_at;
                     }
                 }                
             }
-            $f->REPORT= $temp;
+            $f->REPORT= $r;
         }
    
         $Event = Event::find($id);
