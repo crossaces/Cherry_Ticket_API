@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use App\Exports\LaporanEvaluasi;
 use App\Models\Check;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 use Validator, Redirect, Response, File;
 use Maatwebsite\Excel\Facades\Excel;
 class CustomController extends Controller
