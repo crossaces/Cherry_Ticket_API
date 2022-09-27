@@ -334,11 +334,9 @@ class CustomController extends Controller
                         $r->CHECKOUT = Carbon::parse($c->created_at)->format('H:i');
                         $r->IDPENDAFTRARAN = $c->ID_PENDAFTARAN;
                     }
-                }
-               
-                $REPORT[]= $r;                
-            }
-            $f->REPORT = $REPORT;
+                }               
+                $f->REPORT= $r;                
+            }            
             
         }
    
