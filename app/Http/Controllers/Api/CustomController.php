@@ -320,23 +320,24 @@ class CustomController extends Controller
         ->where("event.ID_EVENT", "=", $id)
         ->distinct()
         ->get();
-        foreach($Check as &$f ){                                
-            foreach($temp as &$r){
-                $r['CHECKIN'] = "-";
-                $r['CHECKOUT'] = "-";
-                foreach($f->check as &$c){
+        foreach($Check as $f ){                                
+            foreach($temp as $r){
+                $t['TGL_CHECK'] = $r->TGL_CHECK;
+                $t['CHECKIN'] = "-";
+                $t['CHECKOUT'] = "-";
+                foreach($f->check as $c){
                     if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-In"){
-                        $r['CHECKIN'] = Carbon::parse($c->created_at)->format('H:i');
-                        $r['IDPENDAFTARAN'] = $c->ID_PENDAFTARAN;
+                        $t['CHECKIN'] = Carbon::parse($c->created_at)->format('H:i');
+                        $t['IDPENDAFTARAN'] = $c->ID_PENDAFTARAN;
                     }
                      
                     if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-Out"){
-                        $r['CHECKOUT'] = Carbon::parse($c->created_at)->format('H:i');
-                        $r['IDPENDAFTARAN'] = $c->ID_PENDAFTARAN;
+                        $t['CHECKOUT'] = Carbon::parse($c->created_at)->format('H:i');
+                        $t['IDPENDAFTARAN'] = $c->ID_PENDAFTARAN;
                     }
                 }
                
-                $REPORT[]= $r;                
+                $REPORT[]= $t;                
             }
             $f->REPORT = $REPORT;
             
