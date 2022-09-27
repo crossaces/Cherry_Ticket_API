@@ -8,7 +8,7 @@
         <tbody>          
             @foreach ($d->check as $c)
             <tr>
-                <td style="text-align: center;" rowspan="2"> {{$c->TGL_CHECK}} </td>                
+                <td style="vertical-align : middle;text-align:center;" rowspan="2"> {{$c->TGL_CHECK}} </td>                
             </tr>
             @endforeach
         </tbody>
