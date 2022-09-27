@@ -318,11 +318,10 @@ class CustomController extends Controller
         ->select('TGL_CHECK')
         ->where("event.ID_EVENT", "=", $id)
         ->distinct()
-        ->get();
-        $temp= new $result;
+        ->get();        
       
         foreach($Check as $f ){   
-            $i=0;                                                  
+            $temp= new $result;                                           
             foreach($temp as $r){
                 $r->CHECKIN = "-";
                 $r->CHECKOUT = "-";
@@ -334,10 +333,8 @@ class CustomController extends Controller
                     if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-Out"){
                         $r->CHECKOUT = Carbon::parse($c->created_at)->format('H:i');
                     }
-                }
-               
-                $REPORT[$i]= $r;   
-                $i++;               
+                }               
+                $REPORT[]= $r;                           
             }
 
             $f->REPORT = $REPORT;
