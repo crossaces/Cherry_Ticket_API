@@ -7,11 +7,9 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($data as $d)
+        @foreach ($d->check as $c)
           <tr>
-             @foreach ($data[0]->DATA_JAWABAN as $d)         
-              <td>{{$d->DATA_JAWABAN}}</td>       
-            @endforeach                        
+             {{$c->TGL_CHECK}}          
           </tr>
         @endforeach
       </tbody>
