@@ -18,15 +18,7 @@ class LaporanCheck implements FromView, ShouldAutoSize, WithStyles
         return view('laporancheck',[
             'data'=>$this->data
         ]);
-    }
-
-    public function styles(Worksheet $sheet)
-    {
-        return [
-            // Style the first row as bold text.
-            1    => ['font' => ['bold' => true]],         
-        ];
-    }
+    }   
 
     public function sheets(): array {
         $data = $this->view();
