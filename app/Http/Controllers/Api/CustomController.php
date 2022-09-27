@@ -319,9 +319,9 @@ class CustomController extends Controller
         ->where("event.ID_EVENT", "=", $id)
         ->distinct()
         ->get();
-        
+        $temp= new $result;   
         foreach($Check as $f ){          
-             $temp= new $result;   
+           
              $f->REPORT = $REPORT;
             foreach($temp as $r){
                 $r->CHECKIN = "-";
