@@ -306,9 +306,10 @@ class CustomController extends Controller
                     else if($c->TGL_CHECK == $f->TGL_CHECK and $f->STATUS_CHECK = "Check-Out"){
                         $r->CHECKOUT = $f->check->created_at;
                     }
-                }                
+                }
+                $f->REPORT[]= $r;                
             }
-            $f->check[]= $r;
+          
         }
    
         $Event = Event::find($id);
