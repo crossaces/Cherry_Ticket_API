@@ -1,9 +1,8 @@
  <table class="table table-striped">
+     @foreach ($data as $d)     
       <thead>       
-        <tr>
-            @foreach ($data as $d)         
-              <th colspan="3" style="text-align: center;">{{$d->peserta->NAMA_DEPAN}} {{$d->peserta->NAMA_BELAKANG}}</th>     
-            @endforeach     
+        <tr>               
+            <th colspan="3" style="text-align: center;">{{$d->peserta->NAMA_DEPAN}} {{$d->peserta->NAMA_BELAKANG}}</th>     
         </tr>
       </thead>
       <tbody>
@@ -13,4 +12,5 @@
           </tr>
         @endforeach
       </tbody>
+       @endforeach     
 </table>
