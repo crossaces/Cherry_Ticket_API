@@ -326,11 +326,11 @@ class CustomController extends Controller
                 $r->CHECKOUT = "-";
                 foreach($f->check as $c){
                     if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-In"){
-                        $r->CHECKIN = Carbon::parse($c->created_at)->format('H:i:s');
+                        $r->CHECKIN = Carbon::parse($c->created_at)->format('H:i');
                     }
                      
                     if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-Out"){
-                        $r->CHECKOUT = Carbon::parse($c->created_at)->format('H:i:s');
+                        $r->CHECKOUT = Carbon::parse($c->created_at)->format('H:i');
                     }
                 }
                
