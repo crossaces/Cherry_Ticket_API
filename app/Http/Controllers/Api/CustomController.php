@@ -321,7 +321,8 @@ class CustomController extends Controller
         ->get();
         $temp=$result;
         foreach($Check as $f ){        
-            $temp=$result;             
+            $temp=$result;         
+            $f->REPORT = $REPORT;    
             foreach($temp as $r){
                 $r->CHECKIN = "-";
                 $r->CHECKOUT = "-";
@@ -339,7 +340,7 @@ class CustomController extends Controller
             }
 
             $f->REPORT = $REPORT;
-            $REPORT=[];
+            
         }
    
         $Event = Event::find($id);
