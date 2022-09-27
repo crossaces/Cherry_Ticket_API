@@ -315,7 +315,7 @@ class CustomController extends Controller
         return response(
             [
                 "message" => "test",
-                "data" => $result,
+                "data" => $check,
             ],
             200
         );
