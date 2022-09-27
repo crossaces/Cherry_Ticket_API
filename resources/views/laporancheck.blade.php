@@ -8,16 +8,14 @@
         <tbody>          
             @foreach ($d->REPORT as $c)
             <tr>
-                <td style="vertical-align : middle;text-align:center;" rowspan="2"> {{$c->TGL_CHECK}} </td>                
-            </tr>
-            <tr>
+                <td style="vertical-align : middle;text-align:center;" rowspan="2"> {{$c->TGL_CHECK}} </td>       
                 <td style="vertical-align : middle;text-align:center;" > Check-In </td>   
-                <td style="vertical-align : middle;text-align:center;" > {{$c->CHECKIN}} </td>                        
+                <td style="vertical-align : middle;text-align:center;" > Check-Out </td>            
             </tr>
-             <tr>
-                <td style="vertical-align : middle;text-align:center;" > Check-Out </td>   
-                <td style="vertical-align : middle;text-align:center;" > {{$c->CHECKOUT}} </td>                        
-            </tr>
+            <tr>               
+                <td style="vertical-align : middle;text-align:center;" > {{$c->CHECKIN}} </td>   
+                <td style="vertical-align : middle;text-align:center;" > {{$c->CHECKOUT}} </td>                            
+            </tr>         
             @endforeach
         </tbody>
        @endforeach     
