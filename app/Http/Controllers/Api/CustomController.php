@@ -244,7 +244,7 @@ class CustomController extends Controller
                 $f->DATA_PERTANYAAN=json_decode($f->DATA_PERTANYAAN);         
         }
         $Event = Event::find($id);
-        return Excel::download(new LaporanExport($PendaftaranPeserta),$Event->NAMA_EVENT.'.xlsx');
+        return Excel::download(new LaporanExport($PendaftaranPeserta),$Event->NAMA_EVENT.' Register '.'.xlsx');
     }
 
     public function laporanevaluasi($id)
@@ -262,6 +262,23 @@ class CustomController extends Controller
                 $f->DATA_JAWABAN=json_decode($f->DATA_JAWABAN);         
         }
         $Event = Event::find($id);
-        return Excel::download(new LaporanEvaluasi($Evaluasi),$Event->NAMA_EVENT.'.xlsx');
+        return Excel::download(new LaporanEvaluasi($Evaluasi),$Event->NAMA_EVENT.' Evaluation '.'.xlsx');
+    }
+
+
+    public function laporancheck($id)
+    {          
+        $Form = DB::table('form_evaluasi')
+                                ->select('form_evaluasi.*')
+                                ->join('event', 'form_evaluasi.ID_EVENT', '=', 'event.ID_EVENT')                               
+                                ->where("event.ID_EVENT", "=", $id)
+                                ->first();
+
+        $Evaluasi = Evaluasi::all()->where("ID_FORM_EVALUASI", "=", $Form->ID_FORM_EVALUASI);    
+        foreach($Evaluasi as $f ){        
+                $f->DATA_JAWABAN=json_decode($f->DATA_JAWABAN);         
+        }
+        $Event = Event::find($id);
+        return Excel::download(new Laporancheck($Evaluasi),$Event->NAMA_EVENT.' Evaluation '.'.xlsx');
     }
 }
