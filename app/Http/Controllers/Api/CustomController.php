@@ -342,7 +342,7 @@ class CustomController extends Controller
                
                 $REPORT[$i]= $r;                
             }
-            $f->REPORT[$i] = $REPORT[$i];
+            $f->REPORT = $REPORT[$i];
             $i++; 
             
         }
