@@ -9,8 +9,8 @@
       <tbody>
         @foreach ($data as $d)
           <tr>
-             @foreach ($data->DATA_PERTANYAAN as $d)         
-              <td>{{$d->DATA_JAWABAN}}</td>       
+             @foreach ($data->d as $s)         
+              <td>{{$s->DATA_JAWABAN}}</td>       
             @endforeach                        
           </tr>
         @endforeach
