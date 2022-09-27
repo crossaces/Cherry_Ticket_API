@@ -310,7 +310,7 @@ class CustomController extends Controller
 
     public function test($id)
     {          
-        $Check = PendaftaranPeserta::with('check','peserta')->where("ID_EVENT", "=", $id)->get();    
+        $Check = PendaftaranPeserta::with('check','event.jenisacara','event.sertifikat','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->get();    
 
         $result = DB::table('pendaftaran_peserta')
         ->join('event', 'pendaftaran_peserta.ID_EVENT', '=', 'event.ID_EVENT')          
@@ -318,10 +318,9 @@ class CustomController extends Controller
         ->select('TGL_CHECK')
         ->where("event.ID_EVENT", "=", $id)
         ->distinct()
-        ->get();        
-      
-        foreach($Check as $f ){   
-            $temp= new $result;                                           
+        ->get();
+        $temp=$result;
+        foreach($Check as $f ){                                       
             foreach($temp as $r){
                 $r->CHECKIN = "-";
                 $r->CHECKOUT = "-";
@@ -333,10 +332,13 @@ class CustomController extends Controller
                     if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-Out"){
                         $r->CHECKOUT = Carbon::parse($c->created_at)->format('H:i');
                     }
-                }               
-                $REPORT[]= $r;                           
+                }
+               
+                $REPORT[]= $r;                
             }
-            $f->REPORT = $REPORT;            
+
+            $f->REPORT = $REPORT;
+            
         }
    
         $Event = Event::find($id);
