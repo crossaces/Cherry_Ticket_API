@@ -292,6 +292,24 @@ class CustomController extends Controller
         ->where("event.ID_EVENT", "=", $id)
         ->distinct()
         ->get();
+        $temp=$result;
+        foreach($Check as $f ){        
+            $temp=$result;
+            
+            foreach($temp as $r){
+                $temp->CHECKIN = "-";
+                $temp->CHECKOUT = "-";
+                foreach($f->check as $c){
+                    if($c->TGL_CHECK == $f->TGL_CHECK and $f->STATUS_CHECK = "Check-In"){
+                        $temp->CHECKIN = $f->check->created_at;
+                    }
+                    else if($c->TGL_CHECK == $f->TGL_CHECK and $f->STATUS_CHECK = "Check-Out"){
+                        $temp->CHECKOUT = $f->check->created_at;
+                    }
+                }                
+            }
+            $f->REPORT= $temp;
+        }
    
         $Event = Event::find($id);
         return response(
@@ -303,3 +321,4 @@ class CustomController extends Controller
         );
     }
 }
+
