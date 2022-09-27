@@ -295,7 +295,7 @@ class CustomController extends Controller
         $temp=$result;
         foreach($Check as $f ){        
             $temp=$result;
-            
+              $f->REPORT=[];
             foreach($temp as $r){
                 $r->CHECKIN = "-";
                 $r->CHECKOUT = "-";
@@ -307,6 +307,7 @@ class CustomController extends Controller
                         $r->CHECKOUT = $f->check->created_at;
                     }
                 }
+               
                 $f->REPORT[]= $r;                
             }
           
