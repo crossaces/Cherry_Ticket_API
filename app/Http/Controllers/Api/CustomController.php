@@ -327,12 +327,12 @@ class CustomController extends Controller
                 foreach($f->check as $c){
                     if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-In"){
                         $r->CHECKIN = Carbon::parse($c->created_at)->format('H:i');
-                        $r->IDPENDAFTRARAN = $ID_PENDAFTARAN;
+                        $r->IDPENDAFTRARAN = $c->ID_PENDAFTARAN;
                     }
                      
                     if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-Out"){
                         $r->CHECKOUT = Carbon::parse($c->created_at)->format('H:i');
-                        $r->IDPENDAFTRARAN = $ID_PENDAFTARAN;
+                        $r->IDPENDAFTRARAN = $c->ID_PENDAFTARAN;
                     }
                 }
                
