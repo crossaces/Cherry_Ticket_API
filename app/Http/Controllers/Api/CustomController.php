@@ -320,7 +320,8 @@ class CustomController extends Controller
         ->where("event.ID_EVENT", "=", $id)
         ->distinct()
         ->get();
-        foreach($Check as $f ){                                
+        foreach($Check as $f ){      
+            $REPORT= [];                             
             foreach($temp as $r){
                 $t['TGL_CHECK'] = $r->TGL_CHECK;
                 $t['CHECKIN'] = "-";
@@ -339,6 +340,7 @@ class CustomController extends Controller
                
                 $REPORT[]= $t;                
             }
+            
             $f->REPORT = $REPORT;
             
         }
