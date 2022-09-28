@@ -12,7 +12,7 @@
             @foreach ($d->REPORT as $c)        
             <tr>
                 <td style="vertical-align : middle;text-align:center;" rowspan="2">
-                    <b>{{$d->peserta->NAMA_DEPAN}} {{$d->peserta->NAMA_BELAKANG}}</b>
+                    {{$d->peserta->NAMA_DEPAN}} {{$d->peserta->NAMA_BELAKANG}}
                 </td>
                 <td style="vertical-align : middle;text-align:center;" rowspan="2"> {{$c['TGL_CHECK']}} </td>       
                 <td style="vertical-align : middle;text-align:center;" > Check-In </td>   
