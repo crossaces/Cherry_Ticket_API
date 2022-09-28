@@ -270,40 +270,42 @@ class CustomController extends Controller
 
     public function laporancheck($id)
     {          
-       $Check = PendaftaranPeserta::with('check','event.jenisacara','event.sertifikat','event.genre','event.kota','event.tiket','peserta','order.tiket')->where("ID_EVENT", "=", $id)->orderBy('ID_PENDAFTARAN', 'DESC')->get();    
+       $Check = PendaftaranPeserta::with('check','peserta','order.tiket')->where("ID_EVENT", "=", $id)->get();    
 
-        $result = DB::table('pendaftaran_peserta')
+       
+        $temp= DB::table('pendaftaran_peserta')
         ->join('event', 'pendaftaran_peserta.ID_EVENT', '=', 'event.ID_EVENT')          
         ->join('check', 'pendaftaran_peserta.ID_PENDAFTARAN', '=', 'check.ID_PENDAFTARAN')            
         ->select('TGL_CHECK')
         ->where("event.ID_EVENT", "=", $id)
         ->distinct()
         ->get();
-        $temp=$result;
-        foreach($Check as $f ){        
-            $temp=$result;             
+        foreach($Check as $f ){      
+            $REPORT= [];                             
             foreach($temp as $r){
-                $r->CHECKIN = "-";
-                $r->CHECKOUT = "-";
+                $t['TGL_CHECK'] = $r->TGL_CHECK;
+                $t['CHECKIN'] = "-";
+                $t['CHECKOUT'] = "-";
                 foreach($f->check as $c){
                     if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-In"){
-                        $r->CHECKIN = Carbon::parse($c->created_at)->format('H:i');
+                        $t['CHECKIN'] = Carbon::parse($c->created_at)->format('H:i');
+                        $t['IDPENDAFTARAN'] = $c->ID_PENDAFTARAN;
                     }
                      
                     if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-Out"){
-                        $r->CHECKOUT = Carbon::parse($c->created_at)->format('H:i');
+                        $t['CHECKOUT'] = Carbon::parse($c->created_at)->format('H:i');
+                        $t['IDPENDAFTARAN'] = $c->ID_PENDAFTARAN;
                     }
                 }
                
-                $REPORT[]= $r;                
+                $REPORT[]= $t;                
             }
-
+            
             $f->REPORT = $REPORT;
-            $REPORT=[];
-          
+            
         }
    
-        $Event = Event::find($id);
+        $Event = Event::find($id);       
         return Excel::download(new LaporanCheck($Check),$Event->NAMA_EVENT.' Check '.'.xlsx');
     }
 
