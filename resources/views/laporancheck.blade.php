@@ -10,7 +10,7 @@
         <tbody>          
             @foreach ($d->REPORT as $c)        
             <tr>
-                <td rowspan="2">
+                <td style="vertical-align : middle;text-align:center;" rowspan="2">
                     <b>{{$d->peserta->NAMA_DEPAN}} {{$d->peserta->NAMA_BELAKANG}}</b>
                 </td>
                 <td style="vertical-align : middle;text-align:center;" rowspan="2"> {{$c['TGL_CHECK']}} </td>       
