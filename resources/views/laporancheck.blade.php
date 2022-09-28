@@ -1,5 +1,5 @@
  <table class="table table-striped">
-     @foreach ($data as $d)     
+    
         <thead>       
             <tr>               
                 <th  style="text-align: center;">Participant Name</th>  
@@ -7,7 +7,8 @@
                 <th  style="text-align: center;">Check Time</th>    
             </tr>
         </thead>
-        <tbody>          
+        <tbody>     
+         @foreach ($data as $d)          
             @foreach ($d->REPORT as $c)        
             <tr>
                 <td style="vertical-align : middle;text-align:center;" rowspan="2">
@@ -21,10 +22,8 @@
                 <td style="vertical-align : middle;text-align:center;" > {{$c['CHECKIN']}} </td>   
                 <td style="vertical-align : middle;text-align:center;" > {{$c['CHECKOUT']}} </td>                            
             </tr>         
-            @endforeach
-            <tr>               
-                <th colspan="3"></th>     
-            </tr>
+            @endforeach            
+        @endforeach     
         </tbody>
-       @endforeach     
+       
 </table>
