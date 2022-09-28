@@ -4,7 +4,7 @@
             <tr>               
                 <th  style="text-align: center;">Participant Name</th>  
                 <th  style="text-align: center;">Date</th> 
-                <th  style="text-align: center;">Check Time</th>    
+                <th  colspan="2" style="text-align: center;">Check Time</th>    
             </tr>
         </thead>
         <tbody>     

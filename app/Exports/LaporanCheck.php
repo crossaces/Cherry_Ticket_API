@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-class LaporanCheck implements FromView, ShouldAutoSize
+class LaporanCheck implements FromView, ShouldAutoSize, WithStyles
 {
     public function __construct($data)
     {
@@ -20,12 +20,11 @@ class LaporanCheck implements FromView, ShouldAutoSize
         ]);
     }   
 
-    public function sheets(): array {
-        $data = $this->view();
-   
+    public function styles(Worksheet $sheet)
+    {
         return [
-            view('laporancheck', $data),
-            view('laporancheck', $data),
+            // Style the first row as bold text.
+            1    => ['font' => ['bold' => true]],         
         ];
     }
 }
