@@ -9,7 +9,7 @@
       <tbody>
         @foreach ($data as $d)
           <tr>
-             @foreach ($data->d as $s)         
+             @foreach ($d->DATA_JAWABAN as $s)         
               <td>{{$s->DATA_JAWABAN}}</td>       
             @endforeach                        
           </tr>
