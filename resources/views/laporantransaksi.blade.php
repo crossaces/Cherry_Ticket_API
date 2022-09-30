@@ -24,18 +24,16 @@
                  <td  rowspan="{{count($d->order)}}" style="vertical-align : center;text-align:center;" >
                    {{$d->STATUS_TRANSAKSI}}
                 </td> 
-                <td  rowspan="{{count($d->order)}}" colspan="2" style="vertical-align : center;text-align:center;" >
+                <td  rowspan="{{count($d->order)}}" style="vertical-align : center;text-align:center;" >
                    {{$d->TOTAL_HARGA}}
-                </td>                                         
-            </tr>       
-             <tr>                                         
+                </td>               
                 <td style="vertical-align : left;text-align:left;" >
                    Tiket Type
                 </td> 
                  <td style="vertical-align : left;text-align:left;" >
                     Quantity
-                </td> 
-             </tr>                      
+                </td>                           
+            </tr>                                                                                                         
             @foreach ($d->order as $o)    
              <tr>                                         
                 <td style="vertical-align : left;text-align:left;" >
