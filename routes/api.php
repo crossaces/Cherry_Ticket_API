@@ -38,6 +38,7 @@ Route::get("datahome", [CustomController::class,"getData",]); //custom
 Route::get("laporanpendaftaran/{id}", [CustomController::class,"laporanpendaftaran",]); //laporanpendaftaran
 Route::get("laporanevaluasi/{id}", [CustomController::class,"laporanevaluasi",]); //laporanevaluasi
 Route::get("laporancheck/{id}", [CustomController::class,"laporancheck",]); //laporacheckincheckout
+Route::get("laporantransaksi/{id}", [CustomController::class,"laporantransaksi",]); //laporacheckincheckout
 Route::get("test/{id}", [CustomController::class,"test",]); //custom
 
 //Password Reset

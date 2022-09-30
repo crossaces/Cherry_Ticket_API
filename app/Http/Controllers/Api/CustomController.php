@@ -15,6 +15,7 @@ use App\Exports\LaporanExport;
 use App\Exports\LaporanCheck;
 use Carbon\Carbon;
 use App\Exports\LaporanEvaluasi;
+use App\Exports\LaporanTransaksi;
 use App\Models\Check;
 use Illuminate\Support\Facades\DB;
 use Validator, Redirect, Response, File;
@@ -307,6 +308,23 @@ class CustomController extends Controller
    
         $Event = Event::find($id);       
         return Excel::download(new LaporanCheck($Check),$Event->NAMA_EVENT.' Check '.'.xlsx');
+    }
+
+     public function laporantransaksi($id)
+    {          
+       $Transaksi = Transaksi::with('order.tiket','event.jenisacara','event.genre','event.kota','event.tiket','peserta')->where("ID_EVENT", "=", $id)->orderBy('ID_TRANSAKSI', 'DESC')->get();    
+
+       
+        $Tiket= DB::table('tiket')
+        ->join('event', 'pendaftaran_peserta.ID_EVENT', '=', 'event.ID_EVENT')                
+        ->select('tiket.NAMA_TIKET')
+        ->where("event.ID_EVENT", "=", $id)
+        ->distinct()
+        ->get();
+     
+   
+        $Event = Event::find($id);       
+        return Excel::download(new LaporanTransaksi($Transaksi,$Tiket),$Event->NAMA_EVENT.' Transaction '.'.xlsx');
     }
 
 

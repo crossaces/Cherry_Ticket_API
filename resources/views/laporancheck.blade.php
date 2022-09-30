@@ -1,5 +1,4 @@
- <table class="table table-striped">
-    
+ <table class="table table-striped">    
         <thead>       
             <tr>               
                 <th  style="text-align: center;">Participant Name</th>  
@@ -24,6 +23,5 @@
             </tr>         
             @endforeach            
         @endforeach     
-        </tbody>
-       
+        </tbody>       
 </table>
