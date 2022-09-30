@@ -326,7 +326,7 @@ class CustomController extends Controller
             $Tiket->JUMLAH = DB::table('order')                                                                
                                 ->join('tiket', 'tiket.ID_TIKET', '=', 'order.ID_TIKET')                                                                
                                 ->where("order.ID_TIKET", "=", $t->ID_TIKET)
-                                ->sum('order.STOK');            
+                                ->sum('order.JUMLAH');            
         }
      
    
