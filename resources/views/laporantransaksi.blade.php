@@ -10,16 +10,17 @@
         </thead>
         <tbody>     
          @foreach ($data as $d)   
-                              
-            @foreach ($d->order as $o)        
             <tr>
-                <td style="vertical-align : left;text-align:left;" >
+                <td  rowspan="{{count($d->order)}}" style="vertical-align : center;text-align:center;" >
                     {{$d->peserta->NAMA_DEPAN}} {{$d->peserta->NAMA_BELAKANG}}
-                </td>
+                </td>                                       
+            </tr>                        
+            @foreach ($d->order as $o)                    
+            <tr>                
                 <td style="vertical-align : left;text-align:left;" >
-                    {{$d->peserta->NAMA_DEPAN}} {{$d->peserta->NAMA_BELAKANG}}
-                </td>                
-            </tr>            
+                    {{$o->tiket->NAMA_TIKET}}
+                </td>      
+            </tr>        
             @endforeach            
         @endforeach     
         </tbody>       
