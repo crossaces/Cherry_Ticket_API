@@ -65,7 +65,7 @@
         <tbody>     
          @foreach ($count as $c)   
             <tr>
-                <td   style="vertical-align : center;text-align:center;" >
+                <td  style="vertical-align : center;text-align:center;" >
                     {{$c->NAMA_TIKET}}
                 </td>  
                 <td  style="vertical-align : center;text-align:center;" >
