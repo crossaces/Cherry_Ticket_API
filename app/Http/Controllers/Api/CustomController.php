@@ -9,6 +9,7 @@ use App\Models\Peserta;
 use App\Models\Kota;
 use App\Models\Event;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\PendaftaranPeserta;
 use App\Models\Evaluasi;
 use App\Models\Transaksi;
@@ -322,6 +323,13 @@ class CustomController extends Controller
         ->where("event.ID_EVENT", "=", $id)
         ->distinct()
         ->get();
+
+         foreach($Tiket as $t ){                  
+            $Tiket->JUMLAH = DB::table('order')                                                                
+                                ->join('tiket', 'tiket.ID_TIKET', '=', 'order.ID_TIKET')                                                                
+                                ->where("order.ID_TIKET", "=", $t->ID_TIKET)
+                                ->sum('order.STOK');            
+        }
      
    
         $Event = Event::find($id);       

@@ -31,10 +31,10 @@
                    Tiket Type
                 </td> 
                  <td style="vertical-align : left;text-align:left;" >
-                    Quantity
+                    <b>Quantity</b>                   
                 </td>        
                 <td style="vertical-align : left;text-align:left;" >
-                    Subtotal
+                    <b>Subtotal</b>                          
                 </td>                   
             </tr>                                                                                                         
             @foreach ($d->order as $o)    
