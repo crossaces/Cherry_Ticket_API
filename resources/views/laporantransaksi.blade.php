@@ -9,12 +9,16 @@
             </tr>
         </thead>
         <tbody>     
-         @foreach ($data as $d)          
+         @foreach ($data as $d)   
+                              
             @foreach ($d->order as $o)        
             <tr>
-                <td style="vertical-align : middle;text-align:center;" rowspan="2">
+                <td style="vertical-align : left;text-align:left;" >
                     {{$d->peserta->NAMA_DEPAN}} {{$d->peserta->NAMA_BELAKANG}}
-                </td>                        
+                </td>
+                <td style="vertical-align : left;text-align:left;" >
+                    {{$d->peserta->NAMA_DEPAN}} {{$d->peserta->NAMA_BELAKANG}}
+                </td>                
             </tr>            
             @endforeach            
         @endforeach     
