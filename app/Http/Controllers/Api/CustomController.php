@@ -317,7 +317,7 @@ class CustomController extends Controller
 
        
         $Tiket= DB::table('tiket')
-        ->join('event', 'pendaftaran_peserta.ID_EVENT', '=', 'event.ID_EVENT')                
+        ->join('event', 'tiket.ID_EVENT', '=', 'event.ID_EVENT')                
         ->select('tiket.NAMA_TIKET')
         ->where("event.ID_EVENT", "=", $id)
         ->distinct()
