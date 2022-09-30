@@ -323,7 +323,7 @@ class CustomController extends Controller
         ->get();
 
          foreach($Tiket as $t ){                  
-            $Tiket->JUMLAH = DB::table('order')                                                                
+            $t->JUMLAH = DB::table('order')                                                                
                                 ->join('tiket', 'tiket.ID_TIKET', '=', 'order.ID_TIKET')                                                                
                                 ->where("order.ID_TIKET", "=", $t->ID_TIKET)
                                 ->sum('order.JUMLAH');            
