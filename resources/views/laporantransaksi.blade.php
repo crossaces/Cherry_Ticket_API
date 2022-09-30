@@ -12,7 +12,7 @@
         <tbody>     
          @foreach ($data as $d)   
             <tr>
-                <td  rowspan="{{count($d->order)}}" style="vertical-align : center;text-align:center;" >
+                <td  rowspan="{{count($d->order)+1}}" style="vertical-align : center;text-align:center;" >
                     {{$d->peserta->NAMA_DEPAN}} {{$d->peserta->NAMA_BELAKANG}}
                 </td>  
                 <td  rowspan="{{count($d->order)}}" style="vertical-align : center;text-align:center;" >
