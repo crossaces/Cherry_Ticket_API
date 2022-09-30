@@ -15,16 +15,16 @@
                 <td  rowspan="{{count($d->order)+1}}" style="vertical-align : center;text-align:center;" >
                     {{$d->peserta->NAMA_DEPAN}} {{$d->peserta->NAMA_BELAKANG}}
                 </td>  
-                <td  rowspan="{{count($d->order)}}" style="vertical-align : center;text-align:center;" >
+                <td  rowspan="{{count($d->order)+1}}" style="vertical-align : center;text-align:center;" >
                    {{$d->TGL_TRANSAKSI}}
                 </td>   
-                <td  rowspan="{{count($d->order)}}" style="vertical-align : center;text-align:center;" >
+                <td  rowspan="{{count($d->order)+1}}" style="vertical-align : center;text-align:center;" >
                    {{$d->METODE_PEMBAYARAN}}
                 </td>    
-                 <td  rowspan="{{count($d->order)}}" style="vertical-align : center;text-align:center;" >
+                 <td  rowspan="{{count($d->order)+1}}" style="vertical-align : center;text-align:center;" >
                    {{$d->STATUS_TRANSAKSI}}
                 </td> 
-                <td  rowspan="{{count($d->order)}}" style="vertical-align : center;text-align:center;" >
+                <td  rowspan="{{count($d->order)+1}}" style="vertical-align : center;text-align:center;" >
                    {{$d->TOTAL_HARGA}}
                 </td>               
                 <td style="vertical-align : left;text-align:left;" >
