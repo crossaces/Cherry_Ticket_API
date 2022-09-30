@@ -32,7 +32,10 @@
                 </td> 
                  <td style="vertical-align : left;text-align:left;" >
                     Quantity
-                </td>                           
+                </td>        
+                <td style="vertical-align : left;text-align:left;" >
+                    Subtotal
+                </td>                   
             </tr>                                                                                                         
             @foreach ($d->order as $o)    
              <tr>                                         
@@ -41,6 +44,9 @@
                 </td> 
                  <td style="vertical-align : left;text-align:left;" >
                     {{$o->JUMLAH}}
+                </td> 
+                 <td style="vertical-align : left;text-align:left;" >
+                    {{$o->SUBTOTAL}}
                 </td> 
              </tr>                  
             @endforeach      
