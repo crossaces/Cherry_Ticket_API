@@ -318,10 +318,8 @@ class CustomController extends Controller
 
        
         $Tiket= DB::table('tiket')
-        ->join('event', 'tiket.ID_EVENT', '=', 'event.ID_EVENT')                
-        ->select('tiket.NAMA_TIKET')
-        ->where("event.ID_EVENT", "=", $id)
-        ->distinct()
+        ->join('event', 'tiket.ID_EVENT', '=', 'event.ID_EVENT')                       
+        ->where("event.ID_EVENT", "=", $id)      
         ->get();
 
          foreach($Tiket as $t ){                  
