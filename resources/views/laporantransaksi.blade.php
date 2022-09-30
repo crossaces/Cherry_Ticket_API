@@ -6,7 +6,7 @@
                 <th  style="text-align: center;">Method Payment</th>  
                 <th  style="text-align: center;">Status</th>
                 <th  style="text-align: center;">Total Price</th>  
-                <th  style="text-align: center;">Order</th>                        
+                <th  colspan="3" style="text-align: center;">Order</th>                        
             </tr>
         </thead>
         <tbody>     
@@ -28,13 +28,25 @@
                    {{$d->TOTAL_HARGA}}
                 </td>                                         
             </tr>       
-            <tr>
-            @foreach ($d->order as $o)                                            
+             <tr>                                         
+                <td style="vertical-align : left;text-align:left;" >
+                   Tiket Type
+                </td> 
+                 <td style="vertical-align : left;text-align:left;" >
+                    Quantity
+                </td> 
+             </tr>                      
+            @foreach ($d->order as $o)    
+             <tr>                                         
                 <td style="vertical-align : left;text-align:left;" >
                     {{$o->tiket->NAMA_TIKET}}
-                </td>                 
-            @endforeach            
-            </tr>                 
+                </td> 
+                 <td style="vertical-align : left;text-align:left;" >
+                    {{$o->JUMLAH}}
+                </td> 
+             </tr>                  
+            @endforeach      
+                  
         @endforeach     
         </tbody>       
 </table>
