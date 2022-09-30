@@ -340,43 +340,23 @@ class CustomController extends Controller
         $Check = PendaftaranPeserta::with('check','peserta','order.tiket')->where("ID_EVENT", "=", $id)->get();    
 
        
-        $temp= DB::table('pendaftaran_peserta')
-        ->join('event', 'pendaftaran_peserta.ID_EVENT', '=', 'event.ID_EVENT')          
-        ->join('check', 'pendaftaran_peserta.ID_PENDAFTARAN', '=', 'check.ID_PENDAFTARAN')            
-        ->select('TGL_CHECK')
-        ->where("event.ID_EVENT", "=", $id)
-        ->distinct()
+        $Tiket= DB::table('tiket')
+        ->join('event', 'tiket.ID_EVENT', '=', 'event.ID_EVENT')                       
+        ->where("event.ID_EVENT", "=", $id)      
         ->get();
-        foreach($Check as $f ){      
-            $REPORT= [];                             
-            foreach($temp as $r){
-                $t['TGL_CHECK'] = $r->TGL_CHECK;
-                $t['CHECKIN'] = "-";
-                $t['CHECKOUT'] = "-";
-                foreach($f->check as $c){
-                    if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-In"){
-                        $t['CHECKIN'] = Carbon::parse($c->created_at)->format('H:i');
-                        $t['IDPENDAFTARAN'] = $c->ID_PENDAFTARAN;
-                    }
-                     
-                    if($c->TGL_CHECK == $r->TGL_CHECK and $c->STATUS_CHECK == "Check-Out"){
-                        $t['CHECKOUT'] = Carbon::parse($c->created_at)->format('H:i');
-                        $t['IDPENDAFTARAN'] = $c->ID_PENDAFTARAN;
-                    }
-                }
-               
-                $REPORT[]= $t;                
-            }
-            
-            $f->REPORT = $REPORT;
-            
+
+         foreach($Tiket as $t ){                  
+            $Tiket->JUMLAH = DB::table('order')                                                                
+                                ->join('tiket', 'tiket.ID_TIKET', '=', 'order.ID_TIKET')                                                                
+                                ->where("order.ID_TIKET", "=", $t->ID_TIKET)
+                                ->sum('order.JUMLAH');            
         }
    
         $Event = Event::find($id);
         return response(
             [
                 "message" => "test",
-                "data" => $Check,
+                "data" => $Tiket,
             ],
             200
         );
