@@ -11,6 +11,7 @@ use App\Models\Event;
 use App\Models\User;
 use App\Models\PendaftaranPeserta;
 use App\Models\Evaluasi;
+use App\Models\Transaksi;
 use App\Exports\LaporanExport;
 use App\Exports\LaporanCheck;
 use Carbon\Carbon;
