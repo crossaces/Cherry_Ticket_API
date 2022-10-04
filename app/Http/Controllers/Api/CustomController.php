@@ -79,10 +79,10 @@ class CustomController extends Controller
 
 
         if($data['total_income'] > $temp){
-            $data['total_withdraw']= $data['total_income'] - $temp;             
+            $data['sisa_saldo']= $data['total_income'] - $temp;             
         }
         else{
-            $data['total_withdraw']=  $temp - $data['total_income'];    
+            $data['sisa_saldo']=  $temp - $data['total_income'];    
         }
                      
 
