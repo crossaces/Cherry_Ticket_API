@@ -15,7 +15,8 @@ class WithdrawController extends Controller
         $storeData = $request->all();
         $validate = Validator::make($storeData, [            
             "jumlah_withdraw" => "required",
-            "income_admin" => "required",                       
+            "income_admin" => "required",  
+            "total_withdraw" => "required",                           
             "ideo" => "required",
             "method_payment" => "required",                       
             "nomor_transaksi" => "required",
@@ -30,7 +31,8 @@ class WithdrawController extends Controller
             "JUMLAH_WITHDRAW" => $storeData["jumlah_withdraw"],
             "INCOME_ADMIN" => $storeData["income_admin"],
             "ID_EO" => $storeData["ideo"],
-            "TGL_WITHDRAW" => date("Y-m-d"),     
+            "TGL_WITHDRAW" => date("Y-m-d"),   
+            "TOTAL_WITHDRAW" => $storeData["total_withdraw"],              
             "METHOD_PAYMENT" => $storeData["method_payment"],
             "NOMOR_TRANSAKSI" => $storeData["nomor_transaksi"],
             "NAMA_TUJUAN" => $storeData["nama_tujuan"],       
