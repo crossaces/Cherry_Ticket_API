@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id("ID_QNA");
             $table->string("NAMA_PESERTA", 50);
             $table->string("PERTANYAAN", 200);
-            $table->string("STATUS_QNA", 50)->default("Show");;
+            $table->string("STATUS_QNA", 50)->default("Show");
             $table->unsignedBigInteger("ID_EVENT");
             $table
                 ->foreign("ID_EVENT")

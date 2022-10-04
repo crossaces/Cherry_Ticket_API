@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\QnaController;
 use App\Http\Controllers\Api\PendaftaranPesertaController;
 use App\Http\Controllers\Api\TiketController;
 use App\Http\Controllers\Api\CustomController;
+use App\Http\Controllers\Api\WithdrawController;
 use App\Http\Controllers\Api\SertifikatController;
 use App\Http\Controllers\VerificationApiController;
 use App\Http\Controllers\Api\TransaksiController;
@@ -160,9 +161,16 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::controller(TiketController::class)->group(function () {
         Route::post("ticket", "store"); //
         Route::get("ticket", "getAll"); //
-        Route::get("ticket/{id}", "get"); //
-        Route::get("ticketimage/{id}", "getImage"); //
+        Route::get("ticket/{id}", "get"); //    
         Route::put("ticket/{id}", "update"); //
+        Route::delete("ticket/{id}", "destroy"); //
+    });
+
+     Route::controller(WithdrawController::class)->group(function () {
+        Route::post("withdraw", "store"); //
+        Route::get("withdraw", "getAll"); //
+        Route::get("withdraw/{id}", "get"); //    
+        Route::put("withdraw/{id}", "update"); //
         Route::delete("ticket/{id}", "destroy"); //
     });
 
@@ -217,6 +225,8 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::get("transaksievent/{id}", "getDataTransaksiEvent"); //getDataTransaksiEvent
         Route::put("changest/{id}", "changeStatusTransaksi"); //createTransaksi                   
     });
+
+  
 
     //Seritifkat
     Route::controller(SertifikatController::class)->group(function () {
