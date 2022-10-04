@@ -53,7 +53,7 @@ class WithdrawController extends Controller
         );
     }
 
-    public function getAll($id)
+    public function getAll()
     {
         $Withdraw = Withdraw::all();           
         if (!is_null($Withdraw)) {
