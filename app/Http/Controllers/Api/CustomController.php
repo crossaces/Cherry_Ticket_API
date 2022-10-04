@@ -75,7 +75,7 @@ class CustomController extends Controller
         $temp= DB::table('withdraw')                                
                 ->join('eo', 'eo.ID_EO', '=', 'withdraw.ID_EO')
                 ->where("eo.ID_EO", "=", $id)
-                ->sum('withdraw.TOTAL_WITHDRAW');     
+                ->sum('withdraw.JUMLAH_WITHDRAW');     
 
 
         if($data['total_income'] > $temp){
