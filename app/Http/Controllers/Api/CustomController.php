@@ -72,6 +72,20 @@ class CustomController extends Controller
                                 ->where("eo.ID_EO", "=", $id)
                                 ->sum('transaksi.TOTAL_HARGA');
 
+        $temp= DB::table('withdraw')                                
+                ->join('eo', 'eo.ID_EO', '=', 'withdraw.ID_EO')
+                ->where("eo.ID_EO", "=", $id)
+                ->sum('withdraw.TOTAL_WITHDRAW');     
+
+
+        if($data['total_income'] > $temp){
+            $data['total_withdraw']= $data['total_income'] - $temp;             
+        }
+        else{
+            $data['total_withdraw']=  $temp - $data['total_income'];    
+        }
+                     
+
         $data['total_visitor']=count(DB::table('pendaftaran_peserta')
                                 ->join('event', 'pendaftaran_peserta.ID_EVENT', '=', 'event.ID_EVENT')
                                 ->join('eo', 'eo.ID_EO', '=', 'event.ID_EO')
