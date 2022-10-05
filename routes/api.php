@@ -170,7 +170,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::post("withdraw", "store"); //
         Route::get("withdraw", "getAll"); //
         Route::get("withdraw/{id}", "get"); //    
-        Route::put("withdraw/{id}", "update"); //
+        Route::put("withdraw/{id}", "changeStatusWithdraw"); //
         Route::delete("ticket/{id}", "destroy"); //
     });
 
