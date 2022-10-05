@@ -32,7 +32,8 @@ class WithdrawController extends Controller
             "INCOME_ADMIN" => $storeData["income_admin"],
             "ID_EO" => $storeData["ideo"],
             "TGL_WITHDRAW" => date("Y-m-d"),   
-            "TOTAL_WITHDRAW" => $storeData["total_withdraw"],              
+            "TOTAL_WITHDRAW" => $storeData["income_admin"],  
+            
             "METHOD_PAYMENT" => $storeData["method_payment"],
             "NOMOR_TRANSAKSI" => $storeData["nomor_transaksi"],
             "NAMA_TUJUAN" => $storeData["nama_tujuan"],       
@@ -57,7 +58,7 @@ class WithdrawController extends Controller
 
     public function getAll()
     {
-        $Withdraw = Withdraw::all();           
+        $Withdraw = Withdraw::with('eo')->where("ID_EO", $id)->get();           
         if (!is_null($Withdraw)) {
             return response(
                 [
@@ -79,9 +80,7 @@ class WithdrawController extends Controller
 
     public function get($id)
     {
-
-       
-        $Withdraw = Withdraw::with('eo')->where("ID_EO", $id)->get();
+        $Withdraw = Withdraw::all()->where("ID_EO", $id);
 
         if (!is_null($Withdraw)) {
             return response(
