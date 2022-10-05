@@ -79,7 +79,9 @@ class WithdrawController extends Controller
 
     public function get($id)
     {
-        $Withdraw = Withdraw::all()->where("ID_EO", $id);
+
+       
+        $Withdraw = Withdraw::with('eo')->where("ID_EO", $id)->get();
 
         if (!is_null($Withdraw)) {
             return response(

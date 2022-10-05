@@ -42,4 +42,9 @@ class Withdraw extends Model
             );
         }
     }
+
+    public function eo()
+    {
+        return $this->belongsTo(EO::class,'ID_EO');
+    }
 }
