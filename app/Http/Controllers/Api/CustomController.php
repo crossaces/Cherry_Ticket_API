@@ -300,7 +300,7 @@ class CustomController extends Controller
     public function laporanwithdrawadmin($awal,$akhir)
     {
          
-        $Withdraw = Withdraw::with('eo')->where("TGL_WITHDRAW", ">=", $awal)->where("TGL_WITHDRAW", "<=",$akhir);        
+        $Withdraw = Withdraw::with('eo')->where("TGL_WITHDRAW", ">=", $awal)->where("TGL_WITHDRAW", "<=",$akhir)-get();        
         return Excel::download(new LaporanWithdrawAdmin($Withdraw),'Income'.$awal.'-'.$akhir.'.xlsx');
     }
 
