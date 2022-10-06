@@ -291,7 +291,7 @@ class CustomController extends Controller
     {
          
  
-        $Withdraw = Withdraw::all()->where("ID_EO", $id)->where("TGL_WITHDRAW", ">=", $awal)->where("TGL_WITHDRAW", "<=",$akhir)->sortBy('TGL_WITHDRAW', 'ASC');
+        $Withdraw = Withdraw::all()->where("ID_EO", $id)->where("TGL_WITHDRAW", ">=", $awal)->where("TGL_WITHDRAW", "<=",$akhir);
         
 
         return Excel::download(new LaporanWithdraw($Withdraw),'Withdraw'.'.xlsx');
