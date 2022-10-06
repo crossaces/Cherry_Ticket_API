@@ -40,7 +40,9 @@ Route::get("laporanpendaftaran/{id}", [CustomController::class,"laporanpendaftar
 Route::get("laporanevaluasi/{id}", [CustomController::class,"laporanevaluasi",]); //laporanevaluasi
 Route::get("laporancheck/{id}", [CustomController::class,"laporancheck",]); //laporacheckincheckout
 Route::get("laporantransaksi/{id}", [CustomController::class,"laporantransaksi",]); //laporacheckincheckout
+Route::get("laporanwithdraw/{id}", [CustomController::class,"laporanwithdraw",]); //WITHDRAW
 Route::get("test/{id}", [CustomController::class,"test",]); //custom
+
 
 //Password Reset
 Route::post("password/email", [ForgotPasswordController::class,"sendResetLinkEmail",]); //sendforgotpassword

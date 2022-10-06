@@ -13,10 +13,12 @@ use App\Models\Order;
 use App\Models\PendaftaranPeserta;
 use App\Models\Evaluasi;
 use App\Models\Transaksi;
+use App\Models\Withdraw;
 use App\Exports\LaporanExport;
 use App\Exports\LaporanCheck;
 use Carbon\Carbon;
 use App\Exports\LaporanEvaluasi;
+use App\Exports\LaporanWithdraw;
 use App\Exports\LaporanTransaksi;
 use App\Models\Check;
 use Illuminate\Support\Facades\DB;
@@ -282,6 +284,16 @@ class CustomController extends Controller
         }
         $Event = Event::find($id);
         return Excel::download(new LaporanEvaluasi($Evaluasi),$Event->NAMA_EVENT.' Evaluation '.'.xlsx');
+    }
+
+
+    public function laporanwithdraw($id)
+    {
+         
+ 
+        $Withdraw = Withdraw::all()->where("ID_EO", $id);
+
+        return Excel::download(new LaporanWithdraw($Withdraw),'Withdraw'.'.xlsx');
     }
 
 
