@@ -6,7 +6,8 @@
                 <th  style="text-align: center;">Total Withdraw</th>  
                 <th  style="text-align: center;">Gained Withdraw</th>
                 <th  style="text-align: center;">Method Payment</th>
-                <th  style="text-align: center;">Account Number</th>                                   
+                <th  style="text-align: center;">Account Number</th> 
+                <th  style="text-align: center;">STATUS WITHDRAW</th>                                    
             </tr>
         </thead>
         <tbody>     
@@ -18,6 +19,9 @@
                 <td style="vertical-align : center;text-align:center;" >
                    {{$d->TGL_WITHDRAW}}
                 </td>   
+                 <td style="vertical-align : center;text-align:center;" >
+                   {{$d->JUMLAH_WITHDRAW}}
+                </td> 
                 <td style="vertical-align : center;text-align:center;" >
                    {{$d->TOTAL_WITHDRAW}}
                 </td>    
