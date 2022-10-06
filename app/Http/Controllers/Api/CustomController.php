@@ -297,10 +297,10 @@ class CustomController extends Controller
         return Excel::download(new LaporanWithdraw($Withdraw),$EO->NAMA_EO.'_Withdraw'.$awal.'-'.$akhir.'.xlsx');
     }
 
-    public function laporanwithdrawadmin($id,$awal,$akhir)
+    public function laporanwithdrawadmin($awal,$akhir)
     {
          
-        $Withdraw = Withdraw::with('eo')->where("ID_EO", $id)->where("TGL_WITHDRAW", ">=", $awal)->where("TGL_WITHDRAW", "<=",$akhir);        
+        $Withdraw = Withdraw::with('eo')->where("TGL_WITHDRAW", ">=", $awal)->where("TGL_WITHDRAW", "<=",$akhir);        
         return Excel::download(new LaporanWithdrawAdmin($Withdraw),'Income'.$awal.'-'.$akhir.'.xlsx');
     }
 
