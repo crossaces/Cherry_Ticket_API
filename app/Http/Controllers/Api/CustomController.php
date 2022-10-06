@@ -20,6 +20,7 @@ use Carbon\Carbon;
 use App\Exports\LaporanEvaluasi;
 use App\Exports\LaporanWithdraw;
 use App\Exports\LaporanTransaksi;
+use App\Exports\LaporanWithdrawAdmin;
 use App\Models\Check;
 use Illuminate\Support\Facades\DB;
 use Validator, Redirect, Response, File;
@@ -293,10 +294,10 @@ class CustomController extends Controller
  
         $Withdraw = Withdraw::all()->where("ID_EO", $id)->where("TGL_WITHDRAW", ">=", $awal)->where("TGL_WITHDRAW", "<=",$akhir);
         $EO = EO::find($id);
-        return Excel::download(new LaporanWithdraw($Withdraw),$EO->NAMA_EO.'Withdraw'.$awal.'-'.$akhir.'.xlsx');
+        return Excel::download(new LaporanWithdraw($Withdraw),$EO->NAMA_EO.'_Withdraw'.$awal.'-'.$akhir.'.xlsx');
     }
 
-     public function laporanwithdrawadmin($id,$awal,$akhir)
+    public function laporanwithdrawadmin($id,$awal,$akhir)
     {
          
         $Withdraw = Withdraw::with('eo')->where("ID_EO", $id)->where("TGL_WITHDRAW", ">=", $awal)->where("TGL_WITHDRAW", "<=",$akhir);        
