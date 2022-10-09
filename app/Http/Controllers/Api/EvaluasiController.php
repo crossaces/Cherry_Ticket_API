@@ -28,7 +28,7 @@ class EvaluasiController extends Controller
         if (count($check)>0) {
             return response( 
                 [
-                    "message" => "Participant Already Check-In",
+                    "message" => "Participant Already Evaluation",
                     "data" => $check,
                 ],
                 400 
