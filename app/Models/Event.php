@@ -89,6 +89,6 @@ class Event extends Model
 
     public function sertifikat()
     {
-        return $this->belongsTo(Sertifikat::class,'ID_EVENT');
+        return $this->hasOne(Sertifikat::class,'ID_EVENT');
     }
 }
