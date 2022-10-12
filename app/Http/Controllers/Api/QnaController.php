@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Qna;
 use Validator;
+use Illuminate\Support\Facades\DB;
 
 class QnaController extends Controller
 {
@@ -70,7 +71,10 @@ class QnaController extends Controller
 
      public function getAllEvent($id)
     {
-        $Qna = Qna::all()->where("ID_EVENT",$id);
+        $Qna = DB::table('qna')
+                ->select('qna.*')                                                               
+                ->where("ID_EVENT", "=", $id)
+                ->get();
 
         if (!is_null($Qna)) {
             return response(
